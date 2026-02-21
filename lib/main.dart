@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_theme.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
       title: 'Movie app',
-      initialRoute: AppRoutesName.onBoarding,
+      // initialRoute: AppRoutesName.onBoarding,
       // onGenerateRoute: AppRoutes.generateRoute,
     );
   }
