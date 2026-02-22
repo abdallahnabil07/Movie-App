@@ -2,7 +2,7 @@
 
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/movie"
         android:label="movie_app">
         <activity
             android:name=".MainActivity"
