@@ -31,21 +31,6 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/forgot password-bro 1.png
-  AssetGenImage get forgotPasswordBro1 =>
-      const AssetGenImage('assets/images/forgot password-bro 1.png');
-
-  /// File path: assets/images/forgot_password.png
-  AssetGenImage get forgotPassword =>
-      const AssetGenImage('assets/images/forgot_password.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [forgotPasswordBro1, forgotPassword];
-}
-
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
-
   /// File path: assets/images/end_image_on_boarding.png
   AssetGenImage get endImageOnBoarding =>
       const AssetGenImage('assets/images/end_image_on_boarding.png');
@@ -54,6 +39,10 @@ class $AssetsImagesGen {
   AssetGenImage get firstImageOnBoarding =>
       const AssetGenImage('assets/images/first_image_on_boarding.png');
 
+  /// File path: assets/images/forgot_password.png
+  AssetGenImage get forgotPassword =>
+      const AssetGenImage('assets/images/forgot_password.png');
+
   /// File path: assets/images/fourth _image_on_boarding.png
   AssetGenImage get fourthImageOnBoarding =>
       const AssetGenImage('assets/images/fourth _image_on_boarding.png');
@@ -61,6 +50,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/intro_image_on_boarding.png
   AssetGenImage get introImageOnBoarding =>
       const AssetGenImage('assets/images/intro_image_on_boarding.png');
+
+  /// File path: assets/images/launcher_ico.png
+  AssetGenImage get launcherIco =>
+      const AssetGenImage('assets/images/launcher_ico.png');
+
+  /// File path: assets/images/launcher_icon.png
+  AssetGenImage get launcherIcon =>
+      const AssetGenImage('assets/images/launcher_icon.png');
 
   /// File path: assets/images/second_image_on_boarding.png
   AssetGenImage get secondImageOnBoarding =>
@@ -74,8 +71,11 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     endImageOnBoarding,
     firstImageOnBoarding,
+    forgotPassword,
     fourthImageOnBoarding,
     introImageOnBoarding,
+    launcherIco,
+    launcherIcon,
     secondImageOnBoarding,
     thirdImageOnBoarding,
   ];
