@@ -11,8 +11,8 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
         leading: Icon(Icons.arrow_back, color: AppColors.yellow),
         title: Text(
@@ -24,29 +24,47 @@ class ForgetPasswordScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        spacing: context.hg(24),
-        children: [
-          Assets.images.forgotPassword.image(),
-          TxtField(
-            hintText: "Email",
-            prefixIcon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: context.wd(8)),
-              child: Assets.icons.emailIcon.svg(),
+      body: Form(
+        key: formKey,
+        child: Column(
+          spacing: context.hg(24),
+          children: [
+            Assets.images.forgotPassword.image(),
+            TxtField(
+              hintText: "Email",
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                if (!emailRegex.hasMatch(value)) {
+                  return 'Please enter a valid email address';
+                }
+                return null;
+              },
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: context.wd(8)),
+                child: Assets.icons.emailIcon.svg(),
+              ),
+              height: context.hg(55),
+              paddingHorizontal: context.wd(16),
+              paddingVertical: context.hg(0),
+              textInputType: TextInputType.emailAddress,
             ),
-            height: context.hg(55),
-            paddingHorizontal: context.wd(16),
-            paddingVertical: context.hg(0),
-          ),
-          AppElevatedButton(
-            textButton: "Verify Email",
-            onPressed: () {},
-            height: context.hg(55),
-            paddingHorizontalForButton: context.wd(16),
-            paddingVerticalForButton: context.hg(0),
-            fontSize: context.fs(20),
-          ),
-        ],
+            AppElevatedButton(
+              textButton: "Verify Email",
+              onPressed: () {
+                if (formKey.currentState?.validate() ?? false) {
+                  // Handle email verification logic here
+                }
+              },
+              height: context.hg(55),
+              paddingHorizontalForButton: context.wd(16),
+              paddingVerticalForButton: context.hg(0),
+              fontSize: context.fs(20),
+            ),
+          ],
+        ),
       ),
     );
   }
