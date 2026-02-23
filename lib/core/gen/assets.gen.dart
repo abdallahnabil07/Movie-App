@@ -43,6 +43,44 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [forgotPasswordBro1, forgotPassword];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/end_image_on_boarding.png
+  AssetGenImage get endImageOnBoarding =>
+      const AssetGenImage('assets/images/end_image_on_boarding.png');
+
+  /// File path: assets/images/first_image_on_boarding.png
+  AssetGenImage get firstImageOnBoarding =>
+      const AssetGenImage('assets/images/first_image_on_boarding.png');
+
+  /// File path: assets/images/fourth _image_on_boarding.png
+  AssetGenImage get fourthImageOnBoarding =>
+      const AssetGenImage('assets/images/fourth _image_on_boarding.png');
+
+  /// File path: assets/images/intro_image_on_boarding.png
+  AssetGenImage get introImageOnBoarding =>
+      const AssetGenImage('assets/images/intro_image_on_boarding.png');
+
+  /// File path: assets/images/second_image_on_boarding.png
+  AssetGenImage get secondImageOnBoarding =>
+      const AssetGenImage('assets/images/second_image_on_boarding.png');
+
+  /// File path: assets/images/third_image_on_boarding.png
+  AssetGenImage get thirdImageOnBoarding =>
+      const AssetGenImage('assets/images/third_image_on_boarding.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    endImageOnBoarding,
+    firstImageOnBoarding,
+    fourthImageOnBoarding,
+    introImageOnBoarding,
+    secondImageOnBoarding,
+    thirdImageOnBoarding,
+  ];
+}
+
 class Assets {
   const Assets._();
 

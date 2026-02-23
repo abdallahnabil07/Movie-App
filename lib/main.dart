@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
       title: 'Movie app',
-      initialRoute: AppRoutesName.forgetPassword,
+      initialRoute: AppRoutesName.introOnBoarding,
       onGenerateRoute: AppRoutes.generateRoute,
     );
   }
