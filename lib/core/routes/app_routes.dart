@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:movie_app/modules/on%20boarding/view/intro_page_on_boarding.dart';
 import 'package:movie_app/modules/on%20boarding/view/on_boarding_view.dart';
-
+import '../../screens/forget_password_screen.dart';
 import 'app_routes_name.dart';
 
 abstract class AppRoutes {
@@ -24,7 +23,14 @@ abstract class AppRoutes {
             return FadeTransition(opacity: animation, child: child);
           },
         );
-
+ case AppRoutesName.onBoardingView:
+        return PageRouteBuilder(
+          pageBuilder: (_, _, _) => ForgetPasswordScreen(),
+          transitionDuration: const Duration(milliseconds: 300),
+          transitionsBuilder: (_, animation, _, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        );
       default:
         return PageRouteBuilder(
           pageBuilder: (_, _, _) => IntroPageOnBoarding(),

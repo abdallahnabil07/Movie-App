@@ -17,12 +17,30 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/email_icon.svg
+  SvgGenImage get emailIcon => const SvgGenImage('assets/icons/email_icon.svg');
+
   /// File path: assets/icons/icon _google.svg
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icons/icon _google.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [iconGoogle];
+  List<SvgGenImage> get values => [emailIcon, iconGoogle];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/forgot password-bro 1.png
+  AssetGenImage get forgotPasswordBro1 =>
+      const AssetGenImage('assets/images/forgot password-bro 1.png');
+
+  /// File path: assets/images/forgot_password.png
+  AssetGenImage get forgotPassword =>
+      const AssetGenImage('assets/images/forgot_password.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [forgotPasswordBro1, forgotPassword];
 }
 
 class $AssetsImagesGen {
