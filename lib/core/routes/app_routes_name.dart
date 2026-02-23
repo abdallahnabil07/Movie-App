@@ -1,3 +1,4 @@
 abstract class AppRoutesName {
-  static const onBoarding = "/on_boarding";
+  static const introOnBoarding = "/intro_on_boarding";
+  static const onBoardingView = "/on_boarding_view";
 }
