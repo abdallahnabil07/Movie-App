@@ -30,6 +30,7 @@ dependencies:
   shimmer_flutter: ^1.0.1
   url_launcher: ^6.2.5
   highlight_text:
+  toggle_switch: ^2.3.0
   flutter_launcher_icons: ^0.14.4
 
 

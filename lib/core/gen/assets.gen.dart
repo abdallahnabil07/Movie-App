@@ -17,6 +17,14 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ar_icon.svg
+  SvgGenImage get arIcon => const SvgGenImage('assets/icons/ar_icon.svg');
+
+  /// File path: assets/icons/email.svg
+  SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
+
+  /// File path: assets/icons/en_icon.svg
+  SvgGenImage get enIcon => const SvgGenImage('assets/icons/en_icon.svg');
   /// File path: assets/icons/email_icon.svg
   SvgGenImage get emailIcon => const SvgGenImage('assets/icons/email_icon.svg');
 
@@ -24,13 +32,50 @@ class $AssetsIconsGen {
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icons/icon _google.svg');
 
+  /// File path: assets/icons/name_icon.svg
+  SvgGenImage get nameIcon => const SvgGenImage('assets/icons/name_icon.svg');
+
+  /// File path: assets/icons/password_icon.svg
+  SvgGenImage get passwordIcon =>
+      const SvgGenImage('assets/icons/password_icon.svg');
+
+  /// File path: assets/icons/phone_icon.svg
+  SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
+
   /// List of all assets
+  List<SvgGenImage> get values => [
+    arIcon,
+    email,
+    enIcon,
+    iconGoogle,
+    nameIcon,
+    passwordIcon,
+    phoneIcon,
+  ];
   List<SvgGenImage> get values => [emailIcon, iconGoogle];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/avatar_1.png
+  AssetGenImage get avatar1 =>
+      const AssetGenImage('assets/images/avatar_1.png');
+
+  /// File path: assets/images/avatar_2.png
+  AssetGenImage get avatar2 =>
+      const AssetGenImage('assets/images/avatar_2.png');
+
+  /// File path: assets/images/avatar_3.png
+  AssetGenImage get avatar3 =>
+      const AssetGenImage('assets/images/avatar_3.png');
+
+  /// File path: assets/images/login_logo.png
+  AssetGenImage get loginLogo =>
+      const AssetGenImage('assets/images/login_logo.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [avatar1, avatar2, avatar3, loginLogo];
   /// File path: assets/images/end_image_on_boarding.png
   AssetGenImage get endImageOnBoarding =>
       const AssetGenImage('assets/images/end_image_on_boarding.png');
