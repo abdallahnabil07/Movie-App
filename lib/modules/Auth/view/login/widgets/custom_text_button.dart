@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
-
-import '../../core/theme/app_colors.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({

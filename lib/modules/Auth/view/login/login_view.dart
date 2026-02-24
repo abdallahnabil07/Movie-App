@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/components/app_elevated_button.dart';
+import 'package:movie_app/components/txt_field.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
-import 'package:movie_app/login/widgets/custom_text_button.dart';
-import 'package:movie_app/login/widgets/language_card_widget.dart';
+import 'package:movie_app/core/routes/app_routes_name.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 
-import '../components/app_elevated_button.dart';
-import '../components/txt_field.dart';
-import '../core/routes/app_routes_name.dart';
-import '../core/theme/app_colors.dart';
+import 'widgets/custom_text_button.dart';
+import 'widgets/language_card_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

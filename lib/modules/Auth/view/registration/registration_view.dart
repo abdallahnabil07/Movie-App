@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/components/app_elevated_button.dart';
+import 'package:movie_app/components/txt_field.dart';
+import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
+import 'package:movie_app/modules/Auth/view/login/widgets/custom_text_button.dart';
+import 'package:movie_app/modules/Auth/view/login/widgets/language_card_widget.dart';
 
-import '../components/app_elevated_button.dart';
-import '../components/txt_field.dart';
-import '../core/gen/assets.gen.dart';
-import '../login/widgets/custom_text_button.dart';
-import '../login/widgets/language_card_widget.dart';
 import 'avatar_selection_bar.dart';
 
 class RegistrationView extends StatefulWidget {

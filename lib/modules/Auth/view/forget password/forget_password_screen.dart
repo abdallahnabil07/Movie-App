@@ -5,7 +5,7 @@ import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 
-import '../core/gen/assets.gen.dart';
+import '../../../../core/gen/assets.gen.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});

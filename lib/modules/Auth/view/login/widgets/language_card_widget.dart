@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/gen/assets.gen.dart';
-import '../../core/theme/app_colors.dart';
+import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 
 class LanguageCardWidget extends StatelessWidget {
   const LanguageCardWidget({

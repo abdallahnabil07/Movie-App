@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/gen/assets.gen.dart';
+import 'package:movie_app/core/gen/assets.gen.dart';
 
 class AvatarSelectionBar extends StatefulWidget {
   const AvatarSelectionBar({super.key});
