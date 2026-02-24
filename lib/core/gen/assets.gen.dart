@@ -23,10 +23,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
 
-  /// File path: assets/icons/en_icon.svg
-  SvgGenImage get enIcon => const SvgGenImage('assets/icons/en_icon.svg');
   /// File path: assets/icons/email_icon.svg
   SvgGenImage get emailIcon => const SvgGenImage('assets/icons/email_icon.svg');
+
+  /// File path: assets/icons/en_icon.svg
+  SvgGenImage get enIcon => const SvgGenImage('assets/icons/en_icon.svg');
 
   /// File path: assets/icons/icon _google.svg
   SvgGenImage get iconGoogle =>
@@ -46,13 +47,13 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
     arIcon,
     email,
+    emailIcon,
     enIcon,
     iconGoogle,
     nameIcon,
     passwordIcon,
     phoneIcon,
   ];
-  List<SvgGenImage> get values => [emailIcon, iconGoogle];
 }
 
 class $AssetsImagesGen {
@@ -70,12 +71,6 @@ class $AssetsImagesGen {
   AssetGenImage get avatar3 =>
       const AssetGenImage('assets/images/avatar_3.png');
 
-  /// File path: assets/images/login_logo.png
-  AssetGenImage get loginLogo =>
-      const AssetGenImage('assets/images/login_logo.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [avatar1, avatar2, avatar3, loginLogo];
   /// File path: assets/images/end_image_on_boarding.png
   AssetGenImage get endImageOnBoarding =>
       const AssetGenImage('assets/images/end_image_on_boarding.png');
@@ -104,6 +99,10 @@ class $AssetsImagesGen {
   AssetGenImage get launcherIcon =>
       const AssetGenImage('assets/images/launcher_icon.png');
 
+  /// File path: assets/images/login_logo.png
+  AssetGenImage get loginLogo =>
+      const AssetGenImage('assets/images/login_logo.png');
+
   /// File path: assets/images/second_image_on_boarding.png
   AssetGenImage get secondImageOnBoarding =>
       const AssetGenImage('assets/images/second_image_on_boarding.png');
@@ -114,6 +113,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    avatar1,
+    avatar2,
+    avatar3,
     endImageOnBoarding,
     firstImageOnBoarding,
     forgotPassword,
@@ -121,6 +123,7 @@ class $AssetsImagesGen {
     introImageOnBoarding,
     launcherIco,
     launcherIcon,
+    loginLogo,
     secondImageOnBoarding,
     thirdImageOnBoarding,
   ];

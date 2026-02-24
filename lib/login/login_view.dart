@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/login/widgets/custom_text_button.dart';
 import 'package:movie_app/login/widgets/language_card_widget.dart';
+
 import '../components/app_elevated_button.dart';
 import '../components/txt_field.dart';
 import '../core/routes/app_routes_name.dart';
@@ -80,6 +81,12 @@ class _LoginViewState extends State<LoginView> {
                   child: CustomTextButton(
                     text: "Forget Password ?",
                     fontWeight: FontWeight.w400,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutesName.forgetPassword,
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 30),
@@ -89,8 +96,6 @@ class _LoginViewState extends State<LoginView> {
                   width: double.infinity,
                   fontSize: 18,
                   // حجم الخط
-                  paddingHorizontalForButton: 0,
-                  paddingVerticalForButton: 0,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -168,8 +173,6 @@ class _LoginViewState extends State<LoginView> {
                   height: 50,
                   width: double.infinity,
                   fontSize: 18,
-                  paddingHorizontalForButton: 0,
-                  paddingVerticalForButton: 0,
                   onPressed: () {},
                   backgroundColor: AppColors.yellow,
                   textColor: AppColors.primaryColor,

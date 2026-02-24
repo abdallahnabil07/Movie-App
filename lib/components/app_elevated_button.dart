@@ -61,6 +61,7 @@ class AppElevatedButton extends StatelessWidget {
 
         child: (addIcon == true && icon != null)
             ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null)
                     Padding(

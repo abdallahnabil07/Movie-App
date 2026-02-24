@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import '../../core/theme/app_colors.dart';
 
@@ -16,9 +17,8 @@ class CustomTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Bounceable(
       onTap: onTap,
-      splashColor: Colors.transparent,
       child: Text(
         text,
         style: TextStyle(

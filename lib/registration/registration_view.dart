@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
+
 import '../components/app_elevated_button.dart';
 import '../components/txt_field.dart';
 import '../core/gen/assets.gen.dart';
@@ -152,8 +153,6 @@ class _RegistrationViewState extends State<RegistrationView> {
                   height: 50,
                   width: double.infinity,
                   fontSize: 18,
-                  paddingHorizontalForButton: 0,
-                  paddingVerticalForButton: 0,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(

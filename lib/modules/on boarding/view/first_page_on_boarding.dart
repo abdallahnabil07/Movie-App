@@ -16,7 +16,7 @@ class FirstPageOnBoarding extends StatelessWidget {
       children: [
         //image & gradient
         Expanded(
-          flex: 10,
+          flex: 9,
           child: Stack(
             children: [
               Assets.images.firstImageOnBoarding.image(

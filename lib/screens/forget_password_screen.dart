@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/txt_field.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 
 import '../core/gen/assets.gen.dart';
@@ -40,7 +41,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               Assets.images.forgotPassword.image(),
               TxtField(
                 hintText: "Email",
-                height: context.hg(55),
+                height: context.hg(60),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -67,7 +68,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   textButton: "Verify Email",
                   onPressed: () {
                     if (formKey.currentState?.validate() ?? false) {
-                      // Handle email verification logic here
+                      Navigator.pushNamed(context, AppRoutesName.login);
                     }
                   },
                   height: context.hg(55),

@@ -71,7 +71,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       if (_currentIndex == 4) {
                         Navigator.pushNamed(
                           context,
-                          AppRoutesName.forgetPassword,
+                          AppRoutesName.login,
                         );
                       }
                     },

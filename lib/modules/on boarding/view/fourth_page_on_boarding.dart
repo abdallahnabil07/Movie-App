@@ -16,7 +16,7 @@ class FourthPageOnBoarding extends StatelessWidget {
       children: [
         //image & gradient
         Expanded(
-          flex: 9,
+          flex: 7,
           child: Stack(
             children: [
               Assets.images.fourthImageOnBoarding.image(
