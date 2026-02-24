@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
+import '../../../core/gen/assets.gen.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../utils/app_assets.dart';
 import 'character_selected.dart';
 
 class ShowModelBottomSheetCharacters extends StatefulWidget {
@@ -42,21 +42,21 @@ class _ShowModelBottomSheetCharactersState extends State<ShowModelBottomSheetCha
               child: Row(
                 children: [
                   CharacterSelected(
-                    image: AppAssets.person9,
-                    isSelected: _selectedImage == AppAssets.person9,
-                    onTap: () => _handleSelection(AppAssets.person9),
+                    image: Assets.images.person9.path,
+                    isSelected: _selectedImage == Assets.images.person9.path,
+                    onTap: () => _handleSelection(Assets.images.person9.path),
                   ),
                   SizedBox(width: context.wd(18)),
                   CharacterSelected(
-                    image: AppAssets.person8,
-                    isSelected: _selectedImage == AppAssets.person8,
-                    onTap: () => _handleSelection(AppAssets.person8),
+                    image: Assets.images.person8.path,
+                    isSelected: _selectedImage == Assets.images.person8.path,
+                    onTap: () => _handleSelection(Assets.images.person8.path),
                   ),
                   SizedBox(width: context.wd(18)),
                   CharacterSelected(
-                    image: AppAssets.person7,
-                    isSelected: _selectedImage == AppAssets.person7,
-                    onTap: () => _handleSelection(AppAssets.person7),
+                    image: Assets.images.person7.path,
+                    isSelected: _selectedImage == Assets.images.person7.path,
+                    onTap: () => _handleSelection(Assets.images.person7.path),
                   ),
                 ],
               ),
@@ -69,21 +69,21 @@ class _ShowModelBottomSheetCharactersState extends State<ShowModelBottomSheetCha
               child: Row(
                 children: [
                   CharacterSelected(
-                    image: AppAssets.person6,
-                    isSelected: _selectedImage == AppAssets.person6,
-                    onTap: () => _handleSelection(AppAssets.person6),
+                    image: Assets.images.person6.path,
+                    isSelected: _selectedImage == Assets.images.person6.path,
+                    onTap: () => _handleSelection(Assets.images.person6.path),
                   ),
                   SizedBox(width: context.wd(18)),
                   CharacterSelected(
-                    image: AppAssets.person5,
-                    isSelected: _selectedImage == AppAssets.person5,
-                    onTap: () => _handleSelection(AppAssets.person5),
+                    image: Assets.images.person5.path,
+                    isSelected: _selectedImage == Assets.images.person5.path,
+                    onTap: () => _handleSelection(Assets.images.person5.path),
                   ),
                   SizedBox(width: context.wd(18)),
                   CharacterSelected(
-                    image: AppAssets.person4,
-                    isSelected: _selectedImage == AppAssets.person4,
-                    onTap: () => _handleSelection(AppAssets.person4),
+                    image: Assets.images.person4.path,
+                    isSelected: _selectedImage == Assets.images.person4.path,
+                    onTap: () => _handleSelection(Assets.images.person4.path),
                   ),
                 ],
               ),
@@ -96,21 +96,21 @@ class _ShowModelBottomSheetCharactersState extends State<ShowModelBottomSheetCha
               child: Row(
                 children: [
                   CharacterSelected(
-                    image: AppAssets.person2,
-                    isSelected: _selectedImage == AppAssets.person2,
-                    onTap: () => _handleSelection(AppAssets.person2),
+                    image: Assets.images.person2.path,
+                    isSelected: _selectedImage == Assets.images.person2.path,
+                    onTap: () => _handleSelection(Assets.images.person2.path),
                   ),
                   SizedBox(width: context.wd(18)),
                   CharacterSelected(
-                    image: AppAssets.person1,
-                    isSelected: _selectedImage == AppAssets.person1,
-                    onTap: () => _handleSelection(AppAssets.person1),
+                    image: Assets.images.person1.path,
+                    isSelected: _selectedImage == Assets.images.person1.path,
+                    onTap: () => _handleSelection(Assets.images.person1.path),
                   ),
                   SizedBox(width: context.wd(18)),
                   CharacterSelected(
-                    image: AppAssets.person3,
-                    isSelected: _selectedImage == AppAssets.person3,
-                    onTap: () => _handleSelection(AppAssets.person3),
+                    image: Assets.images.person3.path,
+                    isSelected: _selectedImage == Assets.images.person3.path,
+                    onTap: () => _handleSelection(Assets.images.person3.path),
                   ),
                 ],
               ),

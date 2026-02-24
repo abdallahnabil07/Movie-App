@@ -8,7 +8,16 @@ abstract class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutesName.updateProfile:
-        return MaterialPageRoute(builder: (context) => UpdateProfile(),
+        return PageRouteBuilder(pageBuilder: (_, _, _)=>UpdateProfile(),
+    transitionDuration: const Duration(milliseconds: 300),
+    transitionsBuilder: (_, animation, _, child) {
+return FadeTransition(opacity: animation, child: child);
+    }
+    );
+
+
+
+          MaterialPageRoute(builder: (context) => UpdateProfile(),
         settings: settings,
         );
 

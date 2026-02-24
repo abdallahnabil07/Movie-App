@@ -8,7 +8,13 @@ abstract class AppTheme {
     scaffoldBackgroundColor: AppColors.primaryColor,
     useMaterial3: true,
     primaryColor: AppColors.primaryColor,
-    textTheme: GoogleFonts.robotoTextTheme(),
+    textTheme: GoogleFonts.robotoTextTheme().copyWith(
+      titleLarge: GoogleFonts.roboto(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
     appBarTheme: AppBarTheme(
       centerTitle: true,
       backgroundColor: Colors.transparent,
@@ -18,5 +24,6 @@ abstract class AppTheme {
         fontSize: 16,
       ),
     ),
+
   );
 }

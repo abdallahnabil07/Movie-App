@@ -16,7 +16,8 @@ class TxtField extends StatelessWidget {
   final int? maxLine;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-
+  final TextStyle? textStyle;
+  final TextStyle? hintStyle;
   const TxtField({
     super.key,
     required this.hintText,
@@ -31,6 +32,8 @@ class TxtField extends StatelessWidget {
     this.textInputType = TextInputType.text,
     required this.paddingHorizontal,
     required this.paddingVertical,
+    this.textStyle,
+    this.hintStyle,
   });
 
   @override
@@ -52,7 +55,7 @@ class TxtField extends StatelessWidget {
           maxLines: maxLine,
           controller: controller,
           keyboardType: textInputType,
-          style: context.textTheme.titleMedium!.copyWith(
+          style: textStyle ?? context.textTheme.titleMedium!.copyWith(
             color: AppColors.white,
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -63,7 +66,7 @@ class TxtField extends StatelessWidget {
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             hintText: hintText,
-            hintStyle: context.textTheme.titleMedium!.copyWith(
+            hintStyle: hintStyle?? context.textTheme.titleMedium!.copyWith(
               color: AppColors.white,
               fontSize: 16,
               fontWeight: FontWeight.w400,
