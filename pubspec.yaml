@@ -31,6 +31,8 @@ dependencies:
   url_launcher: ^6.2.5
   highlight_text:
   toggle_switch: ^2.3.0
+  flutter_launcher_icons: ^0.14.4
+
 
 dev_dependencies:
   flutter_test:
@@ -40,14 +42,19 @@ dev_dependencies:
   flutter_gen_runner:
 flutter_gen:
   output: lib/core/gen/
-
-
-
   integrations:
     image: true
     flutter_svg: true
     rive: true
     lottie: true
+flutter_launcher_icons:
+  android: "movie"
+  ios: true
+  image_path: "assets/images/launcher_ico.png"
+  min_sdk_android: 21
+
+
+
 
 flutter:
   uses-material-design: true

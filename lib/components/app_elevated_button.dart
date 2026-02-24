@@ -12,9 +12,8 @@ class AppElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String textButton;
   final double fontSize;
+  final FontWeight? fontWeight;
   final Color? textColor;
-  final double paddingHorizontalForButton;
-  final double paddingVerticalForButton;
   final bool? addIcon;
   final SvgGenImage? icon;
   final double? heightIcon;
@@ -35,72 +34,64 @@ class AppElevatedButton extends StatelessWidget {
     this.addIcon,
     this.heightIcon,
     this.widthIcon,
-    required this.paddingHorizontalForButton,
-    required this.paddingVerticalForButton,
     this.paddingHorizontalForIcon,
     this.paddingVerticalForIcon,
     required this.fontSize,
+    this.fontWeight,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: paddingHorizontalForButton,
-        vertical: paddingVerticalForButton,
-      ),
-      child: SizedBox(
-        width: width,
-        height: height,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor,
-            shadowColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-              side: BorderSide(
-                color: borderColor ?? Colors.transparent,
-                width: 1,
-              ),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: BorderSide(
+              color: borderColor ?? Colors.transparent,
+              width: 1,
             ),
           ),
-          onPressed: onPressed,
+        ),
+        onPressed: onPressed,
 
-          child: (addIcon == true && icon != null)
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (icon != null)
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: paddingHorizontalForIcon!,
-                          vertical: paddingVerticalForIcon!,
-                        ),
-                        child: icon!.svg(
-                          width: widthIcon ?? 24,
-                          height: heightIcon ?? 24,
-                        ),
+        child: (addIcon == true && icon != null)
+            ? Row(
+                children: [
+                  if (icon != null)
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: paddingHorizontalForIcon!,
+                        vertical: paddingVerticalForIcon!,
                       ),
-                    Text(
-                      textButton,
-                      style: context.textTheme.titleLarge!.copyWith(
-                        color: textColor,
-                        fontWeight: FontWeight.w400,
-                        fontSize: fontSize,
+                      child: icon!.svg(
+                        width: widthIcon ?? 24,
+                        height: heightIcon ?? 24,
                       ),
                     ),
-                  ],
-                )
-              : Text(
-                  textAlign: TextAlign.center,
-                  textButton,
-                  style: context.textTheme.titleLarge!.copyWith(
-                    color: textColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: fontSize,
+                  Text(
+                    textButton,
+                    style: context.textTheme.titleLarge!.copyWith(
+                      color: textColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: fontSize,
+                    ),
                   ),
+                ],
+              )
+            : Text(
+                textAlign: TextAlign.center,
+                textButton,
+                style: context.textTheme.titleLarge!.copyWith(
+                  color: textColor,
+                  fontWeight: fontWeight,
+                  fontSize: fontSize,
                 ),
-        ),
+              ),
       ),
     );
   }
