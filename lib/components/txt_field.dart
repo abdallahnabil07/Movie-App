@@ -85,7 +85,7 @@ class _TxtFieldState extends State<TxtField> {
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
-
+//
             suffixIcon: widget.obscureText
                 ? IconButton(
                     icon: Icon(
