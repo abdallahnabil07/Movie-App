@@ -39,6 +39,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             spacing: context.hg(24),
             children: [
               Assets.images.forgotPassword.image(),
+              //Email
               TxtField(
                 hintText: "Email",
                 height: context.hg(60),
@@ -62,6 +63,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 paddingVertical: context.hg(0),
                 textInputType: TextInputType.emailAddress,
               ),
+              //Elevated button Verify Email
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
                 child: AppElevatedButton(

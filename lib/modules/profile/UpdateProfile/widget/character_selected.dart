@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/extensions/context_extensions.dart';
-import '../../../core/theme/app_colors.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 
 class CharacterSelected extends StatelessWidget {
   final String image;

@@ -66,40 +66,23 @@ class _TxtFieldState extends State<TxtField> {
         width: widget.width,
         height: widget.height,
         child: TextFormField(
-          onChanged: onChanged,
-          validator: validator,
-          maxLines: maxLine,
-          controller: controller,
-          keyboardType: textInputType,
-          style: textStyle ?? context.textTheme.titleMedium!.copyWith(
           obscureText: isObscure,
           onChanged: widget.onChanged,
           validator: widget.validator,
           maxLines: widget.maxLine,
           controller: widget.controller,
           keyboardType: widget.textInputType,
-
-          style: context.textTheme.titleMedium!.copyWith(
-            color: AppColors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style:
+              widget.textStyle ??
+              context.textTheme.titleMedium!.copyWith(
+                color: AppColors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.charcoalGray,
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-            hintText: hintText,
-            hintStyle: hintStyle?? context.textTheme.titleMedium!.copyWith(
             prefixIcon: widget.prefixIcon,
-            // suffixIcon: widget.suffixIcon,
-            hintText: widget.hintText,
-            hintStyle: context.textTheme.titleMedium!.copyWith(
-              color: AppColors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-//
             suffixIcon: widget.obscureText
                 ? IconButton(
                     icon: Icon(
@@ -113,6 +96,15 @@ class _TxtFieldState extends State<TxtField> {
                     },
                   )
                 : widget.suffixIcon,
+
+            hintText: widget.hintText,
+            hintStyle:
+                widget.hintStyle ??
+                context.textTheme.titleMedium!.copyWith(
+                  color: AppColors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
 
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),

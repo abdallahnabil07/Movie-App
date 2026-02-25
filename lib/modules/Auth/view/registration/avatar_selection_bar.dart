@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 
 class AvatarSelectionBar extends StatefulWidget {
@@ -20,14 +21,14 @@ class _AvatarSelectionBarState extends State<AvatarSelectionBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 140,
+      height: context.hg(140),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: avatars.length,
         itemBuilder: (context, index) {
           final isSelected = selectedIndex == index;
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: context.wd(8)),
             child: InkWell(
               onTap: () {
                 setState(() {
@@ -44,8 +45,8 @@ class _AvatarSelectionBarState extends State<AvatarSelectionBar> {
                       ? Border.all(color: Colors.blue, width: 3)
                       : null,
                 ),
-                width: isSelected ? 130 : 90,
-                height: isSelected ? 130 : 90,
+                width: isSelected ? context.wd(130) : context.wd(90),
+                height: isSelected ? context.hg(130) : context.hg(90),
                 child: CircleAvatar(
                   radius: isSelected ? 55 : 30,
                   backgroundImage: AssetImage(avatars[index]),

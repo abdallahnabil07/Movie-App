@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 
-import '../../../core/extensions/context_extensions.dart';
-import '../../../core/gen/assets.gen.dart';
-import '../../../core/theme/app_colors.dart';
 import 'character_selected.dart';
 
 class ShowModelBottomSheetCharacters extends StatefulWidget {

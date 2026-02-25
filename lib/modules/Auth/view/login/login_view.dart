@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/txt_field.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
@@ -31,12 +32,14 @@ class _LoginViewState extends State<LoginView> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Assets.images.loginLogo.image(),
+                //Email
                 TxtField(
                   hintText: "Email",
                   textInputType: TextInputType.emailAddress,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.email.svg(width: 31, height: 25),
+                    child: Assets.icons.email.svg(
+                        width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -52,7 +55,8 @@ class _LoginViewState extends State<LoginView> {
                   paddingHorizontal: 0,
                   paddingVertical: 0,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: context.hg(20)),
+                //Password
                 TxtField(
                   hintText: "Password",
                   textInputType: TextInputType.visiblePassword,
@@ -60,7 +64,8 @@ class _LoginViewState extends State<LoginView> {
 
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.passwordIcon.svg(width: 31, height: 25),
+                    child: Assets.icons.passwordIcon.svg(
+                        width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -74,8 +79,8 @@ class _LoginViewState extends State<LoginView> {
                   paddingHorizontal: 0,
                   paddingVertical: 0,
                 ),
-                SizedBox(height: 12),
-
+                SizedBox(height: context.hg(12)),
+                //Forget Password
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomTextButton(
@@ -89,13 +94,13 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: context.hg(30)),
+                //Login Button
                 AppElevatedButton(
                   textButton: "Login",
-                  height: 50,
+                  height: context.hg(50),
                   width: double.infinity,
                   fontSize: 18,
-                  // حجم الخط
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -111,7 +116,8 @@ class _LoginViewState extends State<LoginView> {
                   textColor: AppColors.primaryColor,
                   addIcon: false,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: context.hg(20)),
+                //Don"t have an account & create one
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,9 +142,11 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ],
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: context.hg(25)),
+
+                //Divider & or
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  padding: EdgeInsets.symmetric(horizontal: context.wd(50)),
                   child: Row(
                     children: [
                       Expanded(
@@ -148,7 +156,8 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: context.wd(
+                            10)),
                         child: Text(
                           "OR",
                           style: TextStyle(
@@ -167,10 +176,11 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                 ),
-                SizedBox(height: 35),
+                SizedBox(height: context.hg(35)),
+                //Login with google button
                 AppElevatedButton(
                   textButton: "Login With Google",
-                  height: 50,
+                  height: context.hg(50),
                   width: double.infinity,
                   fontSize: 18,
                   onPressed: () {},
@@ -178,12 +188,13 @@ class _LoginViewState extends State<LoginView> {
                   textColor: AppColors.primaryColor,
                   addIcon: true,
                   icon: Assets.icons.iconGoogle,
-                  widthIcon: 27,
-                  heightIcon: 27,
+                  widthIcon: context.wd(27),
+                  heightIcon: context.hg(27),
                   paddingHorizontalForIcon: 8,
                   paddingVerticalForIcon: 0,
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: context.hg(30)),
+                // Switch language
                 LanguageCardWidget(
                   isArabic: isArabic,
                   onTap: () {

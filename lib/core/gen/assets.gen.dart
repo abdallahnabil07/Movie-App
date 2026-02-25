@@ -37,72 +37,18 @@ class $AssetsIconsGen {
   SvgGenImage get iconGoogle2 =>
       const SvgGenImage('assets/icons/icon _google2.svg');
 
-  /// File path: assets/icons/person.svg
-  SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
-
-  /// File path: assets/icons/phone.svg
-  SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
-
-  /// List of all assets
-  List<SvgGenImage> get values => [iconGoogle, iconGoogle2, person, phone];
-}
-
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
-
-  /// File path: assets/images/branding.png
-  AssetGenImage get branding =>
-      const AssetGenImage('assets/images/branding.png');
-
-  /// File path: assets/images/person1.png
-  AssetGenImage get person1 => const AssetGenImage('assets/images/person1.png');
-
-  /// File path: assets/images/person2.png
-  AssetGenImage get person2 => const AssetGenImage('assets/images/person2.png');
-
-  /// File path: assets/images/person3.png
-  AssetGenImage get person3 => const AssetGenImage('assets/images/person3.png');
-
-  /// File path: assets/images/person4.png
-  AssetGenImage get person4 => const AssetGenImage('assets/images/person4.png');
-
-  /// File path: assets/images/person5.png
-  AssetGenImage get person5 => const AssetGenImage('assets/images/person5.png');
-
-  /// File path: assets/images/person6.png
-  AssetGenImage get person6 => const AssetGenImage('assets/images/person6.png');
-
-  /// File path: assets/images/person7.png
-  AssetGenImage get person7 => const AssetGenImage('assets/images/person7.png');
-
-  /// File path: assets/images/person8.png
-  AssetGenImage get person8 => const AssetGenImage('assets/images/person8.png');
-
-  /// File path: assets/images/person9.png
-  AssetGenImage get person9 => const AssetGenImage('assets/images/person9.png');
-
-  /// File path: assets/images/splash.png
-  AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [
-    branding,
-    person1,
-    person2,
-    person3,
-    person4,
-    person5,
-    person6,
-    person7,
-    person8,
-    person9,
-    splash,
   /// File path: assets/icons/name_icon.svg
   SvgGenImage get nameIcon => const SvgGenImage('assets/icons/name_icon.svg');
 
   /// File path: assets/icons/password_icon.svg
   SvgGenImage get passwordIcon =>
       const SvgGenImage('assets/icons/password_icon.svg');
+
+  /// File path: assets/icons/person.svg
+  SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
+
+  /// File path: assets/icons/phone.svg
+  SvgGenImage get phone => const SvgGenImage('assets/icons/phone.svg');
 
   /// File path: assets/icons/phone_icon.svg
   SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
@@ -114,8 +60,11 @@ class $AssetsImagesGen {
     emailIcon,
     enIcon,
     iconGoogle,
+    iconGoogle2,
     nameIcon,
     passwordIcon,
+    person,
+    phone,
     phoneIcon,
   ];
 }
@@ -134,6 +83,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/avatar_3.png
   AssetGenImage get avatar3 =>
       const AssetGenImage('assets/images/avatar_3.png');
+
+  /// File path: assets/images/branding.png
+  AssetGenImage get branding =>
+      const AssetGenImage('assets/images/branding.png');
 
   /// File path: assets/images/end_image_on_boarding.png
   AssetGenImage get endImageOnBoarding =>
@@ -167,9 +120,39 @@ class $AssetsImagesGen {
   AssetGenImage get loginLogo =>
       const AssetGenImage('assets/images/login_logo.png');
 
+  /// File path: assets/images/person1.png
+  AssetGenImage get person1 => const AssetGenImage('assets/images/person1.png');
+
+  /// File path: assets/images/person2.png
+  AssetGenImage get person2 => const AssetGenImage('assets/images/person2.png');
+
+  /// File path: assets/images/person3.png
+  AssetGenImage get person3 => const AssetGenImage('assets/images/person3.png');
+
+  /// File path: assets/images/person4.png
+  AssetGenImage get person4 => const AssetGenImage('assets/images/person4.png');
+
+  /// File path: assets/images/person5.png
+  AssetGenImage get person5 => const AssetGenImage('assets/images/person5.png');
+
+  /// File path: assets/images/person6.png
+  AssetGenImage get person6 => const AssetGenImage('assets/images/person6.png');
+
+  /// File path: assets/images/person7.png
+  AssetGenImage get person7 => const AssetGenImage('assets/images/person7.png');
+
+  /// File path: assets/images/person8.png
+  AssetGenImage get person8 => const AssetGenImage('assets/images/person8.png');
+
+  /// File path: assets/images/person9.png
+  AssetGenImage get person9 => const AssetGenImage('assets/images/person9.png');
+
   /// File path: assets/images/second_image_on_boarding.png
   AssetGenImage get secondImageOnBoarding =>
       const AssetGenImage('assets/images/second_image_on_boarding.png');
+
+  /// File path: assets/images/splash.png
+  AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
   /// File path: assets/images/third_image_on_boarding.png
   AssetGenImage get thirdImageOnBoarding =>
@@ -180,6 +163,7 @@ class $AssetsImagesGen {
     avatar1,
     avatar2,
     avatar3,
+    branding,
     endImageOnBoarding,
     firstImageOnBoarding,
     forgotPassword,
@@ -188,7 +172,17 @@ class $AssetsImagesGen {
     launcherIco,
     launcherIcon,
     loginLogo,
+    person1,
+    person2,
+    person3,
+    person4,
+    person5,
+    person6,
+    person7,
+    person8,
+    person9,
     secondImageOnBoarding,
+    splash,
     thirdImageOnBoarding,
   ];
 }

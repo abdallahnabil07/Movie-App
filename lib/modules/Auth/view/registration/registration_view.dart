@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/txt_field.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/custom_text_button.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/language_card_widget.dart';
@@ -41,7 +43,9 @@ class _RegistrationViewState extends State<RegistrationView> {
             child: Column(
               spacing: 24,
               children: [
+                //user Avatar
                 AvatarSelectionBar(),
+                //Name
                 TxtField(
                   hintText: "Name",
                   textInputType: TextInputType.name,
@@ -49,7 +53,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   paddingVertical: 0,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.nameIcon.svg(width: 31, height: 25),
+                    child: Assets.icons.nameIcon.svg(
+                        width: context.wd(30), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -64,7 +69,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     return null;
                   },
                 ),
-
+                //Email
                 TxtField(
                   hintText: "Email",
                   textInputType: TextInputType.emailAddress,
@@ -72,7 +77,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   paddingVertical: 0,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.email.svg(width: 31, height: 25),
+                    child: Assets.icons.email.svg(
+                        width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -87,6 +93,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   },
                 ),
 
+                ///Password
                 TxtField(
                   hintText: "Password",
                   obscureText: true,
@@ -95,7 +102,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   paddingVertical: 0,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.passwordIcon.svg(width: 31, height: 25),
+                    child: Assets.icons.passwordIcon.svg(
+                        width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -108,6 +116,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   },
                 ),
 
+                ///Confirm Password
                 TxtField(
                   hintText: "Confirm Password",
                   obscureText: true,
@@ -116,7 +125,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   paddingVertical: 0,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.passwordIcon.svg(width: 31, height: 25),
+                    child: Assets.icons.passwordIcon.svg(
+                        width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -128,7 +138,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     return null;
                   },
                 ),
-
+                //phone number
                 TxtField(
                   hintText: "Phone Number",
                   textInputType: TextInputType.phone,
@@ -136,7 +146,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   paddingVertical: 0,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Assets.icons.phoneIcon.svg(width: 31, height: 25),
+                    child: Assets.icons.phoneIcon.svg(
+                        width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -148,9 +159,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                     return null;
                   },
                 ),
+                //create Account button
                 AppElevatedButton(
                   textButton: "Create Account",
-                  height: 50,
+                  height: context.hg(55),
                   width: double.infinity,
                   fontSize: 18,
                   onPressed: () {
@@ -160,12 +172,15 @@ class _RegistrationViewState extends State<RegistrationView> {
                           content: Text("Account Created Successfully"),
                         ),
                       );
+                      Navigator.pushNamed(context, AppRoutesName.updateProfile);
                     }
+
                   },
                   backgroundColor: AppColors.yellow,
                   textColor: AppColors.primaryColor,
                   addIcon: false,
                 ),
+                //Already have Account and Login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -187,6 +202,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                   ],
                 ),
+                //Switch language
                 LanguageCardWidget(
                   isArabic: isArabic,
                   onTap: () {

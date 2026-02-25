@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 
@@ -17,8 +18,8 @@ class LanguageCardWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: Container(
-        width: 91,
-        height: 39,
+        width: context.wd(91),
+        height: context.hg(40),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.yellow),
           borderRadius: BorderRadius.circular(30),
@@ -42,7 +43,8 @@ class LanguageCardWidget extends StatelessWidget {
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.all(!isArabic ? 0 : 5),
-                    child: Assets.icons.enIcon.svg(width: 27, height: 27),
+                    child: Assets.icons.enIcon.svg(
+                        width: context.wd(27), height: context.hg(27)),
                   ),
                 ),
               ),
