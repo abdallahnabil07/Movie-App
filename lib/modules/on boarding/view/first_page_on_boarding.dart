@@ -11,12 +11,13 @@ class FirstPageOnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         //image & gradient
         Expanded(
-          flex: 9,
+          flex: 8,
           child: Stack(
             children: [
               Assets.images.firstImageOnBoarding.image(
@@ -35,6 +36,7 @@ class FirstPageOnBoarding extends StatelessWidget {
             ],
           ),
         ),
+
         //text & EB
         BottomContainerCustom(
           indexForBottomContainer: index,

@@ -39,9 +39,9 @@ class FourthPageOnBoarding extends StatelessWidget {
         BottomContainerCustom(
           indexForBottomContainer: index,
           topText: 'Rate, Review, and Learn',
+          flex: 3,
           title:
               "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
-          flex: 2,
         ),
       ],
     );

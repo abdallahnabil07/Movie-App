@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/core/local/cache_helper_.dart';
+import 'package:movie_app/core/local/constants/cache_key.dart';
 import 'package:movie_app/modules/on%20boarding/view/end_page_on_boarding.dart';
 import 'package:movie_app/modules/on%20boarding/view/first_page_on_boarding.dart';
 import 'package:movie_app/modules/on%20boarding/view/fourth_page_on_boarding.dart';
@@ -63,15 +65,22 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ),
                   child: AppElevatedButton(
                     textButton: _currentIndex == 4 ? "Finish" : "Next",
-                    onPressed: () {
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 250),
-                        curve: Curves.fastOutSlowIn,
-                      );
+                    onPressed: () async {
                       if (_currentIndex == 4) {
-                        Navigator.pushNamed(
+                        await CacheHelper.saveData(
+                          key: CacheKeys.onBoarding,
+                          value: true,
+                        );
+                        if (!mounted) return;
+                        Navigator.pushNamedAndRemoveUntil(
                           context,
                           AppRoutesName.login,
+                          (route) => false,
+                        );
+                      } else {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.fastOutSlowIn,
                         );
                       }
                     },

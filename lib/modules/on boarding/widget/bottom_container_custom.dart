@@ -21,7 +21,7 @@ class BottomContainerCustom extends StatelessWidget {
     return Expanded(
       flex: flex,
       child: Transform.translate(
-        offset: const Offset(0, -30),
+        offset: Offset(0, -context.hg(30)),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -41,7 +41,7 @@ class BottomContainerCustom extends StatelessWidget {
                   textAlign: TextAlign.center,
                   topText,
                   style: context.textTheme.bodyMedium!.copyWith(
-                    fontSize: 24,
+                    fontSize: context.hg(24),
                     color: AppColors.white,
                     fontWeight: FontWeight.w700,
                   ),
@@ -58,7 +58,7 @@ class BottomContainerCustom extends StatelessWidget {
                     textAlign: TextAlign.center,
                     title!,
                     style: context.textTheme.bodyMedium!.copyWith(
-                      fontSize: 20,
+                      fontSize: context.hg(18),
                       color: AppColors.white,
                       fontWeight: FontWeight.w400,
                     ),
