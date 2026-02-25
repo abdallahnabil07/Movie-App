@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:movie_app/modules/Auth/view/login/login_view.dart';
 import 'package:movie_app/modules/Auth/view/registration/registration_view.dart';
 import 'package:movie_app/modules/on%20boarding/view/intro_page_on_boarding.dart';
@@ -51,7 +50,13 @@ abstract class AppRoutes {
             return FadeTransition(opacity: animation, child: child);
           },
         );
-
+case AppRoutesName.updateProfile:
+        return PageRouteBuilder(pageBuilder: (_, _, _)=>UpdateProfile(),
+    transitionDuration: const Duration(milliseconds: 300),
+    transitionsBuilder: (_, animation, _, child) {
+return FadeTransition(opacity: animation, child: child);
+    }
+    );
       default:
         return PageRouteBuilder(
           pageBuilder: (_, _, _) => IntroPageOnBoarding(),

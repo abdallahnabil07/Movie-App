@@ -16,6 +16,8 @@ class TxtField extends StatefulWidget {
   final int? maxLine;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final TextStyle? textStyle;
+  final TextStyle? hintStyle;
   final bool obscureText;
 
   const TxtField({
@@ -32,6 +34,8 @@ class TxtField extends StatefulWidget {
     this.textInputType = TextInputType.text,
     required this.paddingHorizontal,
     required this.paddingVertical,
+    this.textStyle,
+    this.hintStyle,
     this.obscureText = false,
   });
 
@@ -62,6 +66,12 @@ class _TxtFieldState extends State<TxtField> {
         width: widget.width,
         height: widget.height,
         child: TextFormField(
+          onChanged: onChanged,
+          validator: validator,
+          maxLines: maxLine,
+          controller: controller,
+          keyboardType: textInputType,
+          style: textStyle ?? context.textTheme.titleMedium!.copyWith(
           obscureText: isObscure,
           onChanged: widget.onChanged,
           validator: widget.validator,
@@ -77,6 +87,10 @@ class _TxtFieldState extends State<TxtField> {
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.charcoalGray,
+            prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
+            hintText: hintText,
+            hintStyle: hintStyle?? context.textTheme.titleMedium!.copyWith(
             prefixIcon: widget.prefixIcon,
             // suffixIcon: widget.suffixIcon,
             hintText: widget.hintText,
