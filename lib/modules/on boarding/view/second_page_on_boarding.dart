@@ -16,7 +16,7 @@ class SecondPageOnBoarding extends StatelessWidget {
       children: [
         //image & gradient
         Expanded(
-          flex: 8,
+          flex: 7,
           child: Stack(
             children: [
               Assets.images.secondImageOnBoarding.image(
@@ -35,6 +35,7 @@ class SecondPageOnBoarding extends StatelessWidget {
             ],
           ),
         ),
+
         //text & EB
         BottomContainerCustom(
           topText: 'Explore All Genres',

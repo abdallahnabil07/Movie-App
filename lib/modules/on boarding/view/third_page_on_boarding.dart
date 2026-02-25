@@ -16,7 +16,7 @@ class ThirdPageOnBoarding extends StatelessWidget {
       children: [
         //image & gradient
         Expanded(
-          flex: 8,
+          flex: 7,
           child: Stack(
             children: [
               Assets.images.thirdImageOnBoarding.image(
@@ -39,9 +39,9 @@ class ThirdPageOnBoarding extends StatelessWidget {
         BottomContainerCustom(
           indexForBottomContainer: index,
           topText: 'Create Watch lists',
+          flex: 2,
           title:
               "Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.",
-          flex: 2,
         ),
       ],
     );

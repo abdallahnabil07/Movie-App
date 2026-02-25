@@ -16,7 +16,7 @@ class EndPageOnBoarding extends StatelessWidget {
       children: [
         //image & gradient
         Expanded(
-          flex: 10,
+          flex: 8,
           child: Stack(
             children: [
               Assets.images.endImageOnBoarding.image(
@@ -38,8 +38,8 @@ class EndPageOnBoarding extends StatelessWidget {
         //text & EB
         BottomContainerCustom(
           topText: 'Start Watching Now',
-          flex: 1,
           indexForBottomContainer: index,
+          flex: 1,
         ),
       ],
     );
