@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
       title: 'Movie app',
-      initialRoute: AppRoutesName.updateProfile,
-      onGenerateRoute: AppRoutes.onGenerateRoute,
+      initialRoute: AppRoutesName.introOnBoarding,
+      onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }

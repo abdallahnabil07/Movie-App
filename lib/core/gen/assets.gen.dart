@@ -17,6 +17,18 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ar_icon.svg
+  SvgGenImage get arIcon => const SvgGenImage('assets/icons/ar_icon.svg');
+
+  /// File path: assets/icons/email.svg
+  SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
+
+  /// File path: assets/icons/email_icon.svg
+  SvgGenImage get emailIcon => const SvgGenImage('assets/icons/email_icon.svg');
+
+  /// File path: assets/icons/en_icon.svg
+  SvgGenImage get enIcon => const SvgGenImage('assets/icons/en_icon.svg');
+
   /// File path: assets/icons/icon _google.svg
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icons/icon _google.svg');
@@ -85,6 +97,99 @@ class $AssetsImagesGen {
     person8,
     person9,
     splash,
+  /// File path: assets/icons/name_icon.svg
+  SvgGenImage get nameIcon => const SvgGenImage('assets/icons/name_icon.svg');
+
+  /// File path: assets/icons/password_icon.svg
+  SvgGenImage get passwordIcon =>
+      const SvgGenImage('assets/icons/password_icon.svg');
+
+  /// File path: assets/icons/phone_icon.svg
+  SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+    arIcon,
+    email,
+    emailIcon,
+    enIcon,
+    iconGoogle,
+    nameIcon,
+    passwordIcon,
+    phoneIcon,
+  ];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/avatar_1.png
+  AssetGenImage get avatar1 =>
+      const AssetGenImage('assets/images/avatar_1.png');
+
+  /// File path: assets/images/avatar_2.png
+  AssetGenImage get avatar2 =>
+      const AssetGenImage('assets/images/avatar_2.png');
+
+  /// File path: assets/images/avatar_3.png
+  AssetGenImage get avatar3 =>
+      const AssetGenImage('assets/images/avatar_3.png');
+
+  /// File path: assets/images/end_image_on_boarding.png
+  AssetGenImage get endImageOnBoarding =>
+      const AssetGenImage('assets/images/end_image_on_boarding.png');
+
+  /// File path: assets/images/first_image_on_boarding.png
+  AssetGenImage get firstImageOnBoarding =>
+      const AssetGenImage('assets/images/first_image_on_boarding.png');
+
+  /// File path: assets/images/forgot_password.png
+  AssetGenImage get forgotPassword =>
+      const AssetGenImage('assets/images/forgot_password.png');
+
+  /// File path: assets/images/fourth _image_on_boarding.png
+  AssetGenImage get fourthImageOnBoarding =>
+      const AssetGenImage('assets/images/fourth _image_on_boarding.png');
+
+  /// File path: assets/images/intro_image_on_boarding.png
+  AssetGenImage get introImageOnBoarding =>
+      const AssetGenImage('assets/images/intro_image_on_boarding.png');
+
+  /// File path: assets/images/launcher_ico.png
+  AssetGenImage get launcherIco =>
+      const AssetGenImage('assets/images/launcher_ico.png');
+
+  /// File path: assets/images/launcher_icon.png
+  AssetGenImage get launcherIcon =>
+      const AssetGenImage('assets/images/launcher_icon.png');
+
+  /// File path: assets/images/login_logo.png
+  AssetGenImage get loginLogo =>
+      const AssetGenImage('assets/images/login_logo.png');
+
+  /// File path: assets/images/second_image_on_boarding.png
+  AssetGenImage get secondImageOnBoarding =>
+      const AssetGenImage('assets/images/second_image_on_boarding.png');
+
+  /// File path: assets/images/third_image_on_boarding.png
+  AssetGenImage get thirdImageOnBoarding =>
+      const AssetGenImage('assets/images/third_image_on_boarding.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    avatar1,
+    avatar2,
+    avatar3,
+    endImageOnBoarding,
+    firstImageOnBoarding,
+    forgotPassword,
+    fourthImageOnBoarding,
+    introImageOnBoarding,
+    launcherIco,
+    launcherIcon,
+    loginLogo,
+    secondImageOnBoarding,
+    thirdImageOnBoarding,
   ];
 }
 

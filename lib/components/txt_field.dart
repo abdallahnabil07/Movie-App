@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/extensions/context_extensions.dart';
 import '../core/theme/app_colors.dart';
 
-class TxtField extends StatelessWidget {
+class TxtField extends StatefulWidget {
   final double? width;
   final double? height;
   final double paddingHorizontal;
@@ -18,6 +18,8 @@ class TxtField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
+  final bool obscureText;
+
   const TxtField({
     super.key,
     required this.hintText,
@@ -34,7 +36,21 @@ class TxtField extends StatelessWidget {
     required this.paddingVertical,
     this.textStyle,
     this.hintStyle,
+    this.obscureText = false,
   });
+
+  @override
+  State<TxtField> createState() => _TxtFieldState();
+}
+
+class _TxtFieldState extends State<TxtField> {
+  late bool isObscure;
+
+  @override
+  void initState() {
+    super.initState();
+    isObscure = widget.obscureText;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +59,12 @@ class TxtField extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: paddingHorizontal,
-        vertical: paddingVertical,
+        horizontal: widget.paddingHorizontal,
+        vertical: widget.paddingVertical,
       ),
       child: SizedBox(
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         child: TextFormField(
           onChanged: onChanged,
           validator: validator,
@@ -56,6 +72,14 @@ class TxtField extends StatelessWidget {
           controller: controller,
           keyboardType: textInputType,
           style: textStyle ?? context.textTheme.titleMedium!.copyWith(
+          obscureText: isObscure,
+          onChanged: widget.onChanged,
+          validator: widget.validator,
+          maxLines: widget.maxLine,
+          controller: widget.controller,
+          keyboardType: widget.textInputType,
+
+          style: context.textTheme.titleMedium!.copyWith(
             color: AppColors.white,
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -67,10 +91,28 @@ class TxtField extends StatelessWidget {
             suffixIcon: suffixIcon,
             hintText: hintText,
             hintStyle: hintStyle?? context.textTheme.titleMedium!.copyWith(
+            prefixIcon: widget.prefixIcon,
+            // suffixIcon: widget.suffixIcon,
+            hintText: widget.hintText,
+            hintStyle: context.textTheme.titleMedium!.copyWith(
               color: AppColors.white,
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
+//
+            suffixIcon: widget.obscureText
+                ? IconButton(
+                    icon: Icon(
+                      isObscure ? Icons.visibility_off : Icons.visibility,
+                      color: AppColors.white,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isObscure = !isObscure;
+                      });
+                    },
+                  )
+                : widget.suffixIcon,
 
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
