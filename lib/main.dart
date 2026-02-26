@@ -1,5 +1,3 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/local/cache_helper_.dart';
 import 'package:movie_app/core/local/constants/cache_key.dart';
@@ -12,10 +10,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (BuildContext context) => MyApp(),
-    ),
+    MyApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (BuildContext context) => MyApp(),
+    // ),
   );
 }
 
@@ -31,9 +30,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      // useInheritedMediaQuery: true,
+      // locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
       theme: AppTheme.appTheme,
       title: 'Movie app',
       initialRoute: startRoute,
