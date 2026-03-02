@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:movie_app/core/local/cache_helper_.dart';
 import 'package:movie_app/core/local/constants/cache_key.dart';
 import 'package:movie_app/core/theme/app_theme.dart';
+import 'package:toastification/toastification.dart';
 
+import 'core/network/loading_services.dart';
 import 'core/routes/app_routes.dart';
 import 'core/routes/app_routes_name.dart';
 
@@ -16,6 +19,7 @@ void main() async {
     //   builder: (BuildContext context) => MyApp(),
     // ),
   );
+  configLoading();
 }
 
 class MyApp extends StatelessWidget {
@@ -28,15 +32,17 @@ class MyApp extends StatelessWidget {
         ? AppRoutesName.login
         : AppRoutesName.onBoardingView;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
-      theme: AppTheme.appTheme,
-      title: 'Movie app',
-      initialRoute: startRoute,
-      onGenerateRoute: AppRoutes.generateRoute,
+    return ToastificationWrapper(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // useInheritedMediaQuery: true,
+        // locale: DevicePreview.locale(context),
+        builder: EasyLoading.init(),
+        theme: AppTheme.appTheme,
+        title: 'Movie app',
+        initialRoute: startRoute,
+        onGenerateRoute: AppRoutes.generateRoute,
+      ),
     );
   }
 }
