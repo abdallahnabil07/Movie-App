@@ -9,7 +9,7 @@ class AppElevatedButton extends StatelessWidget {
   final double? width;
   final Color? backgroundColor;
   final Color? borderColor;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String textButton;
   final double fontSize;
   final FontWeight? fontWeight;
