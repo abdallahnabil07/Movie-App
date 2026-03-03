@@ -33,6 +33,16 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
 
+      case TargetPlatform.windows:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -54,6 +64,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '346692131751',
     projectId: 'abdullah-movie-app',
     storageBucket: 'abdullah-movie-app.firebasestorage.app',
+    androidClientId:
+        '346692131751-87mkfe20jc8bcqe1b5n8m1nnis25g9e9.apps.googleusercontent.com',
+    iosClientId:
+        '346692131751-522ql1t5t1qp2jbs7e0kd6n83vha299i.apps.googleusercontent.com',
     iosBundleId: 'com.example.movieApp',
   );
 }
