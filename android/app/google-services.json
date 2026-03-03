@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "346692131751",
+    "project_id": "abdullah-movie-app",
+    "storage_bucket": "abdullah-movie-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346692131751:android:b613a0efee8fe01c263482",
+        "android_client_info": {
+          "package_name": "com.example.movie_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH1GTWakcoWeF5YmCop7H4ofKovfCaqpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

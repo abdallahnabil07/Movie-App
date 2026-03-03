@@ -1,5 +1,4 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/local/cache_helper_.dart';
 import 'package:movie_app/core/local/constants/cache_key.dart';
@@ -7,15 +6,20 @@ import 'package:movie_app/core/theme/app_theme.dart';
 
 import 'core/routes/app_routes.dart';
 import 'core/routes/app_routes_name.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await CacheHelper.init();
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (BuildContext context) => MyApp(),
-    ),
+    MyApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (BuildContext context) => MyApp(),
+    // ),
   );
 }
 
@@ -31,9 +35,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      // useInheritedMediaQuery: true,
+      // locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
       theme: AppTheme.appTheme,
       title: 'Movie app',
       initialRoute: startRoute,

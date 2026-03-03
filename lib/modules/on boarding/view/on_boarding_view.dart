@@ -85,7 +85,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       }
                     },
                     height: context.hg(55),
-                    fontSize: context.fs(20),
+                    fontSize: context.hg(20),
                   ),
                 ),
                 if (_currentIndex != 0)
@@ -108,7 +108,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         );
                       },
                       height: context.hg(55),
-                      fontSize: context.fs(20),
+                      fontSize: context.hg(20),
                     ),
                   ),
               ],

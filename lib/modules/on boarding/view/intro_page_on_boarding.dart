@@ -53,7 +53,7 @@ class IntroPageOnBoarding extends StatelessWidget {
                           text: "Find Your Next\nFavorite Movie Here\n",
                           style: context.textTheme.titleMedium!.copyWith(
                             color: AppColors.white,
-                            fontSize: context.fs(36),
+                            fontSize: context.hg(36),
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -62,7 +62,7 @@ class IntroPageOnBoarding extends StatelessWidget {
                               "Get access to a huge library of movies\n to suit all tastes. You will surely like it.",
                           style: context.textTheme.titleMedium!.copyWith(
                             color: AppColors.white.withValues(alpha: .6),
-                            fontSize: context.fs(20),
+                            fontSize: context.hg(20),
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -85,7 +85,7 @@ class IntroPageOnBoarding extends StatelessWidget {
                         );
                       },
                       height: context.hg(55),
-                      fontSize: context.fs(20),
+                      fontSize: context.hg(20),
                       textColor: AppColors.primaryColor,
                       fontWeight: FontWeight.w600,
                     ),
