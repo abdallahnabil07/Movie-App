@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/txt_field.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
@@ -8,6 +9,7 @@ import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/custom_text_button.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/language_card_widget.dart';
 
+import '../../../../auth/utils/auth_firebase_service.dart';
 import 'avatar_selection_bar.dart';
 
 class RegistrationView extends StatefulWidget {
@@ -20,6 +22,13 @@ class RegistrationView extends StatefulWidget {
 class _RegistrationViewState extends State<RegistrationView> {
   bool isArabic = true;
   final _formKey = GlobalKey<FormState>();
+
+  // Controllers for all input fields
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +52,11 @@ class _RegistrationViewState extends State<RegistrationView> {
             child: Column(
               spacing: 24,
               children: [
-                //user Avatar
                 AvatarSelectionBar(),
-                //Name
+
+                // Name field
                 TxtField(
+                  controller: nameController,
                   hintText: "Name",
                   textInputType: TextInputType.name,
                   paddingHorizontal: 0,
@@ -57,20 +67,19 @@ class _RegistrationViewState extends State<RegistrationView> {
                         width: context.wd(30), height: context.hg(25)),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.isEmpty)
                       return 'Please enter your name';
-                    }
-                    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
+                    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value))
                       return 'Name can only contain letters';
-                    }
-                    if (value.length < 3) {
+                    if (value.length < 3)
                       return 'Name must be at least 3 characters';
-                    }
                     return null;
                   },
                 ),
-                //Email
+
+                // Email field
                 TxtField(
+                  controller: emailController,
                   hintText: "Email",
                   textInputType: TextInputType.emailAddress,
                   paddingHorizontal: 0,
@@ -81,20 +90,17 @@ class _RegistrationViewState extends State<RegistrationView> {
                         width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.isEmpty)
                       return 'Please enter your email';
-                    }
-                    if (!RegExp(
-                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                    ).hasMatch(value)) {
-                      return 'Please enter a valid email';
-                    }
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(
+                        value)) return 'Please enter a valid email';
                     return null;
                   },
                 ),
 
-                ///Password
+                // Password field
                 TxtField(
+                  controller: passwordController,
                   hintText: "Password",
                   obscureText: true,
                   textInputType: TextInputType.visiblePassword,
@@ -106,18 +112,17 @@ class _RegistrationViewState extends State<RegistrationView> {
                         width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.isEmpty)
                       return 'Please enter your password';
-                    }
-                    if (value.length < 8) {
+                    if (value.length < 8)
                       return 'Password must be at least 8 characters';
-                    }
                     return null;
                   },
                 ),
 
-                ///Confirm Password
+                // Confirm password
                 TxtField(
+                  controller: confirmPasswordController,
                   hintText: "Confirm Password",
                   obscureText: true,
                   textInputType: TextInputType.visiblePassword,
@@ -129,17 +134,17 @@ class _RegistrationViewState extends State<RegistrationView> {
                         width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 8) {
-                      return 'Password must be at least 8 characters';
-                    }
+                    if (value == null || value.isEmpty)
+                      return 'Please confirm your password';
+                    if (value != passwordController.text)
+                      return 'Passwords do not match';
                     return null;
                   },
                 ),
-                //phone number
+
+                // Phone number
                 TxtField(
+                  controller: phoneController,
                   hintText: "Phone Number",
                   textInputType: TextInputType.phone,
                   paddingHorizontal: 0,
@@ -150,37 +155,41 @@ class _RegistrationViewState extends State<RegistrationView> {
                         width: context.wd(31), height: context.hg(25)),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.isEmpty)
                       return 'Please enter your phone number';
-                    }
-                    if (!RegExp(r'^\d{11}$').hasMatch(value)) {
+                    if (!RegExp(r'^\d{11}$').hasMatch(value))
                       return 'Please enter a valid 11-digit phone number';
-                    }
                     return null;
                   },
                 ),
-                //create Account button
+
+                // Create Account button
                 AppElevatedButton(
                   textButton: "Create Account",
                   height: context.hg(55),
                   width: double.infinity,
                   fontSize: 18,
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Account Created Successfully"),
-                        ),
+                      EasyLoading.show(status: "Creating account...");
+                      await AuthFirebaseService.signUpWithPass(
+                        context,
+                        nameController.text.trim(),
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                        phoneController.text.trim(),
                       );
+                      EasyLoading.dismiss();
+
                       Navigator.pushNamed(context, AppRoutesName.updateProfile);
                     }
-
                   },
                   backgroundColor: AppColors.yellow,
                   textColor: AppColors.primaryColor,
                   addIcon: false,
                 ),
-                //Already have Account and Login
+
+                // Already have an account
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -202,7 +211,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                   ],
                 ),
-                //Switch language
+
+                // Switch language
                 LanguageCardWidget(
                   isArabic: isArabic,
                   onTap: () {
