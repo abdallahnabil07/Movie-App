@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "abdullah-movie-app",
+          "appId": "1:346692131751:android:b613a0efee8fe01c263482",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "abdullah-movie-app",
+          "configurations": {
+            "android": "1:346692131751:android:b613a0efee8fe01c263482",
+            "ios": "1:346692131751:ios:cf22175cde525f49263482"
+          }
+        }
+      }
+    }
+  }
+}
