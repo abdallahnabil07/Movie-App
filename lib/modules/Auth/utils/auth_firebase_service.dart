@@ -1,1 +1,54 @@
-abstract class AuthFirebaseService {}
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:movie_app/core/enum/auth_error.dart';
+
+abstract class AuthFirebaseService {
+  static Future<UserCredential> signInWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      return await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-credential') throw InvalidCredential();
+      if (e.code == 'wrong-password') throw WrongPassword();
+      if (e.code == 'too-many-requests') throw TooManyRequest();
+      throw Unknown();
+    } catch (error) {
+      throw CustomError(error.toString());
+    }
+  }
+
+  static Future<User?> signInWithGoogle() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn.instance;
+
+    try {
+      final googleUser = await googleSignIn.authenticate();
+
+      final googleAuth = googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await auth.signInWithCredential(credential);
+
+      return userCredential.user;
+    } on GoogleSignInException catch (error) {
+      if (error.code == GoogleSignInExceptionCode.canceled) {
+        return null;
+      }
+      throw CustomError(
+        'Google Sign-In failed: ${error.description ?? error.toString()}',
+      );
+    } on FirebaseAuthException catch (e) {
+      throw CustomError('Firebase error: ${e.message}');
+    } catch (error) {
+      throw CustomError(error.toString());
+    }
+  }
+}
