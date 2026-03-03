@@ -13,7 +13,6 @@ class AuthApi {
         headers: {'content-type': 'application/json'},
         body: jsonEncode({"email": email, "password": password}),
       );
-      print(response.body);
       var data = jsonDecode(response.body);
       if (response.statusCode == 200) {
         jsonDecode(response.body);

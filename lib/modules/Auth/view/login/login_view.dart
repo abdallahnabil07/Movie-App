@@ -247,7 +247,7 @@ class _LoginViewState extends State<LoginView> {
                 title: 'Welcome back 💪',
                 type: ToastificationType.success,
               );
-              // Navigator.pushReplacementNamed(context, AppRoutesName.home);
+              Navigator.pushReplacementNamed(context, AppRoutesName.layout);
             }
           } else if (state is LoginFailure) {
             EasyLoading.dismiss();
