@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../core/gen/assets.gen.dart';
-import '../widget/bottom_container_custom.dart';
-import '../widget/gradient_custom.dart';
+import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/modules/on%20boarding/widget/bottom_container_custom.dart';
+import 'package:movie_app/modules/on%20boarding/widget/gradient_custom.dart';
 
 class EndPageOnBoarding extends StatelessWidget {
   final int index;

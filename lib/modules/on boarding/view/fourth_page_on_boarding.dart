@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../core/gen/assets.gen.dart';
-import '../widget/bottom_container_custom.dart';
-import '../widget/gradient_custom.dart';
+import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/modules/on%20boarding/widget/bottom_container_custom.dart';
+import 'package:movie_app/modules/on%20boarding/widget/gradient_custom.dart';
 
 class FourthPageOnBoarding extends StatelessWidget {
   final int index;
@@ -23,6 +22,7 @@ class FourthPageOnBoarding extends StatelessWidget {
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
+
               //gradient
               GradientCustom(
                 colors: [
@@ -35,6 +35,7 @@ class FourthPageOnBoarding extends StatelessWidget {
             ],
           ),
         ),
+
         //text & EB
         BottomContainerCustom(
           indexForBottomContainer: index,

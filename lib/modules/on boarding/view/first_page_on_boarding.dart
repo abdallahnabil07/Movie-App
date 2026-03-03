@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/modules/on%20boarding/widget/bottom_container_custom.dart';
-
-import '../widget/gradient_custom.dart';
+import 'package:movie_app/modules/on%20boarding/widget/gradient_custom.dart';
 
 class FirstPageOnBoarding extends StatelessWidget {
   final int index;
@@ -11,7 +10,6 @@ class FirstPageOnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

@@ -10,7 +10,7 @@ void configLoading() {
     ..radius = 12.0
     ..maskType = EasyLoadingMaskType.black
     ..backgroundColor = AppColors.primaryColor
-    ..indicatorColor = AppColors.white
+    ..indicatorColor = AppColors.yellow
     ..textColor = AppColors.lightGreyColor
     ..userInteractions = false
     ..dismissOnTap = false;

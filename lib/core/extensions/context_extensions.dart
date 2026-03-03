@@ -16,16 +16,16 @@ extension ContextExtensions on BuildContext {
     return n * (w / 390);
   }
 
-  // responsive font size using textScaler
-  double fs(double fontSize, {double baseWidth = 390}) {
-    final w = MediaQuery.of(this).size.width;
-    final scaler = MediaQuery.textScalerOf(this);
-
-    // 1. احسب الحجم المتناسب مع عرض الشاشة
-    final responsiveSize = fontSize * (w / baseWidth);
-
-    return scaler.scale(responsiveSize);
-  }
+  // // responsive font size using textScaler
+  // double fs(double fontSize, {double baseWidth = 390}) {
+  //   final w = MediaQuery.of(this).size.width;
+  //   final scaler = MediaQuery.textScalerOf(this);
+  //
+  //   // 1. احسب الحجم المتناسب مع عرض الشاشة
+  //   final responsiveSize = fontSize * (w / baseWidth);
+  //
+  //   return scaler.scale(responsiveSize);
+  // }
 
   // textTheme shortcut
   TextTheme get textTheme => Theme.of(this).textTheme;
