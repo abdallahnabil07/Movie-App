@@ -3,7 +3,12 @@ import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 
 class AvatarSelectionBar extends StatefulWidget {
-  const AvatarSelectionBar({super.key});
+  final Function(String avatarPath) onAvatarSelected;
+
+  const AvatarSelectionBar({
+    super.key,
+    required this.onAvatarSelected,
+  });
 
   @override
   State<AvatarSelectionBar> createState() => _AvatarSelectionBarState();
@@ -19,6 +24,15 @@ class _AvatarSelectionBarState extends State<AvatarSelectionBar> {
   int selectedIndex = 1;
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onAvatarSelected(avatars[selectedIndex]);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.hg(140),
@@ -27,6 +41,7 @@ class _AvatarSelectionBarState extends State<AvatarSelectionBar> {
         itemCount: avatars.length,
         itemBuilder: (context, index) {
           final isSelected = selectedIndex == index;
+
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: context.wd(8)),
             child: InkWell(
@@ -34,6 +49,9 @@ class _AvatarSelectionBarState extends State<AvatarSelectionBar> {
                 setState(() {
                   selectedIndex = index;
                 });
+
+                // 👇 هنا بنرجع الباث
+                widget.onAvatarSelected(avatars[index]);
               },
               splashColor: Colors.transparent,
               child: AnimatedContainer(
