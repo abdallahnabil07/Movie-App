@@ -206,7 +206,9 @@ class _LoginViewState extends State<LoginView> {
                         height: context.hg(50),
                         width: double.infinity,
                         fontSize: 18,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<LoginCubit>().userLoginByGoogle();
+                        },
                         backgroundColor: AppColors.yellow,
                         textColor: AppColors.primaryColor,
                         addIcon: true,
@@ -239,12 +241,14 @@ class _LoginViewState extends State<LoginView> {
             EasyLoading.show();
           } else if (state is LoginSuccess) {
             EasyLoading.dismiss();
-            ToastificationCustom.show(
-              context,
-              title: 'Welcome back!',
-              type: ToastificationType.success,
-            );
-            // Navigator.pushReplacementNamed(context, AppRoutesName.home);
+            if (state.user != null) {
+              ToastificationCustom.show(
+                context,
+                title: 'Welcome back 💪',
+                type: ToastificationType.success,
+              );
+              // Navigator.pushReplacementNamed(context, AppRoutesName.home);
+            }
           } else if (state is LoginFailure) {
             EasyLoading.dismiss();
             ToastificationCustom.show(

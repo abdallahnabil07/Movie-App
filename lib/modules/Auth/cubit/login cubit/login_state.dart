@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:movie_app/modules/Auth/network/auth_api.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_app/core/enum/auth_error.dart';
+import 'package:movie_app/modules/Auth/utils/auth_firebase_service.dart';
 
 part 'login_cubit.dart';
 
@@ -10,9 +12,9 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final String data;
+  final User? user;
 
-  LoginSuccess({required this.data});
+  LoginSuccess({required this.user});
 }
 
 class LoginFailure extends LoginState {
