@@ -23,12 +23,15 @@ class _RegistrationViewState extends State<RegistrationView> {
   bool isArabic = true;
   final _formKey = GlobalKey<FormState>();
 
-  // Controllers for all input fields
+  // Controllers
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+  TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+  String selectedAvatarPath = "";
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +55,13 @@ class _RegistrationViewState extends State<RegistrationView> {
             child: Column(
               spacing: 24,
               children: [
-                AvatarSelectionBar(),
+                AvatarSelectionBar(
+                  onAvatarSelected: (path) {
+                    selectedAvatarPath = path;
+                  },
+                ),
 
-                // Name field
+                // Name
                 TxtField(
                   controller: nameController,
                   hintText: "Name",
@@ -64,20 +71,25 @@ class _RegistrationViewState extends State<RegistrationView> {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Assets.icons.nameIcon.svg(
-                        width: context.wd(30), height: context.hg(25)),
+                      width: context.wd(30),
+                      height: context.hg(25),
+                    ),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Please enter your name';
-                    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value))
+                    }
+                    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
                       return 'Name can only contain letters';
-                    if (value.length < 3)
+                    }
+                    if (value.length < 3) {
                       return 'Name must be at least 3 characters';
+                    }
                     return null;
                   },
                 ),
 
-                // Email field
+                // Email
                 TxtField(
                   controller: emailController,
                   hintText: "Email",
@@ -87,18 +99,24 @@ class _RegistrationViewState extends State<RegistrationView> {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Assets.icons.email.svg(
-                        width: context.wd(31), height: context.hg(25)),
+                      width: context.wd(31),
+                      height: context.hg(25),
+                    ),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Please enter your email';
-                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(
-                        value)) return 'Please enter a valid email';
+                    }
+                    if (!RegExp(
+                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(value)) {
+                      return 'Please enter a valid email';
+                    }
                     return null;
                   },
                 ),
 
-                // Password field
+                // Password
                 TxtField(
                   controller: passwordController,
                   hintText: "Password",
@@ -109,18 +127,22 @@ class _RegistrationViewState extends State<RegistrationView> {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Assets.icons.passwordIcon.svg(
-                        width: context.wd(31), height: context.hg(25)),
+                      width: context.wd(31),
+                      height: context.hg(25),
+                    ),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Please enter your password';
-                    if (value.length < 8)
+                    }
+                    if (value.length < 8) {
                       return 'Password must be at least 8 characters';
+                    }
                     return null;
                   },
                 ),
 
-                // Confirm password
+                // Confirm Password
                 TxtField(
                   controller: confirmPasswordController,
                   hintText: "Confirm Password",
@@ -131,18 +153,22 @@ class _RegistrationViewState extends State<RegistrationView> {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Assets.icons.passwordIcon.svg(
-                        width: context.wd(31), height: context.hg(25)),
+                      width: context.wd(31),
+                      height: context.hg(25),
+                    ),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Please confirm your password';
-                    if (value != passwordController.text)
+                    }
+                    if (value != passwordController.text) {
                       return 'Passwords do not match';
+                    }
                     return null;
                   },
                 ),
 
-                // Phone number
+                // Phone
                 TxtField(
                   controller: phoneController,
                   hintText: "Phone Number",
@@ -152,18 +178,22 @@ class _RegistrationViewState extends State<RegistrationView> {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Assets.icons.phoneIcon.svg(
-                        width: context.wd(31), height: context.hg(25)),
+                      width: context.wd(31),
+                      height: context.hg(25),
+                    ),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Please enter your phone number';
-                    if (!RegExp(r'^\d{11}$').hasMatch(value))
+                    }
+                    if (!RegExp(r'^\d{11}$').hasMatch(value)) {
                       return 'Please enter a valid 11-digit phone number';
+                    }
                     return null;
                   },
                 ),
 
-                // Create Account button
+                // Create Account Button
                 AppElevatedButton(
                   textButton: "Create Account",
                   height: context.hg(55),
@@ -172,16 +202,20 @@ class _RegistrationViewState extends State<RegistrationView> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       EasyLoading.show(status: "Creating account...");
+
                       await AuthFirebaseService.signUpWithPass(
                         context,
                         nameController.text.trim(),
                         emailController.text.trim(),
                         passwordController.text.trim(),
                         phoneController.text.trim(),
+                        selectedAvatarPath,
                       );
+
                       EasyLoading.dismiss();
 
-                      Navigator.pushNamed(context, AppRoutesName.updateProfile);
+                      Navigator.pushNamed(
+                          context, AppRoutesName.updateProfile);
                     }
                   },
                   backgroundColor: AppColors.yellow,
@@ -189,10 +223,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                   addIcon: false,
                 ),
 
-                // Already have an account
+                // Already Have Account
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "Already Have Account ? ",
@@ -212,7 +245,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   ],
                 ),
 
-                // Switch language
+                // Language Switch
                 LanguageCardWidget(
                   isArabic: isArabic,
                   onTap: () {

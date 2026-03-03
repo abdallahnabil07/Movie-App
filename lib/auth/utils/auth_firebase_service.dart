@@ -9,6 +9,7 @@ class AuthFirebaseService {
     String emailAddress,
     String password,
     String phone,
+    String avatarPath,
   ) async {
     try {
       final FirebaseAuth firebaseAuthInstance = FirebaseAuth.instance;
@@ -26,6 +27,7 @@ class AuthFirebaseService {
           'name': name,
           'email': emailAddress,
           'phone': phone,
+          'avatar': avatarPath,
           'createdAt': FieldValue.serverTimestamp(),
         });
 
