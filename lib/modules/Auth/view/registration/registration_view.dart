@@ -6,10 +6,10 @@ import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
+import 'package:movie_app/modules/Auth/utils/auth_firebase_service.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/custom_text_button.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/language_card_widget.dart';
 
-import '../../../../auth/utils/auth_firebase_service.dart';
 import 'avatar_selection_bar.dart';
 
 class RegistrationView extends StatefulWidget {

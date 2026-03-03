@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:movie_app/core/local/cache_helper_.dart';
-import 'package:movie_app/core/local/constants/cache_key.dart';
-import 'package:movie_app/core/theme/app_theme.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/core/local/cache_helper_.dart';
 import 'package:movie_app/core/local/constants/cache_key.dart';
@@ -19,21 +15,11 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GoogleSignIn.instance.initialize();
   await CacheHelper.init();
 
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (BuildContext context) => const MyApp(),
-    ),
     MyApp(),
     // DevicePreview(
     //   enabled: !kReleaseMode,
@@ -54,21 +40,21 @@ class MyApp extends StatelessWidget {
         ? AppRoutesName.login
         : AppRoutesName.onBoardingView;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-
-      builder: (context, child) {
-        child = DevicePreview.appBuilder(context, child);
-        child = EasyLoading.init()(context, child);
-        return child;
-      },
-
-      theme: AppTheme.appTheme,
-      title: 'Movie App',
-      initialRoute: startRoute,
-      onGenerateRoute: AppRoutes.generateRoute,
+    // return MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   // useInheritedMediaQuery: true,
+    //   // locale: DevicePreview.locale(context),
+    //
+    //   // builder: (context, child) {
+    //   //   child = DevicePreview.appBuilder(context, child);
+    //   //   child = EasyLoading.init()(context, child);
+    //   //   return child;
+    //   // },
+    //
+    //   theme: AppTheme.appTheme,
+    //   title: 'Movie App',
+    //   initialRoute: startRoute,
+    //   onGenerateRoute: AppRoutes.generateRoute,
     return ToastificationWrapper(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

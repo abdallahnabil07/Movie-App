@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/core/enum/auth_error.dart';
 
@@ -49,6 +51,67 @@ abstract class AuthFirebaseService {
       throw CustomError('Firebase error: ${e.message}');
     } catch (error) {
       throw CustomError(error.toString());
+    }
+  }
+
+  static Future<void> signUpWithPass(
+    BuildContext context,
+    String name,
+    String emailAddress,
+    String password,
+    String phone,
+    String avatarPath,
+  ) async {
+    try {
+      final FirebaseAuth firebaseAuthInstance = FirebaseAuth.instance;
+
+      final UserCredential credential = await firebaseAuthInstance
+          .createUserWithEmailAndPassword(
+            email: emailAddress,
+            password: password,
+          );
+
+      final String? uid = credential.user?.uid;
+
+      if (uid != null) {
+        await FirebaseFirestore.instance.collection('users').doc(uid).set({
+          'name': name,
+          'email': emailAddress,
+          'phone': phone,
+          'avatar': avatarPath,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("User created successfully")),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      String message = "";
+
+      if (e.code == 'weak-password') {
+        message = "The password provided is too weak.";
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(message)));
+        return;
+      } else if (e.code == 'email-already-in-use') {
+        message = "The account already exists for that email.";
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(message)));
+        return;
+      } else {
+        message = e.message ?? "Authentication error occurred.";
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(message)));
+        return;
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
 }
