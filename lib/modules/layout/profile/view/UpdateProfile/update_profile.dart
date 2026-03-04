@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,8 +9,12 @@ import 'package:movie_app/components/txt_field.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
-import 'package:movie_app/core/theme/app_colors.dart';
 
+
+import '../../../../../core/enum/auth_error.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../Auth/utils/auth_firebase_service.dart';
+import '../../utils/profile_firebase_service.dart';
 import 'validations.dart';
 import 'widget/show_model_bottom_sheet_characters.dart';
 
@@ -159,7 +165,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: context.hg(19)),
                   child: AppElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+try {
+await ProfileFirebaseService.deleteAccount();
+
+Navigator.pushReplacementNamed(context, '/login');
+
+} catch (e) {
+ScaffoldMessenger.of(context).showSnackBar(
+SnackBar(content: Text(e.toString())),
+);
+}
+},
                     textButton: 'Delete Account',
                     height: context.hg(55.72),
                     backgroundColor: AppColors.redColor,
@@ -170,7 +187,23 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 SizedBox(height: context.hg(10)),
                 //Update Account Button
                 AppElevatedButton(
-                  onPressed: updateData,
+                  onPressed: () async {
+try {
+await ProfileFirebaseService.updateProfile(
+name: userController.text,
+phone: phoneController.text,
+avatarPath: _selectedAvatar,
+);
+
+ScaffoldMessenger.of(context).showSnackBar(
+const SnackBar(content: Text("Updated successfully")),
+);
+} catch (e) {
+ScaffoldMessenger.of(context).showSnackBar(
+SnackBar(content: Text(e.toString())),
+);
+}
+},
                   textButton: 'Update Data',
                   height: context.hg(55.72),
                   fontSize: 20,
@@ -183,10 +216,79 @@ class _UpdateProfileState extends State<UpdateProfile> {
       ),
     );
   }
+  // void deleteById(String id) async {
+  //   try {
+  //     final querySnapshot = await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .where('id', isEqualTo: id)
+  //         .get();
+  //
+  //     if (querySnapshot.docs.isNotEmpty) {
+  //       final docId = querySnapshot.docs.first.id;
+  //
+  //       await FirebaseFirestore.instance.collection('users').doc(docId).delete();
+  //
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text('User deleted successfully')),
+  //       );
+  //     } else {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text('User not found')),
+  //       );
+  //     }
+  //   } catch (e, st) {
+  //     print("Error deleting user: $e");
+  //     print("Stack trace: $st");
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Failed to delete: $e')),
+  //     );
+  //   }
+  // }
+  // void updateData()async {
+  //   if (formKey.currentState!.validate()) {
+  //     try {
+  //       String id = "1";
+  //       String name = userController.text;
+  //       String phone = phoneController.text;
+  //       String image = _selectedAvatar;
+  //
+  //       final querySnapshot = await FirebaseFirestore.instance
+  //           .collection('users')
+  //           .where('id', isEqualTo: id)
+  //           .get();
+  //
+  //       if (querySnapshot.docs.isNotEmpty) {
+  //         final docId = querySnapshot.docs.first.id;
+  //
+  //         await FirebaseFirestore.instance
+  //             .collection('users')
+  //             .doc(docId)
+  //             .update({
+  //           'name': name,
+  //           'phone': phone,
+  //           'image': image,
+  //         });
+  //
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           SnackBar(content: Text('User updated successfully')),
+  //         );
+  //       } else {
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           SnackBar(content: Text('User not found')),
+  //         );
+  //       }
+  //     } catch (e) {
+  //       print("Error updating user: $e");
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text('Failed to update')),
+  //       );
+  //     }    }
+  // }
 
-  void updateData() {
-    if (formKey.currentState!.validate()) {
-      print('update data');
-    }
-  }
+
+
+
+
+
+
 }
