@@ -29,6 +29,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/en_icon.svg
   SvgGenImage get enIcon => const SvgGenImage('assets/icons/en_icon.svg');
 
+  /// File path: assets/icons/explore_icon.svg
+  SvgGenImage get exploreIcon =>
+      const SvgGenImage('assets/icons/explore_icon.svg');
+
+  /// File path: assets/icons/home_icon.svg
+  SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
+
   /// File path: assets/icons/icon _google.svg
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icons/icon _google.svg');
@@ -53,12 +60,22 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone_icon.svg
   SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
 
+  /// File path: assets/icons/profiel_icon.svg
+  SvgGenImage get profielIcon =>
+      const SvgGenImage('assets/icons/profiel_icon.svg');
+
+  /// File path: assets/icons/search_icon.svg
+  SvgGenImage get searchIcon =>
+      const SvgGenImage('assets/icons/search_icon.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     arIcon,
     email,
     emailIcon,
     enIcon,
+    exploreIcon,
+    homeIcon,
     iconGoogle,
     iconGoogle2,
     nameIcon,
@@ -66,6 +83,8 @@ class $AssetsIconsGen {
     person,
     phone,
     phoneIcon,
+    profielIcon,
+    searchIcon,
   ];
 }
 

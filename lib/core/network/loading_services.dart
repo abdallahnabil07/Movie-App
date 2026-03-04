@@ -9,8 +9,8 @@ void configLoading() {
     ..indicatorSize = 45.0
     ..radius = 12.0
     ..maskType = EasyLoadingMaskType.black
-    ..backgroundColor = AppColors.primaryColor
-    ..indicatorColor = AppColors.yellow
+    ..backgroundColor = AppColors.yellow
+    ..indicatorColor = AppColors.primaryColor
     ..textColor = AppColors.lightGreyColor
     ..userInteractions = false
     ..dismissOnTap = false;
