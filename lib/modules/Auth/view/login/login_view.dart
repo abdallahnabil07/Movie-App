@@ -50,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
                 if (state.user != null) {
                   ToastificationCustom.show(
                     context,
-                    title: 'Welcome back 🧑‍💼',
+                    title: 'Logged in successfully',
                     type: ToastificationType.success,
                   );
                   Navigator.pushReplacementNamed(context, AppRoutesName.layout);

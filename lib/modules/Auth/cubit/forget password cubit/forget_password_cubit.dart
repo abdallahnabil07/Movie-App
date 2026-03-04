@@ -14,7 +14,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         email: email.trim(),
       );
 
-      emit(ForgetPasswordSuccess());
+      emit(ForgetPasswordEmailSent());
     } on FirebaseAuthException catch (e) {
       emit(ForgetPasswordError(
           e.message ?? "Something went wrong"));

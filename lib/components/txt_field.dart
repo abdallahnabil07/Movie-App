@@ -12,7 +12,7 @@ class TxtField extends StatefulWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final void Function(String)? onChanged;
-  final String hintText;
+  final String? hintText;
   final int? maxLine;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -22,7 +22,7 @@ class TxtField extends StatefulWidget {
 
   const TxtField({
     super.key,
-    required this.hintText,
+    this.hintText,
     this.controller,
     this.maxLine = 1,
     this.validator,

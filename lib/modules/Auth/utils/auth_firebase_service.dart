@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:movie_app/components/toastification_custom.dart';
 import 'package:movie_app/core/enum/auth_error.dart';
+import 'package:toastification/toastification.dart';
+
+import '../../layout/profile/utils/profile_firebase_service.dart';
 
 abstract class AuthFirebaseService {
   static Future<UserCredential> signInWithEmailAndPassword(
@@ -38,6 +42,13 @@ abstract class AuthFirebaseService {
       );
 
       final userCredential = await auth.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      if (user != null) {
+        await ProfileFirebaseService.createUserIfNotExists(user);
+      }
+
+      return user;
 
       return userCredential.user;
     } on GoogleSignInException catch (error) {
@@ -81,9 +92,10 @@ abstract class AuthFirebaseService {
           'avatar': avatarPath,
           'createdAt': FieldValue.serverTimestamp(),
         });
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("User created successfully")),
+        ToastificationCustom.show(
+          context,
+          type: ToastificationType.success,
+          title: "User created successfully",
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -91,27 +103,35 @@ abstract class AuthFirebaseService {
 
       if (e.code == 'weak-password') {
         message = "The password provided is too weak.";
-        ScaffoldMessenger.of(
+        ToastificationCustom.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(message)));
+          type: ToastificationType.error,
+          title: message,
+        );
         return;
       } else if (e.code == 'email-already-in-use') {
         message = "The account already exists for that email.";
-        ScaffoldMessenger.of(
+        ToastificationCustom.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(message)));
+          type: ToastificationType.error,
+          title: message,
+        );
         return;
       } else {
         message = e.message ?? "Authentication error occurred.";
-        ScaffoldMessenger.of(
+        ToastificationCustom.show(
           context,
-        ).showSnackBar(SnackBar(content: Text(message)));
+          type: ToastificationType.error,
+          title: message,
+        );
         return;
       }
     } catch (e) {
-      ScaffoldMessenger.of(
+      ToastificationCustom.show(
         context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
+        type: ToastificationType.error,
+        title: e.toString(),
+      );
     }
   }
 }

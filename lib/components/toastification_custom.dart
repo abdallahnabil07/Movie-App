@@ -13,9 +13,11 @@ class ToastificationCustom {
     Alignment alignment = Alignment.topCenter,
   }) {
     Toastification().show(
+      showIcon: true,
       backgroundColor: AppColors.yellow,
       borderSide: BorderSide(color: AppColors.transparentColor),
       context: context,
+
       title: Text(
         textAlign: TextAlign.center,
         title,
