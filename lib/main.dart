@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
     return ToastificationWrapper(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        // useInheritedMediaQuery: true,
         // locale: DevicePreview.locale(context),
         builder: EasyLoading.init(),
         theme: AppTheme.appTheme,
