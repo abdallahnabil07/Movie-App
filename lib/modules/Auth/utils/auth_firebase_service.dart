@@ -50,7 +50,6 @@ abstract class AuthFirebaseService {
 
       return user;
 
-      return userCredential.user;
     } on GoogleSignInException catch (error) {
       if (error.code == GoogleSignInExceptionCode.canceled) {
         return null;

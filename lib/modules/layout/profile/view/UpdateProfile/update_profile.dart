@@ -42,12 +42,12 @@ class _UpdateProfileState extends State<UpdateProfile> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text("Pick Avatar"),
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        //   icon: Icon(Icons.arrow_back_outlined, color: AppColors.yellow),
-        // ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_outlined, color: AppColors.yellow),
+        ),
       ),
       body: _isDataLoaded
           ? Padding(
