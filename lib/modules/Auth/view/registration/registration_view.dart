@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
@@ -28,10 +29,10 @@ class _RegistrationViewState extends State<RegistrationView> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  String selectedAvatarPath = "";
+  String selectedAvatarPath = Assets.images.person1.path;
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +109,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                       return 'Please enter your email';
                     }
                     if (!RegExp(
-                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                        .hasMatch(value)) {
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                    ).hasMatch(value)) {
                       return 'Please enter a valid email';
                     }
                     return null;
@@ -201,7 +202,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   fontSize: 18,
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      EasyLoading.show(status: "Creating account...");
+                      EasyLoading.show();
 
                       await AuthFirebaseService.signUpWithPass(
                         context,
@@ -211,11 +212,12 @@ class _RegistrationViewState extends State<RegistrationView> {
                         phoneController.text.trim(),
                         selectedAvatarPath,
                       );
-
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
                       EasyLoading.dismiss();
-
-                      Navigator.pushNamed(
-                          context, AppRoutesName.updateProfile);
+                      Navigator.pushNamed(context, AppRoutesName.layout);
                     }
                   },
                   backgroundColor: AppColors.yellow,
