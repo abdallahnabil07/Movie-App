@@ -13,6 +13,9 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  final AssetGenImage availableNow = const AssetGenImage(
+    'assets/images/available _now.png',
+  );
   final AssetGenImage avatar1 = const AssetGenImage(
     'assets/images/avatar_1.png',
   );
@@ -83,6 +86,9 @@ class $AssetsImagesGen {
   final AssetGenImage thirdImageOnBoarding = const AssetGenImage(
     'assets/images/third_image_on_boarding.png',
   );
+  final AssetGenImage watchNow = const AssetGenImage(
+    'assets/images/watch_now.png',
+  );
 }
 
 class $AssetsIconsGen {
@@ -94,6 +100,10 @@ class $AssetsIconsGen {
     'assets/icons/email_icon.svg',
   );
   final SvgGenImage enIcon = const SvgGenImage('assets/icons/en_icon.svg');
+  final SvgGenImage exploreIcon = const SvgGenImage(
+    'assets/icons/explore_icon.svg',
+  );
+  final SvgGenImage homeIcon = const SvgGenImage('assets/icons/home_icon.svg');
   final SvgGenImage iconGoogle = const SvgGenImage(
     'assets/icons/icon _google.svg',
   );
@@ -109,6 +119,13 @@ class $AssetsIconsGen {
   final SvgGenImage phoneIcon = const SvgGenImage(
     'assets/icons/phone_icon.svg',
   );
+  final SvgGenImage profielIcon = const SvgGenImage(
+    'assets/icons/profiel_icon.svg',
+  );
+  final SvgGenImage searchIcon = const SvgGenImage(
+    'assets/icons/search_icon.svg',
+  );
+  final SvgGenImage star = const SvgGenImage('assets/icons/star.svg');
 }
 
 class AssetGenImage {
@@ -230,6 +247,7 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
+      clipBehavior: clipBehavior,
       color: color,
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,

@@ -29,6 +29,19 @@ class $AssetsIconsGen {
   /// File path: assets/icons/en_icon.svg
   SvgGenImage get enIcon => const SvgGenImage('assets/icons/en_icon.svg');
 
+  /// File path: assets/icons/exist.svg
+  SvgGenImage get exist => const SvgGenImage('assets/icons/exist.svg');
+
+  /// File path: assets/icons/explore_icon.svg
+  SvgGenImage get exploreIcon =>
+      const SvgGenImage('assets/icons/explore_icon.svg');
+
+  /// File path: assets/icons/folder.svg
+  SvgGenImage get folder => const SvgGenImage('assets/icons/folder.svg');
+
+  /// File path: assets/icons/home_icon.svg
+  SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
+
   /// File path: assets/icons/icon _google.svg
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icons/icon _google.svg');
@@ -36,6 +49,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon _google2.svg
   SvgGenImage get iconGoogle2 =>
       const SvgGenImage('assets/icons/icon _google2.svg');
+
+  /// File path: assets/icons/list.svg
+  SvgGenImage get list => const SvgGenImage('assets/icons/list.svg');
 
   /// File path: assets/icons/name_icon.svg
   SvgGenImage get nameIcon => const SvgGenImage('assets/icons/name_icon.svg');
@@ -53,24 +69,47 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone_icon.svg
   SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
 
+  /// File path: assets/icons/profiel_icon.svg
+  SvgGenImage get profielIcon =>
+      const SvgGenImage('assets/icons/profiel_icon.svg');
+
+  /// File path: assets/icons/search_icon.svg
+  SvgGenImage get searchIcon =>
+      const SvgGenImage('assets/icons/search_icon.svg');
+
+  /// File path: assets/icons/star.svg
+  SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     arIcon,
     email,
     emailIcon,
     enIcon,
+    exist,
+    exploreIcon,
+    folder,
+    homeIcon,
     iconGoogle,
     iconGoogle2,
+    list,
     nameIcon,
     passwordIcon,
     person,
     phone,
     phoneIcon,
+    profielIcon,
+    searchIcon,
+    star,
   ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/available _now.png
+  AssetGenImage get availableNow =>
+      const AssetGenImage('assets/images/available _now.png');
 
   /// File path: assets/images/avatar_1.png
   AssetGenImage get avatar1 =>
@@ -87,6 +126,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/branding.png
   AssetGenImage get branding =>
       const AssetGenImage('assets/images/branding.png');
+
+  /// File path: assets/images/empty_watch.png
+  AssetGenImage get emptyWatch =>
+      const AssetGenImage('assets/images/empty_watch.png');
 
   /// File path: assets/images/end_image_on_boarding.png
   AssetGenImage get endImageOnBoarding =>
@@ -158,12 +201,18 @@ class $AssetsImagesGen {
   AssetGenImage get thirdImageOnBoarding =>
       const AssetGenImage('assets/images/third_image_on_boarding.png');
 
+  /// File path: assets/images/watch_now.png
+  AssetGenImage get watchNow =>
+      const AssetGenImage('assets/images/watch_now.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    availableNow,
     avatar1,
     avatar2,
     avatar3,
     branding,
+    emptyWatch,
     endImageOnBoarding,
     firstImageOnBoarding,
     forgotPassword,
@@ -184,6 +233,7 @@ class $AssetsImagesGen {
     secondImageOnBoarding,
     splash,
     thirdImageOnBoarding,
+    watchNow,
   ];
 }
 
