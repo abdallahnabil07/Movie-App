@@ -77,6 +77,9 @@ class $AssetsIconsGen {
   SvgGenImage get searchIcon =>
       const SvgGenImage('assets/icons/search_icon.svg');
 
+  /// File path: assets/icons/star.svg
+  SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     arIcon,
@@ -97,11 +100,16 @@ class $AssetsIconsGen {
     phoneIcon,
     profielIcon,
     searchIcon,
+    star,
   ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/available _now.png
+  AssetGenImage get availableNow =>
+      const AssetGenImage('assets/images/available _now.png');
 
   /// File path: assets/images/avatar_1.png
   AssetGenImage get avatar1 =>
@@ -193,8 +201,13 @@ class $AssetsImagesGen {
   AssetGenImage get thirdImageOnBoarding =>
       const AssetGenImage('assets/images/third_image_on_boarding.png');
 
+  /// File path: assets/images/watch_now.png
+  AssetGenImage get watchNow =>
+      const AssetGenImage('assets/images/watch_now.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    availableNow,
     avatar1,
     avatar2,
     avatar3,
@@ -220,6 +233,7 @@ class $AssetsImagesGen {
     secondImageOnBoarding,
     splash,
     thirdImageOnBoarding,
+    watchNow,
   ];
 }
 
