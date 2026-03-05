@@ -202,9 +202,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                   fontSize: 18,
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      EasyLoading.show();
+                      EasyLoading.show(status: "Creating Account");
 
-                      await AuthFirebaseService.signUpWithPass(
+                      bool created = await AuthFirebaseService.signUpWithPass(
                         context,
                         nameController.text.trim(),
                         emailController.text.trim(),
@@ -212,12 +212,16 @@ class _RegistrationViewState extends State<RegistrationView> {
                         phoneController.text.trim(),
                         selectedAvatarPath,
                       );
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      );
+
                       EasyLoading.dismiss();
-                      Navigator.pushNamed(context, AppRoutesName.layout);
+
+                      if (created) {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        );
+                        Navigator.pushNamed(context, AppRoutesName.layout);
+                      }
                     }
                   },
                   backgroundColor: AppColors.yellow,

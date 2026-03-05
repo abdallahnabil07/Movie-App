@@ -5,7 +5,6 @@ import 'package:movie_app/modules/layout/layout.dart';
 import 'package:movie_app/modules/layout/profile/view/UpdateProfile/update_profile.dart';
 import 'package:movie_app/modules/on%20boarding/view/intro_page_on_boarding.dart';
 import 'package:movie_app/modules/on%20boarding/view/on_boarding_view.dart';
-import 'package:movie_app/modules/profile/view/UpdateProfile/update_profile.dart';
 
 import '../../modules/Auth/view/forget password/forget_password_screen.dart';
 import 'app_routes_name.dart';

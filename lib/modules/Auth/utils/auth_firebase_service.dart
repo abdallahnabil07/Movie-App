@@ -64,7 +64,7 @@ abstract class AuthFirebaseService {
     }
   }
 
-  static Future<void> signUpWithPass(
+  static Future<bool> signUpWithPass(
     BuildContext context,
     String name,
     String emailAddress,
@@ -96,7 +96,9 @@ abstract class AuthFirebaseService {
           type: ToastificationType.success,
           title: "User created successfully",
         );
+        return true;
       }
+      return false;
     } on FirebaseAuthException catch (e) {
       String message = "";
 
@@ -107,7 +109,7 @@ abstract class AuthFirebaseService {
           type: ToastificationType.error,
           title: message,
         );
-        return;
+        return false;
       } else if (e.code == 'email-already-in-use') {
         message = "The account already exists for that email.";
         ToastificationCustom.show(
@@ -115,7 +117,7 @@ abstract class AuthFirebaseService {
           type: ToastificationType.error,
           title: message,
         );
-        return;
+        return false;
       } else {
         message = e.message ?? "Authentication error occurred.";
         ToastificationCustom.show(
@@ -123,7 +125,7 @@ abstract class AuthFirebaseService {
           type: ToastificationType.error,
           title: message,
         );
-        return;
+        return false;
       }
     } catch (e) {
       ToastificationCustom.show(
@@ -131,6 +133,7 @@ abstract class AuthFirebaseService {
         type: ToastificationType.error,
         title: e.toString(),
       );
+      return false;
     }
   }
 }
