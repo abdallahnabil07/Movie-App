@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:movie_app/components/movie_slider_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/components/movie_slider_card.dart';
 import 'package:movie_app/model/movie_model.dart';
 
 class MovieSection extends StatelessWidget {
@@ -75,7 +75,7 @@ class MovieSection extends StatelessWidget {
             }).toList(),
           )
         else
-          Container(
+          SizedBox(
             height: context.hg(150),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,

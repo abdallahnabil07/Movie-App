@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:movie_app/core/extensions/context_extensions.dart';
-import 'package:movie_app/components/movie_slider_card.dart';
 import 'package:movie_app/components/movie_section.dart';
+import 'package:movie_app/components/movie_slider_card.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/cubit/home_cubit.dart';
 import 'package:shimmer_flutter/shimmer_flutter.dart';
+
 import '../../../core/gen/assets.gen.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,16 +31,16 @@ class _HomePageState extends State<HomePage> {
             body: Stack(
               children: [
                 if (state is HomeLoaded && state.latestMovies.isNotEmpty)
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: CachedNetworkImage(
                       imageUrl: state.latestMovies[_currentMovieIndex].image,
                       fit: BoxFit.contain,
-                      errorWidget: (context, url, error) => Container(
-                        color: Colors.grey[900],
-                      ),
+                      errorWidget: (context, url, error) =>
+                          Container(color: Colors.grey[900]),
                     ),
                   ),
+                //gradient
                 Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -46,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      stops: [0.0, 0.4, 0.7,0.1],
+                      stops: [0.0, 0.4, 0.7, 0.1],
                       colors: [
                         Colors.transparent,
                         Colors.black87,
@@ -69,13 +71,10 @@ class _HomePageState extends State<HomePage> {
                       _buildComedyMovies(context, state),
                       _buildAnimationMovies(context, state),
                       _buildHorrorMovies(context, state),
-
-
-
                     ],
                   ),
                 ),
-              ]
+              ],
             ),
           );
         },
@@ -85,20 +84,26 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildLatestMovies(BuildContext context, HomeState state) {
     if (state is HomeLoading) {
-      return Container(
-        height: context.hg(350),
-        child: Center(
-          child: Shimmer(
-            width: context.wd(200),
-            height: context.hg(300),
-            baseColor: Colors.grey,
-          ),
+      return SizedBox(
+        height: context.hg(380),
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
+          itemCount: 3,
+          separatorBuilder: (_, _) => SizedBox(width: context.wd(12)),
+          itemBuilder: (context, index) {
+            return Shimmer(
+              width: context.width * 0.65,
+              height: context.hg(340),
+              baseColor: AppColors.darkGreyColor,
+            );
+          },
         ),
       );
     }
 
     if (state is HomeError) {
-      return Container(
+      return SizedBox(
         height: context.hg(350),
         child: Center(
           child: Text(
@@ -133,7 +138,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return Container(
+    return SizedBox(
       height: context.hg(350),
       child: Center(
         child: Text(
@@ -147,30 +152,60 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTopRatedMovies(BuildContext context, HomeState state) {
     if (state is HomeLoading) {
       return Container(
-        height: context.hg(250),
+        height: context.hg(280),
         padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: context.wd(100),
-              height: context.hg(24),
-              child: Shimmer(
-                baseColor: Colors.grey,
-              ),
+            Row(
+              children: [
+                SizedBox(
+                  width: context.wd(100),
+                  height: context.hg(24),
+                  child: Shimmer(baseColor: AppColors.darkGreyColor),
+                ),
+                Spacer(),
+                SizedBox(
+                  width: context.wd(100),
+                  height: context.hg(24),
+                  child: Shimmer(baseColor: AppColors.darkGreyColor),
+                ),
+              ],
             ),
             SizedBox(height: context.hg(12)),
+
             Row(
-              children: List.generate(3, (index) => Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(right: index < 2 ? context.wd(8) : 0),
-                  child: Shimmer(
-                    width: double.infinity,
-                    height: context.hg(180),
-                    baseColor: Colors.grey,
+              children: List.generate(
+                3,
+                (index) => Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      right: index < 2 ? context.wd(8) : 0,
+                    ),
+                    child: Shimmer(
+                      width: double.infinity,
+                      height: context.hg(180),
+                      baseColor: AppColors.darkGreyColor,
+                    ),
                   ),
                 ),
-              )),
+              ),
+            ),
+
+            SizedBox(height: context.hg(16)),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: context.wd(100),
+                    height: context.hg(32),
+                    child: Shimmer(baseColor: AppColors.darkGreyColor),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -194,25 +229,28 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: context.wd(80),
               height: context.hg(24),
-              child: Shimmer(
-                baseColor: Colors.grey,
-              ),
+              child: Shimmer(baseColor: AppColors.darkGreyColor),
             ),
             SizedBox(height: context.hg(12)),
             Row(
-              children: List.generate(3, (index) => Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(right: index < 2 ? context.wd(8) : 0),
-                  child: Shimmer(
-                    width: double.infinity,
-                    height: context.hg(180),
-                    baseColor: Colors.grey,
+              children: List.generate(
+                3,
+                (index) => Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      right: index < 2 ? context.wd(8) : 0,
+                    ),
+                    child: Shimmer(
+                      width: double.infinity,
+                      height: context.hg(180),
+                      baseColor: AppColors.darkGreyColor,
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ],
         ),
@@ -236,25 +274,28 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: context.wd(70),
               height: context.hg(24),
-              child: Shimmer(
-                baseColor: Colors.grey,
-              ),
+              child: Shimmer(baseColor: AppColors.darkGreyColor),
             ),
             SizedBox(height: context.hg(12)),
             Row(
-              children: List.generate(3, (index) => Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(right: index < 2 ? context.wd(8) : 0),
-                  child: Shimmer(
-                    width: double.infinity,
-                    height: context.hg(180),
-                    baseColor: Colors.grey,
+              children: List.generate(
+                3,
+                (index) => Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      right: index < 2 ? context.wd(8) : 0,
+                    ),
+                    child: Shimmer(
+                      width: double.infinity,
+                      height: context.hg(180),
+                      baseColor: AppColors.darkGreyColor,
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ],
         ),
@@ -278,25 +319,28 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: context.wd(90),
               height: context.hg(24),
-              child: Shimmer(
-                baseColor: Colors.grey,
-              ),
+              child: Shimmer(baseColor: AppColors.darkGreyColor),
             ),
             SizedBox(height: context.hg(12)),
             Row(
-              children: List.generate(3, (index) => Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(right: index < 2 ? context.wd(8) : 0),
-                  child: Shimmer(
-                    width: double.infinity,
-                    height: context.hg(180),
-                    baseColor: Colors.grey,
+              children: List.generate(
+                3,
+                (index) => Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      right: index < 2 ? context.wd(8) : 0,
+                    ),
+                    child: Shimmer(
+                      width: double.infinity,
+                      height: context.hg(180),
+                      baseColor: AppColors.darkGreyColor,
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ],
         ),
@@ -320,25 +364,28 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: context.wd(60),
               height: context.hg(24),
-              child: Shimmer(
-                baseColor: Colors.grey,
-              ),
+              child: Shimmer(baseColor: AppColors.darkGreyColor),
             ),
             SizedBox(height: context.hg(12)),
             Row(
-              children: List.generate(3, (index) => Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(right: index < 2 ? context.wd(8) : 0),
-                  child: Shimmer(
-                    width: double.infinity,
-                    height: context.hg(180),
-                    baseColor: Colors.grey,
+              children: List.generate(
+                3,
+                (index) => Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      right: index < 2 ? context.wd(8) : 0,
+                    ),
+                    child: Shimmer(
+                      width: double.infinity,
+                      height: context.hg(180),
+                      baseColor: AppColors.darkGreyColor,
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           ],
         ),

@@ -1,11 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/model/movie_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../core/gen/assets.gen.dart';
 
 class MovieSliderCard extends StatelessWidget {
   final MovieModel movie;

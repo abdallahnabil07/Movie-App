@@ -33,11 +33,12 @@ class _LayoutState extends State<Layout> {
       child: BlocBuilder<LayoutCubit, int>(
         builder: (context, state) {
           return Scaffold(
+            extendBody: true,
             body: _page[state],
             bottomNavigationBar: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: context.wd(12),
-                vertical: context.hg(16),
+                vertical: context.hg(12),
               ),
               child: Container(
                 height: context.hg(55),
