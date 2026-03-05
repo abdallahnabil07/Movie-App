@@ -236,6 +236,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               avatarPath: _selectedAvatar,
                             );
                             EasyLoading.dismiss();
+                            Navigator.pop(context, true);
+
                             ToastificationCustom.show(
                               context,
                               type: ToastificationType.success,

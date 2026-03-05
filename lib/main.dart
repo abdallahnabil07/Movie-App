@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     bool isVisited = CacheHelper.getData(CacheKeys.onBoarding) ?? false;
 
     String startRoute = isVisited
-        ? AppRoutesName.login
+        ? AppRoutesName.layout
         : AppRoutesName.onBoardingView;
 
     // return MaterialApp(

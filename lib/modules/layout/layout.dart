@@ -5,6 +5,7 @@ import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/home_page.dart';
 import 'package:movie_app/modules/layout/profile/view/UpdateProfile/update_profile.dart';
+import 'package:movie_app/modules/layout/profile/view/profile/profile_page.dart';
 import 'package:movie_app/modules/layout/search/search_page.dart';
 import 'package:movie_app/modules/layout/widget/icon_in_navigation_custom.dart';
 
@@ -23,7 +24,7 @@ class _LayoutState extends State<Layout> {
     HomePage(),
     SearchPage(),
     BrowsePage(),
-    UpdateProfile(),
+    ProfilePage(),
   ];
 
   @override
