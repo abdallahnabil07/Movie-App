@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/model/movie_model.dart';
 import 'package:movie_app/core/services/movie_service.dart';
+import 'package:movie_app/modules/layout/home/model/movie_model.dart';
 
 part 'home_state.dart';
 

@@ -9,7 +9,7 @@ class ToastificationCustom {
     BuildContext context, {
     required ToastificationType type,
     required String title,
-    Duration autoCloseDuration = const Duration(seconds: 5),
+    Duration autoCloseDuration = const Duration(seconds: 3),
     Alignment alignment = Alignment.topCenter,
   }) {
     Toastification().show(

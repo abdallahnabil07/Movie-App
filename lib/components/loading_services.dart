@@ -1,6 +1,6 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import '../theme/app_colors.dart';
+import '../core/theme/app_colors.dart';
 
 void configLoading() {
   EasyLoading.instance

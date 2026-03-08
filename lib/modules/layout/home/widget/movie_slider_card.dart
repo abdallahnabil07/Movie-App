@@ -2,8 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/movie_model.dart';
 
 
 class MovieSliderCard extends StatelessWidget {
@@ -17,7 +18,11 @@ class MovieSliderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Bounceable(
-      onTap: (){},
+      onTap: () {
+        print('Movie title: ${movie.title}');
+        Navigator.pushNamed(
+            context, AppRoutesName.movieDetails, arguments: movie);
+      },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: context.wd(8)),
         decoration: BoxDecoration(

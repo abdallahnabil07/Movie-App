@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/components/movie_section.dart';
-import 'package:movie_app/components/movie_slider_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/cubit/home_cubit.dart';
+import 'package:movie_app/modules/layout/home/widget/movie_section.dart';
+import 'package:movie_app/modules/layout/home/widget/movie_slider_card.dart';
 import 'package:shimmer_flutter/shimmer_flutter.dart';
 
 import '../../../core/gen/assets.gen.dart';
