@@ -22,30 +22,41 @@ class MovieDetails extends StatefulWidget {
 
 class _MovieDetailsState extends State<MovieDetails> {
   late MovieModel movie;
-
+  final MovieDetailsCubit movieDetailsCubit = MovieDetailsCubit();
+  bool isLoaded = false;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    final args = ModalRoute.of(context)?.settings.arguments;
-
+    if (!isLoaded) {
+      final args = ModalRoute.of(context)?.settings.arguments;
     if (args is MovieModel) {
       movie = args;
+        movieDetailsCubit.fetchMovieDetails(movie.id);
+        isLoaded = true;
+      }
     }
   }
 
   @override
+  void dispose() {
+    movieDetailsCubit.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<MovieDetailsCubit>(
-      create: (context) => MovieDetailsCubit()..fetchMovieDetails(movie.id),
-      child: Scaffold(
-        body: BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
-          builder: (context, state) {
-            if (state is MovieDetailsLoadingState) {
+    return Scaffold(
+      body: BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
+        bloc: movieDetailsCubit,
+        builder: (context, state) {
+          switch (state) {
+            case MovieDetailsLoadingState():
+
               ///TODO: shimmer_flutter
               EasyLoading.show();
-            }
-            if (state is MovieDetailsErrorState) {
+              return SizedBox.shrink();
+            case MovieDetailsErrorState():
+              EasyLoading.dismiss();
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -59,9 +70,9 @@ class _MovieDetailsState extends State<MovieDetails> {
                   Padding(
                     padding: EdgeInsets.all(context.wd(16)),
                     child: AppElevatedButton(
-                      onPressed: () => context
-                          .read<MovieDetailsCubit>()
-                          .fetchMovieDetails(movie.id),
+                      onPressed: () {
+                        movieDetailsCubit.fetchMovieDetails(movie.id);
+                      },
                       textButton: 'Try again',
                       height: context.hg(50),
                       width: double.infinity,
@@ -70,8 +81,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   ),
                 ],
               );
-            }
-            if (state is MovieDetailsSuccessState) {
+            case MovieDetailsSuccessState():
               EasyLoading.dismiss();
               final movieDetails = state.movie;
               return SingleChildScrollView(
@@ -110,10 +120,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                   ],
                 ),
               );
-            }
-            return SizedBox.shrink();
-          },
-        ),
+            case MovieDetailsInitialState():
+              return SizedBox.shrink();
+          }
+        },
       ),
     );
   }
