@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
         builder: EasyLoading.init(),
         theme: AppTheme.appTheme,
         title: 'Movie app',
-        initialRoute: startRoute,
+        initialRoute: AppRoutesName.layout,
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );

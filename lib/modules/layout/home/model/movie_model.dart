@@ -16,9 +16,9 @@ class MovieModel {
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
       id: json['id'],
-      title: json['title'],
-      image: json['large_cover_image'],
-      rating: (json['rating'] as num).toDouble(),
+      title: json['title'] ?? '',
+      image: json['medium_cover_image'] ?? '',
+      rating: (json['rating'] ?? 0).toDouble(),
       summary: json['summary'] ?? '',
     );
   }

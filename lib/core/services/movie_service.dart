@@ -31,4 +31,34 @@ class MovieService {
       throw Exception('Error fetching movies: $e');
     }
   }
+
+  static Future<List<MovieModel>> fetchMovieSuggestions({
+    required int movieId,
+  }) async {
+    try {
+      final Uri url = Uri.parse(
+        'https://movies-api.accel.li/api/v2/movie_suggestions.json?movie_id=$movieId',
+      );
+
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        final List movies = data['data']?['movies'] ?? [];
+
+        if (movies.isEmpty) {
+          return [];
+        }
+
+        return movies
+            .map((movie) => MovieModel.fromJson(movie))
+            .toList();
+      } else {
+        throw Exception('API Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Error fetching movie suggestions: $e');
+    }
+  }
 }

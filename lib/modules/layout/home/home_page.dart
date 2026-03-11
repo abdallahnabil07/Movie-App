@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/components/shimmer_movie_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/cubit/home_cubit.dart';
@@ -92,10 +93,8 @@ class _HomePageState extends State<HomePage> {
           itemCount: 3,
           separatorBuilder: (_, _) => SizedBox(width: context.wd(12)),
           itemBuilder: (context, index) {
-            return Shimmer(
-              width: context.width * 0.65,
-              height: context.hg(340),
-              baseColor: AppColors.darkGreyColor,
+            return ShimmerMovieCard(
+              isTopMovie: true,
             );
           },
         ),
@@ -177,15 +176,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: List.generate(
                 3,
-                (index) => Expanded(
+                    (index) => Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
                       right: index < 2 ? context.wd(8) : 0,
                     ),
-                    child: Shimmer(
-                      width: double.infinity,
-                      height: context.hg(180),
-                      baseColor: AppColors.darkGreyColor,
+                    child: ShimmerMovieCard(
+                      isTopMovie: false,
                     ),
                   ),
                 ),
@@ -238,15 +235,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: List.generate(
                 3,
-                (index) => Expanded(
+                    (index) => Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
                       right: index < 2 ? context.wd(8) : 0,
                     ),
-                    child: Shimmer(
-                      width: double.infinity,
-                      height: context.hg(180),
-                      baseColor: AppColors.darkGreyColor,
+                    child: ShimmerMovieCard(
+                      isTopMovie: false,
                     ),
                   ),
                 ),
@@ -283,15 +278,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: List.generate(
                 3,
-                (index) => Expanded(
+                    (index) => Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
                       right: index < 2 ? context.wd(8) : 0,
                     ),
-                    child: Shimmer(
-                      width: double.infinity,
-                      height: context.hg(180),
-                      baseColor: AppColors.darkGreyColor,
+                    child: ShimmerMovieCard(
+                      isTopMovie: false,
                     ),
                   ),
                 ),
@@ -328,15 +321,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: List.generate(
                 3,
-                (index) => Expanded(
+                    (index) => Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
                       right: index < 2 ? context.wd(8) : 0,
                     ),
-                    child: Shimmer(
-                      width: double.infinity,
-                      height: context.hg(180),
-                      baseColor: AppColors.darkGreyColor,
+                    child: ShimmerMovieCard(
+                      isTopMovie: false,
                     ),
                   ),
                 ),
@@ -373,15 +364,13 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: List.generate(
                 3,
-                (index) => Expanded(
+                    (index) => Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
                       right: index < 2 ? context.wd(8) : 0,
                     ),
-                    child: Shimmer(
-                      width: double.infinity,
-                      height: context.hg(180),
-                      baseColor: AppColors.darkGreyColor,
+                    child: ShimmerMovieCard(
+                      isTopMovie: false,
                     ),
                   ),
                 ),
