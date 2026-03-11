@@ -1,40 +1,59 @@
 class MovieDetailsModel {
   final int id;
-  final String title;
-  final String description;
+  final String url;
   final List<String> screenshots;
-  final List<String> cast;
+  final List<CastModel> cast;
   final List<String> genres;
   final int runtime;
-  final double rating;
+  final String trailerCode;
 
   MovieDetailsModel({
     required this.id,
-    required this.title,
-    required this.description,
+    required this.url,
     required this.screenshots,
     required this.cast,
     required this.genres,
     required this.runtime,
-    required this.rating,
+    required this.trailerCode,
   });
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
     return MovieDetailsModel(
       id: json['id'],
-      title: json['title'] ?? '',
-      description: json['description_full'] ?? '',
+      url: json['url'] ?? '',
       screenshots: [
         json['large_screenshot_image1'] ?? '',
         json['large_screenshot_image2'] ?? '',
         json['large_screenshot_image3'] ?? '',
       ],
       cast: json['cast'] != null
-          ? List<String>.from(json['cast'].map((actor) => actor['name']))
+          ? List<CastModel>.from(
+              json['cast'].map((actor) => CastModel.fromJson(actor)),
+            )
           : [],
       genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
       runtime: json['runtime'] ?? 0,
-      rating: (json['rating'] ?? 0).toDouble(),
+      trailerCode: json['yt_trailer_code'] ?? '',
+    );
+  }
+}
+
+class CastModel {
+  final String name;
+  final String character;
+  final String images;
+
+  CastModel({
+    required this.name,
+    required this.character,
+    required this.images,
+  });
+
+  factory CastModel.fromJson(Map<String, dynamic> json) {
+    return CastModel(
+      name: json['name'] ?? '',
+      character: json['character_name'] ?? '',
+      images: json['url_small_image'] ?? '',
     );
   }
 }

@@ -24,13 +24,14 @@ class _MovieDetailsState extends State<MovieDetails> {
   late MovieModel movie;
   final MovieDetailsCubit movieDetailsCubit = MovieDetailsCubit();
   bool isLoaded = false;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!isLoaded) {
       final args = ModalRoute.of(context)?.settings.arguments;
-    if (args is MovieModel) {
-      movie = args;
+      if (args is MovieModel) {
+        movie = args;
         movieDetailsCubit.fetchMovieDetails(movie.id);
         isLoaded = true;
       }
