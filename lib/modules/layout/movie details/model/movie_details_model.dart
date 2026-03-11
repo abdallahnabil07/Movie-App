@@ -5,6 +5,7 @@ class MovieDetailsModel {
   final List<CastModel> cast;
   final List<String> genres;
   final int runtime;
+  final int likeCount;
   final String trailerCode;
 
   MovieDetailsModel({
@@ -15,6 +16,7 @@ class MovieDetailsModel {
     required this.genres,
     required this.runtime,
     required this.trailerCode,
+    required this.likeCount,
   });
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class MovieDetailsModel {
       genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
       runtime: json['runtime'] ?? 0,
       trailerCode: json['yt_trailer_code'] ?? '',
+      likeCount: json['like_count'] ?? 0,
     );
   }
 }

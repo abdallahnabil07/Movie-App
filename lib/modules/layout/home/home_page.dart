@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
           enableInfiniteScroll: true,
-          viewportFraction: 0.6,
+          viewportFraction: context.hg(0.55),
           onPageChanged: (index, reason) {
             setState(() {
               _currentMovieIndex = index % state.latestMovies.length;
