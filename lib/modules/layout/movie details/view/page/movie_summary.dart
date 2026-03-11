@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/modules/layout/home/model/movie_model.dart';
 
 class MovieSummary extends StatefulWidget {
-  const MovieSummary({super.key});
+  final MovieModel movieModel;
+
+  const MovieSummary({super.key, required this.movieModel});
 
   @override
   State<MovieSummary> createState() => _MovieSummaryState();

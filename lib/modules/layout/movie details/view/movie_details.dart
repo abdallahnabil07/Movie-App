@@ -99,7 +99,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Gaber =================
                     // Screenshots
-                    MovieScreenshots(),
+                    MovieScreenshots(movieDetailsModel: movieDetails,),
                     //=================================================
 
                     //================ Mohammed Eid ===================
@@ -109,7 +109,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Gaber =================
                     // Summary
-                    MovieSummary(),
+                    MovieSummary(movieModel: movie,),
                     //=================================================
 
                     //================ Youssef ========================
