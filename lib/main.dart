@@ -46,11 +46,8 @@ class MyApp extends StatelessWidget {
 
     if (!isVisited) {
       startRoute = AppRoutesName.onBoardingView;
-    }
-    else if (isSignUp) {
+    } else if (isSignUp) {
       startRoute = AppRoutesName.layout;
-    }
-    else {
     } else if (isLoggedIn) {
       startRoute = AppRoutesName.layout;
     } else {
