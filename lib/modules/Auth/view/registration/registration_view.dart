@@ -11,6 +11,9 @@ import 'package:movie_app/modules/Auth/utils/auth_firebase_service.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/custom_text_button.dart';
 import 'package:movie_app/modules/Auth/view/login/widgets/language_card_widget.dart';
 
+import '../../../../core/local/cache_helper_.dart';
+import '../../../../core/local/constants/cache_key.dart';
+import '../../../../core/local/constants/cache_key.dart';
 import 'avatar_selection_bar.dart';
 
 class RegistrationView extends StatefulWidget {
@@ -215,6 +218,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                       await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: emailController.text.trim(),
                         password: passwordController.text.trim(),
+                      );
+                      await CacheHelper.saveData(
+                        key: CacheKeys.isSignUp,
+                        value: true,
                       );
                       EasyLoading.dismiss();
                       Navigator.pushNamed(context, AppRoutesName.layout);
