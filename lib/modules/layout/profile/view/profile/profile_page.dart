@@ -192,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                                         await FirebaseAuth.instance.signOut();
 
-                                        await CacheHelper.removeData(CacheKeys.isLoggedIn);
+                                        await CacheHelper.removeData(CacheKeys.isSignUp);
 
                                         EasyLoading.dismiss();
 

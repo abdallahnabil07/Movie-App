@@ -220,7 +220,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                         password: passwordController.text.trim(),
                       );
                       await CacheHelper.saveData(
-                        key: CacheKeys.isLoggedIn,
+                        key: CacheKeys.isSignUp,
                         value: true,
                       );
                       EasyLoading.dismiss();
