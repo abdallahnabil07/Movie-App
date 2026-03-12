@@ -204,9 +204,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                   fontSize: context.hg(18),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      EasyLoading.show();
+                      EasyLoading.show(status: "Creating Account");
 
-                      bool success = await AuthFirebaseService.signUpWithPass(
+                      bool created = await AuthFirebaseService.signUpWithPass(
                         context,
                         nameController.text.trim(),
                         emailController.text.trim(),
@@ -217,7 +217,7 @@ class _RegistrationViewState extends State<RegistrationView> {
 
                       EasyLoading.dismiss();
 
-                      if (success) {
+                      if (created) {
                         await FirebaseAuth.instance.signInWithEmailAndPassword(
                           email: emailController.text.trim(),
                           password: passwordController.text.trim(),
