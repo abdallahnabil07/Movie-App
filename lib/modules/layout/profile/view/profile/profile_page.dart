@@ -9,6 +9,8 @@ import 'package:toastification/toastification.dart';
 import '../../../../../components/app_elevated_button.dart';
 import '../../../../../components/toastification_custom.dart';
 import '../../../../../core/gen/assets.gen.dart';
+import '../../../../../core/local/cache_helper_.dart';
+import '../../../../../core/local/constants/cache_key.dart';
 import '../../utils/profile_firebase_service.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -190,14 +192,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
                                         await FirebaseAuth.instance.signOut();
 
+                                        await CacheHelper.removeData(CacheKeys.isLoggedIn);
+
                                         EasyLoading.dismiss();
 
                                         Navigator.pushReplacementNamed(
-                                    context,
-                                    AppRoutesName.login,
-                                  );
-                                } catch (e) {
-                                  EasyLoading.dismiss();
+                                          context,
+                                          AppRoutesName.login,
+                                        );
+
+                                      } catch (e) {
+                                        EasyLoading.dismiss();
 
                                         ToastificationCustom.show(
                                           context,

@@ -37,10 +37,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isVisited = CacheHelper.getData(CacheKeys.onBoarding) ?? false;
+    bool isLoggedIn = CacheHelper.getData(CacheKeys.isLoggedIn) ?? false;
 
-    String startRoute = isVisited
-        ? AppRoutesName.login
-        : AppRoutesName.onBoardingView;
+    String startRoute;
+
+    if (!isVisited) {
+      startRoute = AppRoutesName.onBoardingView;
+    }
+    else if (isLoggedIn) {
+      startRoute = AppRoutesName.layout;
+    }
+    else {
+      startRoute = AppRoutesName.login;
+    }
 
     // return MaterialApp(
     //   debugShowCheckedModeBanner: false,
