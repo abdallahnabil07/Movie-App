@@ -91,12 +91,15 @@ class _MovieDetailsState extends State<MovieDetails> {
                   children: [
                     //================ Abdullah Nabil =================
                     // Video + Watch Button + (Favourite / Minutes / Rate)
-                    MovieHeader(),
+                    MovieHeader(
+                      movieModel: movie,
+                      movieDetailsModel: movieDetails,
+                    ),
                     //=================================================
 
                     //================ Mohammed Gaber =================
                     // Screenshots
-                    MovieScreenshots(),
+                    MovieScreenshots(movieDetailsModel: movieDetails),
                     //=================================================
 
                     //================ Mohammed Eid ===================
@@ -106,7 +109,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Gaber =================
                     // Summary
-                    MovieSummary(),
+                    MovieSummary(movieModel: movie),
                     //=================================================
 
                     //================ Youssef ========================

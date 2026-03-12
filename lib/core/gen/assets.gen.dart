@@ -20,6 +20,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ar_icon.svg
   SvgGenImage get arIcon => const SvgGenImage('assets/icons/ar_icon.svg');
 
+  /// File path: assets/icons/boolmark_icon.svg
+  SvgGenImage get boolmarkIcon =>
+      const SvgGenImage('assets/icons/boolmark_icon.svg');
+
+  /// File path: assets/icons/clock_icon.svg
+  SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clock_icon.svg');
+
   /// File path: assets/icons/email.svg
   SvgGenImage get email => const SvgGenImage('assets/icons/email.svg');
 
@@ -38,6 +45,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/folder.svg
   SvgGenImage get folder => const SvgGenImage('assets/icons/folder.svg');
+
+  /// File path: assets/icons/heart_icon.svg
+  SvgGenImage get heartIcon => const SvgGenImage('assets/icons/heart_icon.svg');
 
   /// File path: assets/icons/home_icon.svg
   SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
@@ -69,6 +79,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone_icon.svg
   SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
 
+  /// File path: assets/icons/play_icon.svg
+  SvgGenImage get playIcon => const SvgGenImage('assets/icons/play_icon.svg');
+
   /// File path: assets/icons/profiel_icon.svg
   SvgGenImage get profielIcon =>
       const SvgGenImage('assets/icons/profiel_icon.svg');
@@ -80,15 +93,21 @@ class $AssetsIconsGen {
   /// File path: assets/icons/star.svg
   SvgGenImage get star => const SvgGenImage('assets/icons/star.svg');
 
+  /// File path: assets/icons/star_icon.svg
+  SvgGenImage get starIcon => const SvgGenImage('assets/icons/star_icon.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     arIcon,
+    boolmarkIcon,
+    clockIcon,
     email,
     emailIcon,
     enIcon,
     exist,
     exploreIcon,
     folder,
+    heartIcon,
     homeIcon,
     iconGoogle,
     iconGoogle2,
@@ -98,9 +117,11 @@ class $AssetsIconsGen {
     person,
     phone,
     phoneIcon,
+    playIcon,
     profielIcon,
     searchIcon,
     star,
+    starIcon,
   ];
 }
 
