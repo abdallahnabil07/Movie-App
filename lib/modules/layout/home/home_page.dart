@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/components/shimmer_movie_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
-import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/cubit/home_cubit.dart';
 import 'package:movie_app/modules/layout/home/widget/movie_section.dart';
 import 'package:movie_app/modules/layout/home/widget/movie_slider_card.dart';
-import 'package:shimmer_flutter/shimmer_flutter.dart';
 
 import '../../../core/gen/assets.gen.dart';
 
@@ -20,12 +18,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late HomeCubit homeCubit;
   int _currentMovieIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    homeCubit = HomeCubit();
+    homeCubit.fetchMovies();
+  }
+
+  @override
+  void dispose() {
+    homeCubit.close();
+    super.dispose();
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit()..fetchMovies(),
+    return BlocProvider.value(
+      value: homeCubit,
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return Scaffold(
@@ -49,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      stops: [0.0, 0.4, 0.7, 0.1],
+                      stops: [0.0, 0.4, 0.7, 1],
                       colors: [
                         Colors.transparent,
                         Colors.black87,
@@ -59,21 +73,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Assets.images.availableNow.image(),
-                      _buildLatestMovies(context, state),
-                      Assets.images.watchNow.image(),
-                      _buildTopRatedMovies(context, state),
-                      _buildActionMovies(context, state),
-                      _buildComedyMovies(context, state),
-                      _buildAnimationMovies(context, state),
-                      _buildHorrorMovies(context, state),
-                    ],
-                  ),
+                ListView(
+                  physics: state is HomeLoading
+                      ? const NeverScrollableScrollPhysics()
+                      : const BouncingScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  children: [
+                    Assets.images.availableNow.image(),
+                    _buildLatestMovies(context, state),
+                    Assets.images.watchNow.image(),
+                    _buildTopRatedMovies(context, state),
+                    _buildActionMovies(context, state),
+                    _buildComedyMovies(context, state),
+                    _buildAnimationMovies(context, state),
+                    _buildHorrorMovies(context, state),
+                  ],
                 ),
               ],
             ),
@@ -124,7 +138,7 @@ class _HomePageState extends State<HomePage> {
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
           enableInfiniteScroll: true,
-          viewportFraction: context.hg(0.55),
+          viewportFraction: 0.55,
           onPageChanged: (index, reason) {
             setState(() {
               _currentMovieIndex = index % state.latestMovies.length;
@@ -161,13 +175,17 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   width: context.wd(100),
                   height: context.hg(24),
-                  child: Shimmer(baseColor: AppColors.darkGreyColor),
+                  child:  ShimmerMovieCard(
+                    isTopMovie: false,
+                  ),
                 ),
                 Spacer(),
                 SizedBox(
                   width: context.wd(100),
                   height: context.hg(24),
-                  child: Shimmer(baseColor: AppColors.darkGreyColor),
+                  child:  ShimmerMovieCard(
+                   isTopMovie: false,
+                  ),
                 ),
               ],
             ),
@@ -199,7 +217,9 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: context.wd(100),
                     height: context.hg(32),
-                    child: Shimmer(baseColor: AppColors.darkGreyColor),
+                    child: ShimmerMovieCard(
+                     isTopMovie: false,
+                    ),
                   ),
                 ],
               ),
@@ -229,7 +249,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: context.wd(80),
               height: context.hg(24),
-              child: Shimmer(baseColor: AppColors.darkGreyColor),
+              child:  ShimmerMovieCard(
+               isTopMovie: false,
+              ),
             ),
             SizedBox(height: context.hg(12)),
             Row(
@@ -272,7 +294,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: context.wd(70),
               height: context.hg(24),
-              child: Shimmer(baseColor: AppColors.darkGreyColor),
+              child:  ShimmerMovieCard(
+               isTopMovie: false,
+              ),
             ),
             SizedBox(height: context.hg(12)),
             Row(
@@ -315,7 +339,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: context.wd(90),
               height: context.hg(24),
-              child: Shimmer(baseColor: AppColors.darkGreyColor),
+              child:  ShimmerMovieCard(
+               isTopMovie: false,
+              ),
             ),
             SizedBox(height: context.hg(12)),
             Row(
@@ -358,7 +384,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: context.wd(60),
               height: context.hg(24),
-              child: Shimmer(baseColor: AppColors.darkGreyColor),
+              child:  ShimmerMovieCard(
+               isTopMovie: false,
+              ),
             ),
             SizedBox(height: context.hg(12)),
             Row(

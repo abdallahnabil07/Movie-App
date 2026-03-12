@@ -104,12 +104,12 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Eid ===================
                     // Similar Movies
-                    SimilarMovies(),
+                    SimilarMovies(movieModel: movie,),
                     //=================================================
 
                     //================ Mohammed Gaber =================
                     // Summary
-                    MovieSummary(movieModel: movie,),
+                    MovieSummary(),
                     //=================================================
 
                     //================ Youssef ========================
