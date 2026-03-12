@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
           itemCount: 3,
-          separatorBuilder: (_, __) => SizedBox(width: context.wd(12)),
+          separatorBuilder: (_, _) => SizedBox(width: context.wd(12)),
           itemBuilder: (context, index) => ShimmerMovieCard(isTopMovie: true),
         ),
       );
