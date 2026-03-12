@@ -17,4 +17,7 @@ class CacheHelper {
   static bool? getData(String key) {
     return preferences.getBool(key);
   }
+  static Future<bool> removeData(String key) async {
+    return await preferences.remove(key);
+  }
 }

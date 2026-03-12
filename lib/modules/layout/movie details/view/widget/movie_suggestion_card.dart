@@ -1,25 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
-import 'package:movie_app/core/extensions/context_extensions.dart';
-import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/model/movie_model.dart';
 
+import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../home/model/movie_model.dart';
 
-class MovieSliderCard extends StatelessWidget {
+class MovieSuggestionCard extends StatelessWidget {
   final MovieModel movie;
+  final VoidCallback onTap;
 
-  const MovieSliderCard({
+  const MovieSuggestionCard({
     super.key,
     required this.movie,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Bounceable(
-      onTap: (){},
+      onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: context.wd(8)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(context.wd(16)),
           image: DecorationImage(
@@ -30,14 +31,6 @@ class MovieSliderCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(context.wd(16)),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.black38,
-              ],
-            ),
           ),
           padding: EdgeInsets.all(context.wd(8)),
           child: Column(
@@ -52,6 +45,7 @@ class MovieSliderCard extends StatelessWidget {
                   color: Colors.black38,
                 ),
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   spacing: context.wd(2),
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

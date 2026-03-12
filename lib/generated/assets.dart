@@ -248,6 +248,9 @@ class SvgGenImage {
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
       clipBehavior: clipBehavior,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 
