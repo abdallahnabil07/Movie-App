@@ -1,32 +1,48 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:movie_app/modules/layout/home/model/movie_model.dart';
 
-import '../../../../../core/services/movie_service.dart';
-import '../../home/model/movie_model.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/theme/app_colors.dart';
 
-part 'movie_summary_state.dart';
+class MovieSummary extends StatefulWidget {
+  final MovieModel movieModel;
 
-class MovieSummaryCubit extends Cubit<MovieSummaryState> {
-  MovieSummaryCubit() : super( MovieSummaryState());
+  const MovieSummary({super.key, required this.movieModel});
 
-  Future<void> fetchMovieSuggestions({required int movieId}) async {
-    emit(state.copyWith(isLoading: true, error: null));
+  @override
+  State<MovieSummary> createState() => _MovieSummaryState();
+}
 
-    try {
-      final suggestions = await MovieService.fetchMovieSuggestions(movieId: movieId);
-      emit(state.copyWith(
-        suggestedMovies: suggestions,
-        isLoading: false,
-      ));
-    } catch (e) {
-      emit(state.copyWith(
-        isLoading: false,
-        error: e.toString(),
-      ));
-    }
-  }
-
-  void clearError() {
-    emit(state.copyWith(error: null));
+class _MovieSummaryState extends State<MovieSummary> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: context.hg(16),
+        horizontal: context.wd(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Summary",
+            style: TextStyle(
+              fontSize: context.hg(24),
+              fontWeight: FontWeight.w700,
+              color: AppColors.white,
+            ),
+          ),
+          SizedBox(height: context.hg(5)),
+          Text(
+            widget.movieModel.summary,
+            style: TextStyle(
+              fontSize: context.hg(16),
+              fontWeight: FontWeight.w400,
+              color: AppColors.white,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
