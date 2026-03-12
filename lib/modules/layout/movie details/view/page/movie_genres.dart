@@ -22,10 +22,12 @@ class _MovieGenresState extends State<MovieGenres> {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text('Genres',style:context.textTheme.titleLarge!.copyWith((
-                fontSize: context.hg(24)fontWeight: FontWeight.bold
-              ),),
+            children: [ [
+            Text(
+              'Genres',
+              style: context.textTheme.titleLarge!.copyWith(
+                fontSize: context.hg(24),
+                fontWeight: FontWeight.bol),),
               SizedBox(height: context.hg(10),),
           GridView.builder(
             shrinkWrap: true,
