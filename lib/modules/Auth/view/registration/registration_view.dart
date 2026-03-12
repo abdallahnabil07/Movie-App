@@ -203,7 +203,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       EasyLoading.show();
-                      bool success = await AuthFirebaseService.signUpWithPass(
+
+                      await AuthFirebaseService.signUpWithPass(
                         context,
                         nameController.text.trim(),
                         emailController.text.trim(),
@@ -223,7 +224,16 @@ class _RegistrationViewState extends State<RegistrationView> {
                           (route) => false,
                         );
                       }
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
+                      await CacheHelper.saveData(
+                        key: CacheKeys.isSignUp,
+                        value: true,
+                      );
                       EasyLoading.dismiss();
+                      Navigator.pushNamed(context, AppRoutesName.layout);
                     }
                   },
                   backgroundColor: AppColors.yellow,

@@ -114,12 +114,12 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Youssef ========================
                     // Cast
-                    MovieCast(),
+                    MovieCast(movieDetailsModel: movieDetails,),
                     //=================================================
 
                     //================ Youssef ========================
                     // Genres
-                    MovieGenres(),
+                    MovieGenres(movieDetailsModel: movieDetails,),
                     //=================================================
                   ],
                 ),
