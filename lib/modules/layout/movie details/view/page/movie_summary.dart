@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/theme/app_colors.dart';
 
@@ -26,7 +27,7 @@ class _MovieSummaryState extends State<MovieSummary> {
           Text(
             "Summary",
             style: TextStyle(
-              fontSize: 24,
+              fontSize: context.hg(24),
               fontWeight: FontWeight.w700,
               color: AppColors.white,
             ),
@@ -35,7 +36,7 @@ class _MovieSummaryState extends State<MovieSummary> {
           Text(
             widget.movieModel.summary,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: context.hg(16),
               fontWeight: FontWeight.w400,
               color: AppColors.white,
             ),

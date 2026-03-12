@@ -203,8 +203,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       EasyLoading.show();
-
-                      await AuthFirebaseService.signUpWithPass(
+                      bool success = await AuthFirebaseService.signUpWithPass(
                         context,
                         nameController.text.trim(),
                         emailController.text.trim(),
@@ -212,12 +211,19 @@ class _RegistrationViewState extends State<RegistrationView> {
                         phoneController.text.trim(),
                         selectedAvatarPath,
                       );
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      );
+                      if (success) {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        );
+
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          AppRoutesName.layout,
+                          (route) => false,
+                        );
+                      }
                       EasyLoading.dismiss();
-                      Navigator.pushNamed(context, AppRoutesName.layout);
                     }
                   },
                   backgroundColor: AppColors.yellow,

@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -22,11 +24,11 @@ void main() async {
   await CacheHelper.init();
 
   runApp(
-    MyApp(),
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (BuildContext context) => MyApp(),
-    // ),
+    // MyApp(),
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (BuildContext context) => MyApp(),
+    ),
   );
   configLoading();
 }
@@ -48,26 +50,10 @@ class MyApp extends StatelessWidget {
     } else {
       startRoute = AppRoutesName.login;
     }
-
-    // return MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   // useInheritedMediaQuery: true,
-    //   // locale: DevicePreview.locale(context),
-    //
-    //   // builder: (context, child) {
-    //   //   child = DevicePreview.appBuilder(context, child);
-    //   //   child = EasyLoading.init()(context, child);
-    //   //   return child;
-    //   // },
-    //
-    //   theme: AppTheme.appTheme,
-    //   title: 'Movie App',
-    //   initialRoute: startRoute,
-    //   onGenerateRoute: AppRoutes.generateRoute,
     return ToastificationWrapper(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        // locale: DevicePreview.locale(context),
+        locale: DevicePreview.locale(context),
         builder: EasyLoading.init(),
         theme: AppTheme.appTheme,
         title: 'Movie app',

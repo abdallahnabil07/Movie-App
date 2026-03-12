@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/modules/layout/movie%20details/model/movie_details_model.dart';
 
@@ -32,16 +32,11 @@ class _MovieScreenshotsState extends State<MovieScreenshots> {
               imageUrl: imageUrl,
               height: context.hg(167),
               fit: BoxFit.cover,
-              placeholder: (context, url) => Container(
-                height: 167,
-                alignment: Alignment.center,
-                child: const CircularProgressIndicator(),
-              ),
               errorWidget: (context, url, error) => Container(
                 height: context.hg(167),
                 color: Colors.grey.shade300,
                 alignment: Alignment.center,
-                child: const Icon(Icons.broken_image, size: 40),
+                child: Icon(Icons.broken_image, size: context.hg(40),),
               ),
               imageBuilder: (context, imageProvider) => Container(
                 height: context.hg(167),
