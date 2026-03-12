@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isVisited = CacheHelper.getData(CacheKeys.onBoarding) ?? false;
     bool isSignUp = CacheHelper.getData(CacheKeys.isSignUp) ?? false;
+    bool isLoggedIn = CacheHelper.getData(CacheKeys.isLoggedIn) ?? false;
 
     String startRoute;
 
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
       startRoute = AppRoutesName.layout;
     }
     else {
+    } else if (isLoggedIn) {
+      startRoute = AppRoutesName.layout;
+    } else {
       startRoute = AppRoutesName.login;
     }
 

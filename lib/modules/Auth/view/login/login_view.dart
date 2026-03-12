@@ -6,6 +6,8 @@ import 'package:movie_app/components/toastification_custom.dart';
 import 'package:movie_app/components/txt_field.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/core/local/cache_helper_.dart';
+import 'package:movie_app/core/local/constants/cache_key.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/Auth/cubit/login%20cubit/login_state.dart';
@@ -26,6 +28,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   bool isArabic = true;
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -43,24 +46,35 @@ class _LoginViewState extends State<LoginView> {
       child: Builder(
         builder: (context) {
           return BlocListener<LoginCubit, LoginState>(
-            listener: (context, state)  {
-              if (state is LoginInitial) {
-              } else if (state is LoginLoading) {
+            listener: (context, state) async {
+              if (state is LoginLoading) {
                 EasyLoading.show();
               }
               else if (state is LoginSuccess) {
                 EasyLoading.dismiss();
+
                 if (state.user != null) {
+                  await CacheHelper.saveData(
+                    key: CacheKeys.isLoggedIn,
+                    value: true,
+                  );
+
                   ToastificationCustom.show(
                     context,
                     title: 'Logged in successfully',
                     type: ToastificationType.success,
                   );
-                  Navigator.pushReplacementNamed(context, AppRoutesName.layout);
+
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    AppRoutesName.layout,
+                    (route) => false,
+                  );
                 }
               }
               else if (state is LoginFailure) {
                 EasyLoading.dismiss();
+
                 ToastificationCustom.show(
                   context,
                   title: state.errorMessage,
@@ -77,8 +91,10 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        /// Logo
                         Assets.images.loginLogo.image(),
-                        //Email
+
+                        /// Email
                         TxtField(
                           hintText: "Email",
                           controller: emailController,
@@ -104,8 +120,10 @@ class _LoginViewState extends State<LoginView> {
                           paddingHorizontal: 0,
                           paddingVertical: 0,
                         ),
+
                         SizedBox(height: context.hg(20)),
-                        //Password
+
+                        /// Password
                         TxtField(
                           hintText: "Password",
                           textInputType: TextInputType.visiblePassword,
@@ -130,8 +148,10 @@ class _LoginViewState extends State<LoginView> {
                           paddingHorizontal: 0,
                           paddingVertical: 0,
                         ),
+
                         SizedBox(height: context.hg(12)),
-                        //Forget Password
+
+                        /// Forget Password
                         Align(
                           alignment: Alignment.centerRight,
                           child: CustomTextButton(
@@ -145,8 +165,10 @@ class _LoginViewState extends State<LoginView> {
                             },
                           ),
                         ),
+
                         SizedBox(height: context.hg(30)),
-                        //Login Button
+
+                        /// Login Button
                         AppElevatedButton(
                           textButton: "Login",
                           height: context.hg(50),
@@ -164,11 +186,12 @@ class _LoginViewState extends State<LoginView> {
                           textColor: AppColors.primaryColor,
                           addIcon: false,
                         ),
+
                         SizedBox(height: context.hg(20)),
-                        //Don"t have an account & create one
+
+                        /// Create Account
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               "Don’t Have Account ? ",
@@ -190,9 +213,10 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ],
                         ),
+
                         SizedBox(height: context.hg(25)),
 
-                        //Divider & or
+                        /// Divider
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: context.wd(50),
@@ -227,8 +251,10 @@ class _LoginViewState extends State<LoginView> {
                             ],
                           ),
                         ),
+
                         SizedBox(height: context.hg(35)),
-                        //Login with google button
+
+                        /// Login With Google
                         AppElevatedButton(
                           textButton: "Login With Google",
                           height: context.hg(50),
@@ -246,8 +272,10 @@ class _LoginViewState extends State<LoginView> {
                           paddingHorizontalForIcon: 8,
                           paddingVerticalForIcon: 0,
                         ),
+
                         SizedBox(height: context.hg(30)),
-                        // Switch language
+
+                        /// Language Switch
                         LanguageCardWidget(
                           isArabic: isArabic,
                           onTap: () {
