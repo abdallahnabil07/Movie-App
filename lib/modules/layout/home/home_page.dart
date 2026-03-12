@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/components/shimmer_movie_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/cubit/home_cubit.dart';
 import 'package:movie_app/modules/layout/home/widget/movie_section.dart';
 import 'package:movie_app/modules/layout/home/widget/movie_slider_card.dart';
@@ -34,8 +35,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -55,7 +54,6 @@ class _HomePageState extends State<HomePage> {
                           Container(color: Colors.grey[900]),
                     ),
                   ),
-                //gradient
                 Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -74,9 +72,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 ListView(
-                  physics: state is HomeLoading
-                      ? const NeverScrollableScrollPhysics()
-                      : const BouncingScrollPhysics(),
                   padding: EdgeInsets.zero,
                   children: [
                     Assets.images.availableNow.image(),
@@ -87,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                     _buildComedyMovies(context, state),
                     _buildAnimationMovies(context, state),
                     _buildHorrorMovies(context, state),
+                    SizedBox(height: context.hg(75)),
                   ],
                 ),
               ],
@@ -105,12 +101,8 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
           itemCount: 3,
-          separatorBuilder: (_, _) => SizedBox(width: context.wd(12)),
-          itemBuilder: (context, index) {
-            return ShimmerMovieCard(
-              isTopMovie: true,
-            );
-          },
+          separatorBuilder: (_, __) => SizedBox(width: context.wd(12)),
+          itemBuilder: (context, index) => ShimmerMovieCard(isTopMovie: true),
         ),
       );
     }
@@ -121,7 +113,10 @@ class _HomePageState extends State<HomePage> {
         child: Center(
           child: Text(
             'Error loading movies: ${state.error}',
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: AppColors.lightGreyColor,
+              fontSize: context.hg(20),
+            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -163,71 +158,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildTopRatedMovies(BuildContext context, HomeState state) {
-    if (state is HomeLoading) {
-      return Container(
-        height: context.hg(280),
-        padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: context.wd(100),
-                  height: context.hg(24),
-                  child:  ShimmerMovieCard(
-                    isTopMovie: false,
-                  ),
-                ),
-                Spacer(),
-                SizedBox(
-                  width: context.wd(100),
-                  height: context.hg(24),
-                  child:  ShimmerMovieCard(
-                   isTopMovie: false,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: context.hg(12)),
-
-            Row(
-              children: List.generate(
-                3,
-                    (index) => Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: index < 2 ? context.wd(8) : 0,
-                    ),
-                    child: ShimmerMovieCard(
-                      isTopMovie: false,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(height: context.hg(16)),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    width: context.wd(100),
-                    height: context.hg(32),
-                    child: ShimmerMovieCard(
-                     isTopMovie: false,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    if (state is HomeLoading) return ShimmerMovieCard(isSectionShimmer: true);
     if (state is HomeLoaded) {
       return MovieSection(
         title: 'Top Rated',
@@ -239,40 +170,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildActionMovies(BuildContext context, HomeState state) {
-    if (state is HomeLoading) {
-      return Container(
-        height: context.hg(250),
-        padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: context.wd(80),
-              height: context.hg(24),
-              child:  ShimmerMovieCard(
-               isTopMovie: false,
-              ),
-            ),
-            SizedBox(height: context.hg(12)),
-            Row(
-              children: List.generate(
-                3,
-                    (index) => Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: index < 2 ? context.wd(8) : 0,
-                    ),
-                    child: ShimmerMovieCard(
-                      isTopMovie: false,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    if (state is HomeLoading) return ShimmerMovieCard(isSectionShimmer: true);
     if (state is HomeLoaded) {
       return MovieSection(
         title: 'Action',
@@ -284,40 +182,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildComedyMovies(BuildContext context, HomeState state) {
-    if (state is HomeLoading) {
-      return Container(
-        height: context.hg(250),
-        padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: context.wd(70),
-              height: context.hg(24),
-              child:  ShimmerMovieCard(
-               isTopMovie: false,
-              ),
-            ),
-            SizedBox(height: context.hg(12)),
-            Row(
-              children: List.generate(
-                3,
-                    (index) => Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: index < 2 ? context.wd(8) : 0,
-                    ),
-                    child: ShimmerMovieCard(
-                      isTopMovie: false,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    if (state is HomeLoading) return ShimmerMovieCard(isSectionShimmer: true);
     if (state is HomeLoaded) {
       return MovieSection(
         title: 'Comedy',
@@ -329,40 +194,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildAnimationMovies(BuildContext context, HomeState state) {
-    if (state is HomeLoading) {
-      return Container(
-        height: context.hg(250),
-        padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: context.wd(90),
-              height: context.hg(24),
-              child:  ShimmerMovieCard(
-               isTopMovie: false,
-              ),
-            ),
-            SizedBox(height: context.hg(12)),
-            Row(
-              children: List.generate(
-                3,
-                    (index) => Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: index < 2 ? context.wd(8) : 0,
-                    ),
-                    child: ShimmerMovieCard(
-                      isTopMovie: false,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    if (state is HomeLoading) return ShimmerMovieCard(isSectionShimmer: true);
     if (state is HomeLoaded) {
       return MovieSection(
         title: 'Animation',
@@ -374,40 +206,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildHorrorMovies(BuildContext context, HomeState state) {
-    if (state is HomeLoading) {
-      return Container(
-        height: context.hg(250),
-        padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: context.wd(60),
-              height: context.hg(24),
-              child:  ShimmerMovieCard(
-               isTopMovie: false,
-              ),
-            ),
-            SizedBox(height: context.hg(12)),
-            Row(
-              children: List.generate(
-                3,
-                    (index) => Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: index < 2 ? context.wd(8) : 0,
-                    ),
-                    child: ShimmerMovieCard(
-                      isTopMovie: false,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    if (state is HomeLoading) return ShimmerMovieCard(isSectionShimmer: true);
     if (state is HomeLoaded) {
       return MovieSection(
         title: 'Horror',

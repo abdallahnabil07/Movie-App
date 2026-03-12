@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
+import 'package:movie_app/components/shimmer_movie_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/model/movie_model.dart';
@@ -52,10 +53,7 @@ class _MovieDetailsState extends State<MovieDetails> {
         builder: (context, state) {
           switch (state) {
             case MovieDetailsLoadingState():
-
-              ///TODO: shimmer_flutter
-              EasyLoading.show();
-              return SizedBox.shrink();
+              return ShimmerMovieCard(isMovieDetailsShimmer: true);
             case MovieDetailsErrorState():
               EasyLoading.dismiss();
               return Column(
@@ -104,7 +102,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Eid ===================
                     // Similar Movies
-                    SimilarMovies(movieModel: movie,),
+                    SimilarMovies(movieModel: movie),
                     //=================================================
 
                     //================ Mohammed Gaber =================
@@ -114,12 +112,12 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Youssef ========================
                     // Cast
-                    MovieCast(movieDetailsModel: movieDetails,),
+                    MovieCast(movieDetailsModel: movieDetails),
                     //=================================================
 
                     //================ Youssef ========================
                     // Genres
-                    MovieGenres(movieDetailsModel: movieDetails,),
+                    MovieGenres(movieDetailsModel: movieDetails),
                     //=================================================
                   ],
                 ),

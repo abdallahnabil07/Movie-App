@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import '../../modules/layout/home/model/movie_model.dart';
 
 class MovieService {
-  static const String _baseUrl = 'https://yts.bz/api/v2/list_movies.json';
+  static const String _baseUrl =
+      'https://movies-api.accel.li/api/v2/list_movies.json';
 
   static Future<List<MovieModel>> fetchMovies({
     String? sortBy,

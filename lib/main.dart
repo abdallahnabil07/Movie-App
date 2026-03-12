@@ -1,6 +1,4 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -24,11 +22,11 @@ void main() async {
   await CacheHelper.init();
 
   runApp(
-    // MyApp(),
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (BuildContext context) => MyApp(),
-    ),
+    MyApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (BuildContext context) => MyApp(),
+    // ),
   );
   configLoading();
 }
@@ -56,11 +54,11 @@ class MyApp extends StatelessWidget {
     return ToastificationWrapper(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        locale: DevicePreview.locale(context),
+        // locale: DevicePreview.locale(context),
         builder: EasyLoading.init(),
         theme: AppTheme.appTheme,
         title: 'Movie app',
-        initialRoute: AppRoutesName.layout,
+        initialRoute: startRoute,
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );

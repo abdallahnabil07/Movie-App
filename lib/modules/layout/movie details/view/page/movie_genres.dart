@@ -3,7 +3,6 @@ import 'package:movie_app/modules/layout/movie%20details/view/widget/genres_widg
 
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../model/movie_details_model.dart';
-import '../widget/cast_widget/cast_widget.dart';
 
 class MovieGenres extends StatefulWidget {
   final MovieDetailsModel movieDetailsModel ;
@@ -24,13 +23,12 @@ class _MovieGenresState extends State<MovieGenres> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Genres',style:context.textTheme.titleLarge!.copyWith(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
+              Text('Genres',style:context.textTheme.titleLarge!.copyWith((
+                fontSize: context.hg(24)fontWeight: FontWeight.bold
               ),),
               SizedBox(height: context.hg(10),),
           GridView.builder(
-            shrinkWrap: true,                    // عشان يكون داخل scroll view
+            shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -13,8 +13,6 @@ import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/Auth/cubit/login%20cubit/login_state.dart';
 import 'package:toastification/toastification.dart';
 
-import '../../../../core/local/cache_helper_.dart';
-import '../../../../core/local/constants/cache_key.dart';
 import 'widgets/custom_text_button.dart';
 import 'widgets/language_card_widget.dart';
 

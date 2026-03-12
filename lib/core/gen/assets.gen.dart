@@ -229,6 +229,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/unknown.png
   AssetGenImage get unknown => const AssetGenImage('assets/images/unknown.png');
 
+  /// File path: assets/images/unknown_person.png
+  AssetGenImage get unknownPerson =>
+      const AssetGenImage('assets/images/unknown_person.png');
+
+  /// File path: assets/images/unknown_person_blue.png
+  AssetGenImage get unknownPersonBlue =>
+      const AssetGenImage('assets/images/unknown_person_blue.png');
+
   /// File path: assets/images/watch_now.png
   AssetGenImage get watchNow =>
       const AssetGenImage('assets/images/watch_now.png');
@@ -263,6 +271,8 @@ class $AssetsImagesGen {
     testKnow,
     thirdImageOnBoarding,
     unknown,
+    unknownPerson,
+    unknownPersonBlue,
     watchNow,
   ];
 }

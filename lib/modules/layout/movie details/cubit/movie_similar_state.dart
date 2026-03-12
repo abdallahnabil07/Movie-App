@@ -1,37 +1,25 @@
-part of 'movie_summary_cubit.dart';
+part of 'movie_similar_cubit.dart';
 
-class MovieSummaryState {
+class MovieSimilarState {
   final List<MovieModel> suggestedMovies;
   final bool isLoading;
   final String? error;
 
-  MovieSummaryState({
+  MovieSimilarState({
     this.suggestedMovies = const [],
     this.isLoading = false,
     this.error,
   });
 
-  MovieSummaryState copyWith({
+  MovieSimilarState copyWith({
     List<MovieModel>? suggestedMovies,
     bool? isLoading,
     String? error,
   }) {
-    return MovieSummaryState(
+    return MovieSimilarState(
       suggestedMovies: suggestedMovies ?? this.suggestedMovies,
       isLoading: isLoading ?? this.isLoading,
       error: error ?? this.error,
     );
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is MovieSummaryState &&
-        other.suggestedMovies == suggestedMovies &&
-        other.isLoading == isLoading &&
-        other.error == error;
-  }
-
-  @override
-  int get hashCode => suggestedMovies.hashCode ^ isLoading.hashCode ^ error.hashCode;
 }
