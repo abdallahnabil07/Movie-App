@@ -5,6 +5,8 @@ import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/txt_field.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
+import 'package:movie_app/core/local/cache_helper_.dart';
+import 'package:movie_app/core/local/constants/cache_key.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/Auth/utils/auth_firebase_service.dart';
@@ -199,12 +201,12 @@ class _RegistrationViewState extends State<RegistrationView> {
                   textButton: "Create Account",
                   height: context.hg(55),
                   width: double.infinity,
-                  fontSize: 18,
+                  fontSize: context.hg(18),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       EasyLoading.show();
 
-                      await AuthFirebaseService.signUpWithPass(
+                      bool success = await AuthFirebaseService.signUpWithPass(
                         context,
                         nameController.text.trim(),
                         emailController.text.trim(),
@@ -212,12 +214,26 @@ class _RegistrationViewState extends State<RegistrationView> {
                         phoneController.text.trim(),
                         selectedAvatarPath,
                       );
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      );
+
                       EasyLoading.dismiss();
-                      Navigator.pushNamed(context, AppRoutesName.layout);
+
+                      if (success) {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        );
+
+                        await CacheHelper.saveData(
+                          key: CacheKeys.isSignUp,
+                          value: true,
+                        );
+                        if (!mounted) return;
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          AppRoutesName.layout,
+                          (route) => false,
+                        );
+                      }
                     }
                   },
                   backgroundColor: AppColors.yellow,

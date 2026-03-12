@@ -99,7 +99,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Gaber =================
                     // Screenshots
-                    MovieScreenshots(movieDetailsModel: movieDetails,),
+                    MovieScreenshots(movieDetailsModel: movieDetails),
                     //=================================================
 
                     //================ Mohammed Eid ===================
@@ -109,17 +109,17 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                     //================ Mohammed Gaber =================
                     // Summary
-                    MovieSummary(),
+                    MovieSummary(movieModel: movie),
                     //=================================================
 
                     //================ Youssef ========================
                     // Cast
-                    MovieCast(),
+                    MovieCast(movieDetailsModel: movieDetails,),
                     //=================================================
 
                     //================ Youssef ========================
                     // Genres
-                    MovieGenres(),
+                    MovieGenres(movieDetailsModel: movieDetails,),
                     //=================================================
                   ],
                 ),
