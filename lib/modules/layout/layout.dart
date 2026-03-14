@@ -8,7 +8,7 @@ import 'package:movie_app/modules/layout/profile/view/profile/profile_page.dart'
 import 'package:movie_app/modules/layout/search/search_page.dart';
 import 'package:movie_app/modules/layout/widget/icon_in_navigation_custom.dart';
 
-import 'browse/browse_page.dart';
+import 'browse/view/browse_page.dart';
 import 'cubit/layout_cubit.dart';
 
 class Layout extends StatefulWidget {
