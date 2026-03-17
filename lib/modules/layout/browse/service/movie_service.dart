@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../model/movie.dart';
+import '../model/movie_model.dart';
 
 class MovieService {
   static const String baseUrl = 'https://yts.mx/api/v2';
@@ -45,7 +45,7 @@ class MovieService {
     }
   }
 
-  static List<String> extractAllGenres(List<Movie> movies) {
+  static List<String> extractAllGenres(List<HomeMovieModel> movies) {
     Set<String> uniqueGenres = {};
     
     for (var movie in movies) {
@@ -60,7 +60,7 @@ class MovieService {
     return genreList;
   }
 
-  static List<Movie> filterMoviesByGenre(List<Movie> movies, String genre) {
+  static List<HomeMovieModel> filterMoviesByGenre(List<HomeMovieModel> movies, String genre) {
     if (genre.isEmpty) return movies;
     
     return movies.where((movie) => movie.hasGenre(genre)).toList();

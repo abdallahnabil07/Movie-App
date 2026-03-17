@@ -4,7 +4,7 @@ import 'package:movie_app/components/shimmer_movie_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/cubit/movie_similar_cubit.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/widget/movie_suggestion_card.dart';
 

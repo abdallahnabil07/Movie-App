@@ -8,4 +8,5 @@ abstract class AppRoutesName {
   static const String updateProfile = "/update_profile";
   static const String layout = "/layout";
   static const String movieDetails = "/movie_details";
+  static const String browse = "/browse";
 }

@@ -4,7 +4,8 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+
+import '../model/home_movie_model.dart';
 
 class MovieSliderCard extends StatelessWidget {
   final MovieModel movie;
