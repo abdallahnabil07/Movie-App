@@ -5,7 +5,7 @@ import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/shimmer_movie_card.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/cubit/movie_details_state.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/page/movie_cast.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/page/movie_genres.dart';

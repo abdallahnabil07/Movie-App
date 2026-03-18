@@ -4,7 +4,7 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import '../../../../../../core/extensions/context_extensions.dart';
 import '../../../../../../core/theme/app_colors.dart';
-import '../../../home/model/movie_model.dart';
+import '../../../home/model/home_movie_model.dart';
 
 class MovieSuggestionCard extends StatelessWidget {
   final MovieModel movie;
