@@ -9,8 +9,12 @@ import '../model/home_movie_model.dart';
 
 class MovieSliderCard extends StatelessWidget {
   final MovieModel movie;
+  final String? title;
+  final String? image;
+  final double? rating;
 
-  const MovieSliderCard({super.key, required this.movie});
+  const MovieSliderCard(
+      {super.key, required this.movie, this.title, this.image, this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,8 @@ class MovieSliderCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(context.wd(16)),
             image: DecorationImage(
-              image: CachedNetworkImageProvider(movie.image),
+              image: CachedNetworkImageProvider(
+                  image == null || image!.isEmpty ? movie.image : image!),
               fit: BoxFit.cover,
             ),
           ),
@@ -61,7 +66,7 @@ class MovieSliderCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        movie.rating.toStringAsFixed(1),
+                        (rating ?? movie.rating).toStringAsFixed(1),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.white,
                           fontWeight: FontWeight.bold,
@@ -77,7 +82,7 @@ class MovieSliderCard extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    movie.title,
+                    title ?? movie.title,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.bold,
