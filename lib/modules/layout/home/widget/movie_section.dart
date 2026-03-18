@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
+import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 import 'package:movie_app/modules/layout/home/widget/movie_slider_card.dart';
 
 class MovieSection extends StatelessWidget {
@@ -39,7 +40,11 @@ class MovieSection extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: context.wd(16)),
               child: TextButton.icon(
                 onPressed: () {
-                  // TODO: Navigate to see more page
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutesName.browse,
+                    arguments: title,
+                  );
                 },
                 icon: Text(
                   'See More',

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../../modules/layout/home/model/movie_model.dart';
+import '../../modules/layout/home/model/home_movie_model.dart';
 
 class MovieService {
   static const String _baseUrl =
