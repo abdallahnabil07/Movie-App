@@ -38,16 +38,17 @@ class MovieService {
         final Map<String, dynamic> data = json.decode(response.body);
         return MovieResponse.fromJson(data);
       } else {
-        throw Exception('Failed to load movies by genre: ${response.statusCode}');
+        throw Exception(
+            'Failed to load movies by genre: ${response.statusCode}');
       }
     } catch (e) {
       throw Exception('Error fetching movies by genre: $e');
     }
-
+  }
   static List<String> extractAllGenres(List<HomeMovieModel> movies) {
     Set<String> uniqueGenres = {};
 
-    ffor (var movie in movies) {
+    for (var movie in movies) {
       for (var genre in movie.genres) {
         uniqueGenres.add(genre);
       }
