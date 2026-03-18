@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/shimmer_movie_card.dart';
-import 'package:movie_app/core/extensions/context_extensions.dart';
-import 'package:movie_app/core/theme/app_colors.dart';
+import 'package:movie_app/core/widget/retry_error_widget.dart';
 import 'package:movie_app/modules/layout/home/model/movie_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/cubit/movie_details_state.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/page/movie_cast.dart';
@@ -56,30 +54,13 @@ class _MovieDetailsState extends State<MovieDetails> {
               return ShimmerMovieCard(isMovieDetailsShimmer: true);
             case MovieDetailsErrorState():
               EasyLoading.dismiss();
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    state.errorMessage,
-                    style: context.textTheme.bodyMedium!.copyWith(
-                      color: AppColors.redColor,
-                      fontSize: context.hg(20),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(context.wd(16)),
-                    child: AppElevatedButton(
-                      onPressed: () {
-                        movieDetailsCubit.fetchMovieDetails(movie.id);
-                      },
-                      textButton: 'Try again',
-                      height: context.hg(50),
-                      width: double.infinity,
-                      fontSize: context.hg(18),
-                    ),
-                  ),
-                ],
+              return RetryErrorWidget(
+                errorMessage: state.errorMessage,
+                onPressed: () {
+                  movieDetailsCubit.fetchMovieDetails(movie.id);
+                },
               );
+
             case MovieDetailsSuccessState():
               EasyLoading.dismiss();
               final movieDetails = state.movie;

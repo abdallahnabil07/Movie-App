@@ -15,6 +15,7 @@ class TxtField extends StatefulWidget {
   final String? hintText;
   final int? maxLine;
   final Widget? prefixIcon;
+  final BoxConstraints? prefixIconConstraints;
   final Widget? suffixIcon;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
@@ -37,6 +38,7 @@ class TxtField extends StatefulWidget {
     this.textStyle,
     this.hintStyle,
     this.obscureText = false,
+    this.prefixIconConstraints,
   });
 
   @override
@@ -83,6 +85,7 @@ class _TxtFieldState extends State<TxtField> {
             filled: true,
             fillColor: AppColors.charcoalGray,
             prefixIcon: widget.prefixIcon,
+            prefixIconConstraints: widget.prefixIconConstraints,
             suffixIcon: widget.obscureText
                 ? IconButton(
                     icon: Icon(
