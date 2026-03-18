@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -6,6 +8,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/core/local/cache_helper_.dart';
 import 'package:movie_app/core/local/constants/cache_key.dart';
 import 'package:movie_app/core/theme/app_theme.dart';
+import 'package:movie_app/modules/layout/profile/cubit/history_cubit.dart';
+import 'package:movie_app/modules/layout/profile/cubit/watch_list_state.dart';
 import 'package:toastification/toastification.dart';
 
 import 'components/loading_services.dart';
@@ -22,11 +26,17 @@ void main() async {
   await CacheHelper.init();
 
   runApp(
-    MyApp(),
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (BuildContext context) => MyApp(),
-    // ),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => WatchListCubit()),
+        BlocProvider(create: (context) => HistoryCubit()),
+      ],
+      child:
+       DevicePreview(
+        enabled: !kReleaseMode,
+         builder: (context) => MyApp(),
+      ),
+    ),
   );
   configLoading();
 }
@@ -54,7 +64,7 @@ class MyApp extends StatelessWidget {
     return ToastificationWrapper(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        // locale: DevicePreview.locale(context),
+        locale: DevicePreview.locale(context),
         builder: EasyLoading.init(),
         theme: AppTheme.appTheme,
         title: 'Movie app',

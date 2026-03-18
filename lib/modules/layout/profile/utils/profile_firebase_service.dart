@@ -92,4 +92,82 @@ abstract class ProfileFirebaseService {
       });
     }
   }
+
+  static Future<List<Map<String, dynamic>>> getWatchList() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw CustomError("User not logged in");
+
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      if (!doc.exists) return [];
+
+      final data = doc.data()!;
+      final list = (data['watchList'] as List<dynamic>?)
+          ?.map((e) => Map<String, dynamic>.from(e))
+          .toList() ??
+          [];
+
+      return list;
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+  }
+
+  static Future<void> updateWatchList(List<Map<String, dynamic>> watchList) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw CustomError("User not logged in");
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({'watchList': watchList}, SetOptions(merge: true));
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+  }
+
+  // ✅ جلب قائمة الهيستوري
+  static Future<List<Map<String, dynamic>>> getHistory() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw CustomError("User not logged in");
+
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      if (!doc.exists) return [];
+
+      final data = doc.data()!;
+      final list = (data['history'] as List<dynamic>?)
+          ?.map((e) => Map<String, dynamic>.from(e))
+          .toList() ??
+          [];
+
+      return list;
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+  }
+
+  // ✅ تحديث قائمة الهيستوري
+  static Future<void> updateHistory(List<Map<String, dynamic>> historyList) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw CustomError("User not logged in");
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({'history': historyList}, SetOptions(merge: true));
+    } catch (e) {
+      throw CustomError(e.toString());
+    }
+  }
 }
