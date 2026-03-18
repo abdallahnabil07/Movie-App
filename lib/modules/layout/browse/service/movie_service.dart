@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import '../model/movie_model.dart';
 
 class MovieService {
@@ -45,15 +43,20 @@ class MovieService {
     } catch (e) {
       throw Exception('Error fetching movies by genre: $e');
     }
-  }
 
   static List<String> extractAllGenres(List<HomeMovieModel> movies) {
-    Set<String> uniqueGenres = {};for (var movie in movies) {
+    Set<String> uniqueGenres = {};
+
+    ffor (var movie in movies) {
       for (var genre in movie.genres) {
         uniqueGenres.add(genre);
       }
-    }List<String> genreList = uniqueGenres.toList();
-    genreList.sort(); // Sort alphabeticallyreturn genreList;
+    }
+
+    List<String> genreList = uniqueGenres.toList();
+    genreList.sort(); // Sort alphabetically
+
+    return genreList;
   }
 
   static List<HomeMovieModel> filterMoviesByGenre(List<HomeMovieModel> movies, String genre) {
