@@ -1,10 +1,12 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+
 import '../model/movie_model.dart';
 
 class MovieService {
   static const String baseUrl = 'https://yts.mx/api/v2';
-  
+
   static Future<MovieResponse> fetchMovies() async {
     try {
       final response = await http.get(
@@ -46,23 +48,17 @@ class MovieService {
   }
 
   static List<String> extractAllGenres(List<HomeMovieModel> movies) {
-    Set<String> uniqueGenres = {};
-    
-    for (var movie in movies) {
+    Set<String> uniqueGenres = {};for (var movie in movies) {
       for (var genre in movie.genres) {
         uniqueGenres.add(genre);
       }
-    }
-    
-    List<String> genreList = uniqueGenres.toList();
-    genreList.sort(); // Sort alphabetically
-    
-    return genreList;
+    }List<String> genreList = uniqueGenres.toList();
+    genreList.sort(); // Sort alphabeticallyreturn genreList;
   }
 
   static List<HomeMovieModel> filterMoviesByGenre(List<HomeMovieModel> movies, String genre) {
     if (genre.isEmpty) return movies;
-    
+
     return movies.where((movie) => movie.hasGenre(genre)).toList();
   }
 }

@@ -5,7 +5,7 @@ import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/core/widget/retry_error_widget.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 import 'package:movie_app/modules/layout/home/widget/movie_slider_card.dart';
 import 'package:movie_app/modules/layout/search/cubit/search_state.dart';
 

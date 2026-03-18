@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/modules/layout/browse/view/tab_bar_states.dart';
+
 import '../../../../core/theme/app_colors.dart';
 import 'tab_bar_cubit.dart';
 
@@ -52,7 +53,7 @@ class DefaultTabBar extends StatelessWidget {
                     String genre = entry.value;
                     bool isSelected = i == index;
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      padding: EdgeInsets.symmetric(horizontal: context.wd(6)),
                       child: isSelected
                           ? ElevatedButton(
                               style: ElevatedButton.styleFrom(
