@@ -1,12 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../home/model/home_movie_model.dart';
 import '../../home/widget/movie_slider_card.dart';
 import 'tab_bar_cubit.dart';
 import 'tab_bar_states.dart';
 
-class MovieGrid extends StatelessWidget {
+class MovieGrid extends StatefulWidget {
   const MovieGrid({super.key});
+
+  @override
+  State<MovieGrid> createState() => _MovieGridState();
+}
+
+class _MovieGridState extends State<MovieGrid> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      final cubit = context.read<TabBarCubit>();
+
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 200 &&
+          cubit.state is TabBarLoaded) {
+        cubit.loadMoreMovies();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +50,17 @@ class MovieGrid extends StatelessWidget {
               final currentIndex = controller.index;
               final selectedGenre = state.genres[currentIndex];
 
-              final movies = context.read<TabBarCubit>().getMoviesByGenre(
-                selectedGenre,
-              );
+              final movies = context
+                  .read<TabBarCubit>()
+                  .getMoviesByGenre(selectedGenre);
 
               if (movies.isEmpty) {
                 return const Center(child: Text("No movies found"));
               }
 
               return GridView.builder(
-                // padding: const EdgeInsets.all(12),
+                controller: _scrollController,
+                padding: const EdgeInsets.all(12),
                 itemCount: movies.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -40,7 +70,6 @@ class MovieGrid extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   final movieJson = movies[index];
-
                   final movie = MovieModel.fromJson(movieJson);
 
                   return MovieSliderCard(movie: movie);
