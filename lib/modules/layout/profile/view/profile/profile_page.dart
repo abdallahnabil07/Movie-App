@@ -215,7 +215,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Column(
                             spacing: context.hg(9),
                             children: [
-                              Expanded(child: Assets.icons.list.svg()),
+                              Expanded(child: Assets.icons.list.svg(
+                                  width: context.wd(30),
+                                  height: context.hg(20))),
                               Expanded(
                                 child: Text(
                                   'Watch List',
@@ -229,7 +231,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: context.hg(80),
                           child: Column(
                             children: [
-                              Expanded(child: Assets.icons.folder.svg()),
+                              Expanded(child: Assets.icons.folder.svg(
+                                  width: context.wd(42),
+                                  height: context.hg(42))),
                               Expanded(
                                 child: Text(
                                   'History',
