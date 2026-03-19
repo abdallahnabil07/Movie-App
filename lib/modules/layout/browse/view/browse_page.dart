@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/browse/view/tab_bar_states.dart';
+
 import '../../../../core/extensions/context_extensions.dart';
 import 'default_tab_bar.dart';
 import 'movie_grid.dart';
@@ -66,7 +68,12 @@ class _BrowsePageContentState extends State<_BrowsePageContent> {
           return Center(child: Text(state.message));
         }
 
-        return const Center(child: CircularProgressIndicator());
+        return const Center(
+          child: CircularProgressIndicator(
+            backgroundColor: AppColors.primaryColor,
+            color: AppColors.yellow,
+          ),
+        );
       },
     );
   }

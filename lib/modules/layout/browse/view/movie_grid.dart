@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/theme/app_colors.dart';
 
 import '../../home/model/home_movie_model.dart';
 import '../../home/widget/movie_slider_card.dart';
@@ -24,7 +25,7 @@ class _MovieGridState extends State<MovieGrid> {
       final cubit = context.read<TabBarCubit>();
 
       if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent - 200 &&
+              _scrollController.position.maxScrollExtent - 200 &&
           cubit.state is TabBarLoaded) {
         cubit.loadMoreMovies();
       }
@@ -50,9 +51,9 @@ class _MovieGridState extends State<MovieGrid> {
               final currentIndex = controller.index;
               final selectedGenre = state.genres[currentIndex];
 
-              final movies = context
-                  .read<TabBarCubit>()
-                  .getMoviesByGenre(selectedGenre);
+              final movies = context.read<TabBarCubit>().getMoviesByGenre(
+                selectedGenre,
+              );
 
               if (movies.isEmpty) {
                 return const Center(child: Text("No movies found"));
@@ -83,7 +84,12 @@ class _MovieGridState extends State<MovieGrid> {
           return Center(child: Text(state.message));
         }
 
-        return const Center(child: CircularProgressIndicator());
+        return const Center(
+          child: CircularProgressIndicator(
+            backgroundColor: AppColors.primaryColor,
+            color: AppColors.yellow,
+          ),
+        );
       },
     );
   }
