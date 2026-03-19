@@ -64,53 +64,69 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           child: Column(
                             children: [
-                              !_isDataLoaded?
-                                  Shimmer.fromColors(
-                                    baseColor: AppColors.darkGreyColor,
-                                    highlightColor: Colors.grey[600]!,
-                                    child: Container(
+                              !_isDataLoaded
+                                  ? Shimmer.fromColors(
+                                      baseColor: AppColors.darkGreyColor,
+                                      highlightColor: Colors.grey[600]!,
+                                      child: Container(
+                                        width: context.wd(120),
+                                        height: context.hg(120),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.darkGreyColor,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
                                       width: context.wd(120),
                                       height: context.hg(120),
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: AppColors.darkGreyColor,
+                                        image: DecorationImage(
+                                          image:
+                                              avatar.isNotEmpty &&
+                                                  avatar.startsWith('http')
+                                              ? NetworkImage(avatar)
+                                              : AssetImage(
+                                                      avatar.isEmpty
+                                                          ? Assets
+                                                                .images
+                                                                .person1
+                                                                .path
+                                                          : avatar,
+                                                    )
+                                                    as ImageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ),)
-                                  :  Container(
-                                width: context.wd(120),
-                                height: context.hg(120),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: avatar.isNotEmpty && avatar.startsWith('http')
-                                        ? NetworkImage(avatar)
-                                        : AssetImage(
-                                      avatar.isEmpty
-                                          ? Assets.images.person1.path
-                                          : avatar,
-                                    ) as ImageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
+                                    ),
                               SizedBox(height: context.hg(15)),
-                              !_isDataLoaded?  Shimmer.fromColors(
-                                baseColor: AppColors.darkGreyColor,
-                                highlightColor: Colors.grey[600]!,
-                                child: Container(
-                                  width: context.wd(100),
-                                  height: context.hg(30),
-                                  padding: EdgeInsets.symmetric(horizontal: context.wd(24),vertical: context.hg(24)),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: AppColors.darkGreyColor,
-                                  ),
-
-                                ),):Text(
-                                username,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
+                              !_isDataLoaded
+                                  ? Shimmer.fromColors(
+                                      baseColor: AppColors.darkGreyColor,
+                                      highlightColor: Colors.grey[600]!,
+                                      child: Container(
+                                        width: context.wd(100),
+                                        height: context.hg(30),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: context.wd(24),
+                                          vertical: context.hg(24),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.rectangle,
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          color: AppColors.darkGreyColor,
+                                        ),
+                                      ),
+                                    )
+                                  : Text(
+                                      username,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.titleLarge,
+                                    ),
                             ],
                           ),
                         ),
@@ -119,12 +135,20 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             BlocBuilder<WatchListCubit, List<MovieModel>>(
                               builder: (context, watchList) {
-                                return _buildCounterColumn(context, watchList.length.toString(), "Wish List");
+                                return _buildCounterColumn(
+                                  context,
+                                  watchList.length.toString(),
+                                  "Wish List",
+                                );
                               },
                             ),
                             BlocBuilder<HistoryCubit, List<MovieModel>>(
                               builder: (context, historyList) {
-                                return _buildCounterColumn(context, historyList.length.toString(), "History");
+                                return _buildCounterColumn(
+                                  context,
+                                  historyList.length.toString(),
+                                  "History",
+                                );
                               },
                             ),
                           ],
@@ -160,23 +184,21 @@ class _ProfilePageState extends State<ProfilePage> {
                                   EasyLoading.show();
 
                                   if (context.mounted) {
-                                    context.read<WatchListCubit>().clearWatchList();
+                                    context
+                                        .read<WatchListCubit>()
+                                        .clearWatchList();
                                     context.read<HistoryCubit>().clearHistory();
                                   }
 
                                   await FirebaseAuth.instance.signOut();
-                                  await CacheHelper.removeData(CacheKeys.isSignUp);
-                                  await CacheHelper.removeData(CacheKeys.isLoggedIn);
+                                  await CacheHelper.removeData(
+                                    CacheKeys.isSignUp,
+                                  );
+                                  await CacheHelper.removeData(
+                                    CacheKeys.isLoggedIn,
+                                  );
 
                                   EasyLoading.dismiss();
-
-                                  if (context.mounted) {
-                                    Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      AppRoutesName.login,
-                                      (route) => false,
-                                    );
-                                  }
                                 } catch (e) {
                                   EasyLoading.dismiss();
                                   if (context.mounted) {
@@ -207,7 +229,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           width: context.wd(4),
                           color: AppColors.yellow,
                         ),
-                        insets: EdgeInsets.symmetric(horizontal: (context.width - context.wd(260))),
+                        insets: EdgeInsets.symmetric(
+                          horizontal: (context.width - context.wd(260)),
+                        ),
                       ),
                       tabs: [
                         Tab(
@@ -215,9 +239,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Column(
                             spacing: context.hg(9),
                             children: [
-                              Expanded(child: Assets.icons.list.svg(
+                              Expanded(
+                                child: Assets.icons.list.svg(
                                   width: context.wd(30),
-                                  height: context.hg(20))),
+                                  height: context.hg(20),
+                                ),
+                              ),
                               Expanded(
                                 child: Text(
                                   'Watch List',
@@ -231,9 +258,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: context.hg(80),
                           child: Column(
                             children: [
-                              Expanded(child: Assets.icons.folder.svg(
+                              Expanded(
+                                child: Assets.icons.folder.svg(
                                   width: context.wd(42),
-                                  height: context.hg(42))),
+                                  height: context.hg(42),
+                                ),
+                              ),
                               Expanded(
                                 child: Text(
                                   'History',
@@ -269,26 +299,27 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       spacing: context.hg(20),
       children: [
-      !_isDataLoaded ?
-      Shimmer.fromColors(
-        baseColor: AppColors.darkGreyColor,
-        highlightColor: Colors.grey[600]!,
-        child: Container(
-          width: context.wd(50),
-          height: context.hg(30),
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.darkGreyColor,
-          ),
-        ),)
-          :Text(
-          count,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: context.hg(36),
-          ),
-        ),
+        !_isDataLoaded
+            ? Shimmer.fromColors(
+                baseColor: AppColors.darkGreyColor,
+                highlightColor: Colors.grey[600]!,
+                child: Container(
+                  width: context.wd(50),
+                  height: context.hg(30),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(12),
+                    color: AppColors.darkGreyColor,
+                  ),
+                ),
+              )
+            : Text(
+                count,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: context.hg(36),
+                ),
+              ),
         Text(
           label,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -317,18 +348,19 @@ class _ProfilePageState extends State<ProfilePage> {
           itemCount: movies.length,
           itemBuilder: (context, index) {
             final movie = movies[index];
-            return !_isDataLoaded?
-            Shimmer.fromColors(
-              baseColor: AppColors.darkGreyColor,
-              
-              highlightColor: Colors.grey[600]!,
-              child: Container(
-margin: EdgeInsets.all(context.wd(5)),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppColors.darkGreyColor,
-                ),
-              ),)
+            return !_isDataLoaded
+                ? Shimmer.fromColors(
+                    baseColor: AppColors.darkGreyColor,
+
+                    highlightColor: Colors.grey[600]!,
+                    child: Container(
+                      margin: EdgeInsets.all(context.wd(5)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.darkGreyColor,
+                      ),
+                    ),
+                  )
                 : MovieSliderCard(movie: movie);
           },
         );
