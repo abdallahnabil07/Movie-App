@@ -4,6 +4,7 @@ import 'package:movie_app/modules/Auth/view/login/login_view.dart';
 import 'package:movie_app/modules/Auth/view/registration/registration_view.dart';
 import 'package:movie_app/modules/layout/layout.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/movie_details.dart';
+import 'package:movie_app/modules/layout/browse/view/browse_page.dart';
 import 'package:movie_app/modules/layout/profile/view/UpdateProfile/update_profile.dart';
 import 'package:movie_app/modules/on%20boarding/view/intro_page_on_boarding.dart';
 import 'package:movie_app/modules/on%20boarding/view/on_boarding_view.dart';
@@ -33,6 +34,10 @@ abstract class AppRoutes {
         return PageRouteBuilderCustom(
           page: MovieDetails(),
           arguments: settings.arguments,
+        );
+      case AppRoutesName.browse:
+        return PageRouteBuilderCustom(
+          page: BrowsePage(initialGenre: settings.arguments as String?),
         );
       default:
         return PageRouteBuilderCustom(page: LoginView());

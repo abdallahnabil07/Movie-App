@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/cubit/layout_cubit.dart';
@@ -25,6 +26,8 @@ class IconInNavigationCustom extends StatelessWidget {
         child: BlocBuilder<LayoutCubit, int>(
           builder: (context, currentIndex) {
             return icon.svg(
+              height: context.hg(26),
+              width: context.wd(26),
               colorFilter: ColorFilter.mode(
                 currentIndex == iconIndex ? AppColors.yellow : AppColors.white,
                 BlendMode.srcIn,

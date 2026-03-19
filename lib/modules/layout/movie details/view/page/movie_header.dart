@@ -8,7 +8,7 @@ import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/core/utils/launcher_utils.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/model/movie_details_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/widget/card_icon_and_text_details_movie.dart';
 import 'package:movie_app/modules/layout/profile/cubit/history_cubit.dart';

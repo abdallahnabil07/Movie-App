@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/theme/app_colors.dart';

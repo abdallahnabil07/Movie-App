@@ -5,7 +5,7 @@ import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/layout/home/home_page.dart';
 import 'package:movie_app/modules/layout/profile/view/profile/profile_page.dart';
-import 'package:movie_app/modules/layout/search/search_page.dart';
+import 'package:movie_app/modules/layout/search/view/search_page.dart';
 import 'package:movie_app/modules/layout/widget/icon_in_navigation_custom.dart';
 
 import 'browse/view/browse_page.dart';
