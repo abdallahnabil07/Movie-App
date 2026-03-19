@@ -25,11 +25,10 @@ class _LayoutState extends State<Layout> {
     BrowsePage(),
     ProfilePage(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LayoutCubit(),
+      create: (_) => LayoutCubit(),
       child: BlocBuilder<LayoutCubit, int>(
         builder: (context, state) {
           return Scaffold(
@@ -49,26 +48,10 @@ class _LayoutState extends State<Layout> {
                 ),
                 child: Row(
                   children: [
-                    //home
-                    IconInNavigationCustom(
-                      icon: Assets.icons.homeIcon,
-                      iconIndex: 0,
-                    ),
-                    //search
-                    IconInNavigationCustom(
-                      icon: Assets.icons.searchIcon,
-                      iconIndex: 1,
-                    ),
-                    //explore
-                    IconInNavigationCustom(
-                      icon: Assets.icons.exploreIcon,
-                      iconIndex: 2,
-                    ),
-                    //profile
-                    IconInNavigationCustom(
-                      icon: Assets.icons.profielIcon,
-                      iconIndex: 3,
-                    ),
+                    IconInNavigationCustom(icon: Assets.icons.homeIcon, iconIndex: 0),
+                    IconInNavigationCustom(icon: Assets.icons.searchIcon, iconIndex: 1),
+                    IconInNavigationCustom(icon: Assets.icons.exploreIcon, iconIndex: 2),
+                    IconInNavigationCustom(icon: Assets.icons.profielIcon, iconIndex: 3),
                   ],
                 ),
               ),
@@ -78,4 +61,5 @@ class _LayoutState extends State<Layout> {
       ),
     );
   }
+
 }

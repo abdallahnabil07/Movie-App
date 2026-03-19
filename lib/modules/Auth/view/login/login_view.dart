@@ -11,6 +11,8 @@ import 'package:movie_app/core/local/constants/cache_key.dart';
 import 'package:movie_app/core/routes/app_routes_name.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/modules/Auth/cubit/login%20cubit/login_state.dart';
+import 'package:movie_app/modules/layout/profile/cubit/history_cubit.dart';
+import 'package:movie_app/modules/layout/profile/cubit/watch_list_state.dart';
 import 'package:toastification/toastification.dart';
 
 import 'widgets/custom_text_button.dart';
@@ -52,32 +54,42 @@ class _LoginViewState extends State<LoginView> {
                 EasyLoading.dismiss();
 
                 if (state.user != null) {
+                  // ✅ تحميل الـ Watch List والـ History فور نجاح الدخول
+                  if (context.mounted) {
+                    context.read<WatchListCubit>().loadWatchList();
+                    context.read<HistoryCubit>().loadHistory();
+                  }
+
                   await CacheHelper.saveData(
                     key: CacheKeys.isLoggedIn,
                     value: true,
                   );
 
-                  ToastificationCustom.show(
-                    context,
-                    title: 'Logged in successfully',
-                    type: ToastificationType.success,
-                  );
+                  if (context.mounted) {
+                    ToastificationCustom.show(
+                      context,
+                      title: 'Logged in successfully',
+                      type: ToastificationType.success,
+                    );
 
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    AppRoutesName.layout,
-                    (route) => false,
-                  );
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRoutesName.layout,
+                      (route) => false,
+                    );
+                  }
                 }
               }
               else if (state is LoginFailure) {
                 EasyLoading.dismiss();
 
-                ToastificationCustom.show(
-                  context,
-                  title: state.errorMessage,
-                  type: ToastificationType.error,
-                );
+                if (context.mounted) {
+                  ToastificationCustom.show(
+                    context,
+                    title: state.errorMessage,
+                    type: ToastificationType.error,
+                  );
+                }
               }
             },
             child: Scaffold(
