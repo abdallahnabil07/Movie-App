@@ -8,7 +8,7 @@ import 'tab_bar_cubit.dart';
 
 class BrowsePage extends StatelessWidget {
   final String? initialGenre;
-  
+
   const BrowsePage({super.key, this.initialGenre});
 
   @override
@@ -24,7 +24,7 @@ class BrowsePage extends StatelessWidget {
 
 class _BrowsePageContent extends StatefulWidget {
   final String? initialGenre;
-  
+
   const _BrowsePageContent({this.initialGenre});
 
   @override

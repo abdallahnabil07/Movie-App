@@ -48,7 +48,10 @@ class DefaultTabBar extends StatelessWidget {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: state.genres.asMap().entries.map((entry) {
+                  children: state.genres
+                      .asMap()
+                      .entries
+                      .map((entry) {
                     int i = entry.key;
                     String genre = entry.value;
                     bool isSelected = i == index;
@@ -56,37 +59,46 @@ class DefaultTabBar extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: context.wd(6)),
                       child: isSelected
                           ? ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.yellow,
-                                foregroundColor: Colors.black,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(context.wd(16)),
-                                ),
-                                minimumSize:  Size(context.wd(80),  context.hg(40)),
-                              ),
-                              onPressed: () => controller.animateTo(i),
-                              child: Text(genre,
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            )
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.yellow,
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(context.wd(16)),
+                          ),
+                          minimumSize: Size(context.wd(80), context.hg(40)),
+                        ),
+                        onPressed: () => controller.animateTo(i),
+                        child: Text(genre,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      )
                           : OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: AppColors.yellow,
-                                side: const BorderSide(color: AppColors.yellow),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(context.wd(16)),
-                                ),
-                                minimumSize: Size(context.wd(80),  context.hg(40)),
-                              ),
-                              onPressed: () => controller.animateTo(i),
-                              child: Text(genre,
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: AppColors.yellow,
-                                  fontWeight: FontWeight.bold
-                                ),)
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.yellow,
+                            side: const BorderSide(color: AppColors.yellow),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  context.wd(16)),
                             ),
+                            minimumSize: Size(context.wd(80), context.hg(40)),
+                          ),
+                          onPressed: () => controller.animateTo(i),
+                          child: Text(genre,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                color: AppColors.yellow,
+                                fontWeight: FontWeight.bold
+                            ),)
+                      ),
                     );
                   }).toList(),
                 ),

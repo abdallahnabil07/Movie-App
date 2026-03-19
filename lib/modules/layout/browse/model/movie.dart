@@ -75,7 +75,8 @@ class MovieData {
 
   factory MovieData.fromJson(Map<String, dynamic> json) {
     var moviesList = json['movies'] as List?;
-    List<Movie> movies = moviesList?.map((i) => Movie.fromJson(i)).toList() ?? [];
+    List<Movie> movies =
+        moviesList?.map((i) => Movie.fromJson(i)).toList() ?? [];
 
     return MovieData(
       movieCount: json['movie_count'] ?? 0,

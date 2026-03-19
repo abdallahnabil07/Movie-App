@@ -75,7 +75,8 @@ class MovieData {
 
   factory MovieData.fromJson(Map<String, dynamic> json) {
     var moviesList = json['movies'] as List?;
-    List<HomeMovieModel> movies = moviesList?.map((i) => HomeMovieModel.fromJson(i)).toList() ?? [];
+    List<HomeMovieModel> movies =
+        moviesList?.map((i) => HomeMovieModel.fromJson(i)).toList() ?? [];
 
     return MovieData(
       movieCount: json['movie_count'] ?? 0,

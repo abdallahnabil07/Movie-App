@@ -9,9 +9,7 @@ class MovieService {
     try {
       final response = await http.get(
         Uri.parse('$baseUrl/list_movies.json'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
@@ -29,9 +27,7 @@ class MovieService {
     try {
       final response = await http.get(
         Uri.parse('$baseUrl/list_movies.json?genre=$genre'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
@@ -39,12 +35,14 @@ class MovieService {
         return MovieResponse.fromJson(data);
       } else {
         throw Exception(
-            'Failed to load movies by genre: ${response.statusCode}');
+          'Failed to load movies by genre: ${response.statusCode}',
+        );
       }
     } catch (e) {
       throw Exception('Error fetching movies by genre: $e');
     }
   }
+
   static List<String> extractAllGenres(List<HomeMovieModel> movies) {
     Set<String> uniqueGenres = {};
 
@@ -60,7 +58,10 @@ class MovieService {
     return genreList;
   }
 
-  static List<HomeMovieModel> filterMoviesByGenre(List<HomeMovieModel> movies, String genre) {
+  static List<HomeMovieModel> filterMoviesByGenre(
+    List<HomeMovieModel> movies,
+    String genre,
+  ) {
     if (genre.isEmpty) return movies;
 
     return movies.where((movie) => movie.hasGenre(genre)).toList();
