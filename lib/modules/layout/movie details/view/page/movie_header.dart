@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:movie_app/components/app_elevated_button.dart';
 import 'package:movie_app/components/toastification_custom.dart';
@@ -7,11 +8,14 @@ import 'package:movie_app/core/extensions/context_extensions.dart';
 import 'package:movie_app/core/gen/assets.gen.dart';
 import 'package:movie_app/core/theme/app_colors.dart';
 import 'package:movie_app/core/utils/launcher_utils.dart';
-import 'package:movie_app/modules/layout/home/model/movie_model.dart';
+import 'package:movie_app/modules/layout/home/model/home_movie_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/model/movie_details_model.dart';
 import 'package:movie_app/modules/layout/movie%20details/view/widget/card_icon_and_text_details_movie.dart';
+import 'package:movie_app/modules/layout/profile/cubit/history_cubit.dart';
 import 'package:movie_app/modules/on%20boarding/widget/gradient_custom.dart';
 import 'package:toastification/toastification.dart';
+
+import '../../../profile/cubit/watch_list_state.dart';
 
 class MovieHeader extends StatefulWidget {
   final MovieModel movieModel;
@@ -28,14 +32,14 @@ class MovieHeader extends StatefulWidget {
 }
 
 class _MovieHeaderState extends State<MovieHeader> {
-  bool isBookMarked = false;
-
   @override
   Widget build(BuildContext context) {
+    final watchList = context.watch<WatchListCubit>().state;
+    final isBookMarked = watchList.any((m) => m.id == widget.movieModel.id);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        //Image & Gradient & Play Button & MovieName
         Stack(
           alignment: Alignment.center,
           children: [
@@ -70,6 +74,8 @@ class _MovieHeaderState extends State<MovieHeader> {
             //PlayIcon
             Bounceable(
               onTap: () {
+                context.read<HistoryCubit>().addToHistory(widget.movieModel);
+                
                 LauncherUtils.openTrailer(
                   context,
                   widget.movieDetailsModel.trailerCode,
@@ -118,24 +124,25 @@ class _MovieHeaderState extends State<MovieHeader> {
                   //Bookmark
                   Bounceable(
                     onTap: () {
-                      setState(() {
-                        isBookMarked = !isBookMarked;
-                        if (isBookMarked) {
-                          ToastificationCustom.show(
-                              context,
-                              type: ToastificationType.success,
-                              title: 'Added to bookmarks',
-                              alignment: FractionalOffset.bottomCenter
-                          );
-                        } else {
-                          ToastificationCustom.show(
-                              context,
-                              type: ToastificationType.info,
-                              title: 'Removed from bookmarks',
-                              alignment: FractionalOffset.bottomCenter
-                          );
-                        }
-                      });
+                      final watchListCubit = context.read<WatchListCubit>();
+
+                      if (!isBookMarked) {
+                        watchListCubit.addMovie(widget.movieModel);
+                        ToastificationCustom.show(
+                          context,
+                          type: ToastificationType.success,
+                          title: 'Added to Watch List',
+                          alignment: FractionalOffset.bottomCenter,
+                        );
+                      } else {
+                        watchListCubit.removeMovie(widget.movieModel);
+                        ToastificationCustom.show(
+                          context,
+                          type: ToastificationType.info,
+                          title: 'Removed from Watch List',
+                          alignment: FractionalOffset.bottomCenter,
+                        );
+                      }
                     },
                     child: Assets.icons.boolmarkIcon.svg(
                       width: 24,
@@ -164,6 +171,7 @@ class _MovieHeaderState extends State<MovieHeader> {
             textColor: AppColors.white,
             textButton: "Watch",
             onPressed: () {
+              context.read<HistoryCubit>().addToHistory(widget.movieModel);
               LauncherUtils.watchMovie(context, widget.movieDetailsModel.url);
             },
             height: context.hg(55),
